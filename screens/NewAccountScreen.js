@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 
 //Styles
 import Fonts from '../styles/Fonts';
@@ -17,8 +18,9 @@ export default class NewAccountScreen extends Component {
         super(props);
 
         this.state = {
-            username: '',
-            faction: ''
+            username: "",
+            email: "",
+            faction: "COSMIC"
         }
     }
 
@@ -38,10 +40,27 @@ export default class NewAccountScreen extends Component {
 
 
     /**
+     * Method to update the email stored in our state.
+     * @param {string} email_ The string currently in the email text entry field.
+     */
+    setEmail = function (email_) {
+        this.setState((prevState) => {
+            return ({
+                ...prevState,
+                email: email_
+            });
+        });
+    }
+
+
+    /**
      * Method to update the faction name string stored in our state.
      * @param {string} faction_ The string currently in the token text entry field.
      */
     setFaction = function (faction_) {
+        console.log("Old Faction: " + this.state.faction);
+        console.log("New Faction: " + faction_);
+
         this.setState((prevState) => {
             return ({
                 ...prevState,
@@ -54,8 +73,24 @@ export default class NewAccountScreen extends Component {
     /**
      * Method to attempt to create a new user with the given username and faction.
      */
-    createAccount = function () {
-        AccountAPICalls.makeNewAccount(this.state.username, this.state.faction);
+    createAccount = async function () {
+        let data = await AccountAPICalls.makeNewAccount(this.state.username, this.state.faction)
+            .then(data => {
+                //If there's an error, we display the Error screen with details about what went wrong
+                if (data.error) {
+                    this.props.navigation.navigate("Error", {
+                        title: data.error.title,
+                        message: data.error.message
+                    });
+                }
+                //If there's no error, we save the login details and then move to the Home screen
+                else {
+                    AccountAPICalls.userLogin(this.state.username, data.token);
+                    this.props.navigation.navigate("Home");
+                }
+            })
+            .catch(error => {
+            })
     }
 
 
@@ -80,15 +115,48 @@ export default class NewAccountScreen extends Component {
                             onChangeText={(newUname) => this.setUsername(newUname)}
                         />
                     </View>
+
                     <View style={styles.inputRow}>
-                        <Text style={styles.inputHeaderText}>Faction:</Text>
+                        <Text style={styles.inputHeaderText}>Email:</Text>
                         <TextInput
                             style={styles.input}
                             multiline={false}
-                            secureTextEntry={true}
-                            placeholder={"Example: Rebellion"}
+                            keyboardType={"email-address"}
+                            placeholder={"Example: john@doe.com"}
+                            value={this.state.email}
+                            onChangeText={(newEmail) => this.setEmail(newEmail)}
+                        />
+                    </View>
+
+                    <View style={styles.inputRow}>
+                        <Text style={styles.inputHeaderText}>Faction:</Text>
+                        <Dropdown
+                            style={styles.dropdown}
+                            data={[
+                                { label: 'Cosmic', value: 'COSMIC' },
+                                { label: 'Void', value: 'VOID' },
+                                { label: 'Galactic', value: 'GALACTIC' },
+                                { label: 'Quantum', value: 'QUANTUM' },
+                                { label: 'Dominion', value: 'DOMINION' },
+                                { label: 'Astro', value: 'ASTRO' },
+                                { label: 'Corsairs', value: 'CORSAIRS' },
+                                { label: 'Obsidian', value: 'OBSIDIAN' },
+                                { label: 'Aegis', value: 'AEGIS' },
+                                { label: 'United', value: 'UNITED' },
+                                { label: 'Solitary', value: 'SOLITARY' },
+                                { label: 'Cobalt', value: 'COBALT' },
+                                { label: 'Omega', value: 'OMEGA' },
+                                { label: 'Echo', value: 'ECHO' },
+                                { label: 'Lords', value: 'LORDS' },
+                                { label: 'Cult', value: 'CULT' },
+                                { label: 'Ancients', value: 'ANCIENTS' },
+                                { label: 'Shadow', value: 'SHADOW' },
+                                { label: 'Ethereal', value: 'ETHEREAL' }
+                            ]}
                             value={this.state.faction}
-                            onChangeText={(newFaction) => this.setFaction(newFaction)}
+                            onChange={item => { this.setFaction(item.value); }}
+                            labelField="label"
+                            valueField="value"
                         />
                     </View>
 
@@ -127,6 +195,16 @@ const styles = StyleSheet.create({
     },
 
     input: {
+        borderWidth: 1,
+        borderColor: '#555',
+        width: '60%',
+        marginLeft: 5,
+        paddingLeft: 3,
+        borderRadius: 3,
+        fontFamily: Fonts.monospace
+    },
+
+    dropdown: {
         borderWidth: 1,
         borderColor: '#555',
         width: '60%',

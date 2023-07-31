@@ -2,9 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\api-calls",
+    "\\assets",
+    "\\components",
     "\\screens",
     "\\styles"
   ],
-  "SelectedNode": "\\styles\\Fonts.js",
+  "SelectedNode": "\\screens\\MapScreen.js",
   "PreviewInSolutionExplorer": false
 }

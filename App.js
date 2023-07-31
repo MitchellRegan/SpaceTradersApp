@@ -10,6 +10,9 @@ import Colors from './styles/Colors';
 //Screens
 import LoginScreen from './screens/LoginScreen';
 import NewAccountScreen from './screens/NewAccountScreen';
+import HomeScreen from './screens/HomeScreen';
+import MapScreen from './screens/MapScreen';
+import ErrorScreen from './screens/ErrorScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,14 +21,17 @@ export default function App() {
         <View style={styles.container}>
             <NavigationContainer>
                 <Drawer.Navigator
-                    drawerPosition={'right'}
                     screenOptions={{
                         headerShown: false,
-                        swipeEdgeWidth: 0
+                        swipeEdgeWidth: 0,
+                        drawerPosition: 'right'
                     }}
                 >
                     <Drawer.Screen name="Login" component={LoginScreen}/>
-                    <Drawer.Screen name="NewAccount" component={NewAccountScreen}/>
+                    <Drawer.Screen name="NewAccount" component={NewAccountScreen} />
+                    <Drawer.Screen name="Home" component={HomeScreen} />
+                    <Drawer.Screen name="Map" component={MapScreen} />
+                    <Drawer.Screen name="Error" component={ErrorScreen} />
                 </Drawer.Navigator>
             </NavigationContainer>
          </View>

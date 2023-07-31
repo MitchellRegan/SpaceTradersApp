@@ -7,5 +7,7 @@ export default {
     button2Color: "#ffffff",
     button2TextColor: "ca8a04",
 
-    textHyperlinkColor: "#00f"
+    textDefaultColor1: "#000",
+    textHyperlinkColor: "#00f",
+    textErrorColor: "#f00"
 }

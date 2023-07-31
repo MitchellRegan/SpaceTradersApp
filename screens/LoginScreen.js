@@ -21,7 +21,8 @@ export default class LoginScreen extends Component {
 
         this.state = {
             username: '',
-            token: ''
+            token: '',
+            invalidLogin: false
         }
     }
 
@@ -57,8 +58,30 @@ export default class LoginScreen extends Component {
     /**
      * Method to attempt logging in the user with the given user symbol and bearer token.
      */
-    login = function () {
-        AccountAPICalls.userLogin(this.state.username, this.state.token);
+    login = async function () {
+        let data = await AccountAPICalls.userLogin(this.state.username, this.state.token)
+            .then(data => {
+                console.log(data);
+                //If there's an error, we display the Error screen with details about what went wrong
+                if (data.error) {
+                    /*this.props.navigation.navigate("Error", {
+                        title: data.error.title,
+                        message: data.error.message
+                    });*/
+                    this.setState((prevState) => {
+                        return ({
+                            ...prevState,
+                            invalidLogin: true
+                        });
+                    });
+                }
+                //If there's no error, we save the login details and then move to the Home screen
+                else {
+                    AccountAPICalls.userLogin(this.state.username, data.token);
+                    this.props.navigation.navigate("Home");
+                }
+            })
+            .catch(error => { })
     }
 
 
@@ -94,12 +117,12 @@ export default class LoginScreen extends Component {
                         <TextInput
                             style={styles.input}
                             multiline={false}
-                            secureTextEntry={true}
-                            placeholder={"Example: Han Solo"}
+                            placeholder={"Paste Token Here"}
                             value={this.state.token}
                             onChangeText={(newToken) => this.setToken(newToken)}
                         />
                     </View>
+                    {(this.state.invalidLogin) && <Text style={styles.invalidText}>Invalid Username or Token</Text>}
 
                     <TouchableOpacity
                         style={styles.loginButton}
@@ -155,6 +178,13 @@ const styles = StyleSheet.create({
         paddingLeft: 3,
         borderRadius: 3,
         fontFamily: Fonts.monospace
+    },
+
+    invalidText: {
+        fontFamily: Fonts.monospoace,
+        marginTop: 5,
+        textAlign: 'center',
+        color: Colors.textErrorColor
     },
 
     loginButton: {

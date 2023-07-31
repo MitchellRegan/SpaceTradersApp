@@ -6,21 +6,43 @@ const AccountAPICalls = {
      * API call to create a new account for SpaceTraders.
      * @param {string} username_ The username of the player.
      * @param {string} userFaction_ The name of the faction that the user wants to join.
+     * @param {string} email_ Recovery email tied to the player's account.
      */
-    makeNewAccount: async function (username_, userFaction_) {
-        let callData = await fetch('https://api.spacetraders.io/v2/register', {
+    makeNewAccount: async function (username_, userFaction_, email_) {
+        const options = {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 symbol: username_,
-                faction: userFaction_
+                faction: userFaction_,
+                email: email_
+            }),
+        };
+
+        let callData = await fetch('https://api.spacetraders.io/v2/register', options)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    return {
+                        error: {
+                            title: "AccountAPICalls.makeNewAccount Error",
+                            message: "Code " + data.error.code + ": " + data.error.message
+                        }
+                    };
+                }
+                else {
+                    return data;
+                }
             })
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((error) => {
-                console.log("AccountAPICalls.makeNewAccount error: " + error);
+            .catch(error => {
+                return {
+                    error: {
+                        title: "AccountAPICalls.makeNewAccount Error",
+                        message: error
+                    }
+                };
             })
 
         return callData;
@@ -33,17 +55,64 @@ const AccountAPICalls = {
      * @param {string} bearerToken_
      */
     userLogin: async function (username_, bearerToken_) {
-        var data = require("../user-preferences.json");
-        console.log("Params: " + username_ + ", " + bearerToken_)
-        console.log("Username Before: " + data.username);
-        console.log("Faction Before: " + data.faction);
-        console.log("Bearer Token Before: " + data.bearerToken);
+        const options = {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                Authorization: 'Bearer ' + bearerToken_
+            }
+        };
 
-        data.username = username_;
-        data.bearerToken = bearerToken_;
-        console.log("Username After: " + data.username);
-        console.log("Faction After: " + data.faction);
-        console.log("Bearer Token After: " + data.bearerToken);
+        let callData = await fetch('https://api.spacetraders.io/v2/my/agent', options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log("Symbol:   " + data.data.symbol);
+                console.log("Username: " + username_.toUpperCase());
+                if (data.error) {
+                    return {
+                        error: {
+                            title: "AccountAPICalls.userLogin Error",
+                            message: "Code " + data.error.code + ": " + data.error.message
+                        }
+                    };
+                }
+                else if (data.data.symbol == username_.toUpperCase()) {
+                    var localData = require("../user-preferences.json");
+                    //Checking to see if the user's data has already been saved locally
+                    for (var i = 0; i < localData.accounts.length; i++) {
+                        if (localData.accounts[i].username == username_ && localData.accounts[i].email == email_) {
+                            return;
+                        }
+                    }
+
+                    //If this account's data is new, we save it
+                    localData.accounts.push({
+                        username: username_,
+                        bearerToken_: bearerToken_
+                    });
+
+                    return data;
+                }
+                else {
+                    return {
+                        error: {
+                            title: "AccountAPICalls.userLogin Error",
+                            message: "Invalid Username/Token Combination."
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                return {
+                    error: {
+                        title: "AccountAPICalls.userLogin Error",
+                        message: error
+                    }
+                };
+            })
+
+        return callData;
     },
 
 
