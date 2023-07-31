@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 
+//SVG Icons
+import Logo from '../assets/icons/logo-over-black.svg';
+
 //Styles
 import Fonts from '../styles/Fonts';
 import Colors from '../styles/Colors';
+
+//Components
+import HeaderBar from '../components/HeaderBar';
 
 //API Calls
 import AccountAPICalls from '../api-calls/account-api-calls';
@@ -59,8 +65,19 @@ export default class LoginScreen extends Component {
     render() {
         return (
             <View style={styles.wrapper}>
+                <HeaderBar
+                    title={"SpaceTraders"}
+                    navigation={this.props.navigation}
+                    showBackButton={false}
+                    showMenuButton={false}
+                />
+
                 <View style={styles.inputBox}>
-                    <Text>Login Screen</Text>
+                    <Logo
+                        height={180}
+                        width={180}
+                        style={styles.logo}
+                    />
 
                     <View style={styles.inputRow}>
                         <Text style={styles.inputHeaderText}>Username:</Text>
@@ -108,25 +125,35 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
+    logo: {
+        alignSelf: 'center',
+        margin: 20
+    },
+
     inputBox: {
-        paddingTop: "30%"
+
     },
 
     inputRow: {
-        flexDirection: 'row'
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 3
     },
 
     inputHeaderText: {
+        width: '25%',
         textAlignVertical: "center",
         fontFamily: Fonts.monospace
     },
 
     input: {
         borderWidth: 1,
-        borderColor: '#000',
-        width: "50%",
+        borderColor: '#555',
+        width: "60%",
         marginLeft: 5,
         paddingLeft: 3,
+        borderRadius: 3,
         fontFamily: Fonts.monospace
     },
 
@@ -138,14 +165,17 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingTop: 8,
         paddingBottom: 8,
-        marginTop: 15
+        marginTop: 15,
+        alignSelf: 'center'
     },
 
     loginButtonText: {
         color: Colors.button1TextColor,
         fontSize: 20,
         fontFamily: Fonts.monospace,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        paddingLeft: 20,
+        paddingRight: 20
     },
 
     newAccountButton: {
@@ -154,8 +184,9 @@ const styles = StyleSheet.create({
     },
 
     newAccountText: {
-        fontSize: 14,
+        fontSize: 15,
+        color: Colors.textHyperlinkColor,
         fontFamily: Fonts.monospace,
-        padding: 5
+        padding: 7
     }
 });

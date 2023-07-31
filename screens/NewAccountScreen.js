@@ -5,6 +5,9 @@ import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-nativ
 import Fonts from '../styles/Fonts';
 import Colors from '../styles/Colors';
 
+//Components
+import HeaderBar from '../components/HeaderBar';
+
 //API Calls
 import AccountAPICalls from '../api-calls/account-api-calls';
 
@@ -59,9 +62,14 @@ export default class NewAccountScreen extends Component {
     render() {
         return (
             <View style={styles.wrapper}>
+                <HeaderBar
+                    title={"New Account"}
+                    navigation={this.props.navigation}
+                    showBackButton={true}
+                    showMenuButton={false}
+                />
+                
                 <View style={styles.inputBox}>
-                    <Text>New Account Screen</Text>
-
                     <View style={styles.inputRow}>
                         <Text style={styles.inputHeaderText}>Username:</Text>
                         <TextInput
@@ -85,10 +93,10 @@ export default class NewAccountScreen extends Component {
                     </View>
 
                     <TouchableOpacity
-                        style={styles.loginButton}
+                        style={styles.createAccountButton}
                         onPress={() => this.createAccount()}
                     >
-                        <Text style={styles.loginButtonText}>Create Account</Text>
+                        <Text style={styles.createAccountButtonText}>Create</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -102,13 +110,14 @@ const styles = StyleSheet.create({
     },
 
     inputBox: {
-        paddingTop: "30%"
+        paddingTop: '45%'
     },
 
     inputRow: {
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: 3
     },
 
     inputHeaderText: {
@@ -119,14 +128,15 @@ const styles = StyleSheet.create({
 
     input: {
         borderWidth: 1,
-        borderColor: '#000',
-        width: "50%",
+        borderColor: '#555',
+        width: '60%',
         marginLeft: 5,
         paddingLeft: 3,
+        borderRadius: 3,
         fontFamily: Fonts.monospace
     },
 
-    loginButton: {
+    createAccountButton: {
         backgroundColor: Colors.button1Color,
         borderRadius: 5,
         alignItems: "center",
@@ -134,14 +144,17 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingTop: 8,
         paddingBottom: 8,
-        marginTop: 15
+        marginTop: 15,
+        alignSelf: 'center'
     },
 
-    loginButtonText: {
+    createAccountButtonText: {
         color: Colors.button1TextColor,
         fontSize: 20,
         fontFamily: Fonts.monospace,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        paddingLeft: 20,
+        paddingRight: 20
     },
 
     newAccountButton: {

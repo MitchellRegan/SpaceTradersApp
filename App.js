@@ -19,7 +19,10 @@ export default function App() {
             <NavigationContainer>
                 <Drawer.Navigator
                     drawerPosition={'right'}
-                    screenOptions={{ headerShown: false }}
+                    screenOptions={{
+                        headerShown: false,
+                        swipeEdgeWidth: 0
+                    }}
                 >
                     <Drawer.Screen name="Login" component={LoginScreen}/>
                     <Drawer.Screen name="NewAccount" component={NewAccountScreen}/>
