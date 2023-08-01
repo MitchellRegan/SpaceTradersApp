@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //Styles
-import Fonts from '../../styles/Fonts';
-import Colors from '../../styles/Colors';
+import globalStyles from '../../styles/global-stylesheet';
 
 //API Calls
 import ContractAPICalls from '../../api-calls/contract-api-calls';
@@ -75,33 +74,16 @@ export default class MyContracts extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
-                <Text style={styles.headerText }>Contract List</Text>
-                <Text style={styles.detailsText}>Available: {this.state.available}</Text>
-                <Text style={styles.detailsText}>Completed: {this.state.completed}</Text>
-                <Text style={styles.detailsText}>Incomplete: {this.state.incomplete}</Text>
+            <View style={globalStyles.listViewWrapper1}>
+                <Text style={globalStyles.header2Text}>Contract List</Text>
+                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Available: {this.state.available}</Text>
+                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Completed: {this.state.completed}</Text>
+                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Incomplete: {this.state.incomplete}</Text>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#000',
-        padding: 5
-    },
-
-    headerText: {
-        fontFamily: Fonts.monospace,
-        fontSize: 18,
-        fontWeight: 'bold',
-        paddingBottom: 5,
-    },
-
-    detailsText: {
-        fontFamily: Fonts.monospace,
-        fontSize: 14,
-        paddingLeft: 10
-    }
+    
 });

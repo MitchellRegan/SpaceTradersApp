@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //Styles
-import Fonts from '../../styles/Fonts';
-import Colors from '../../styles/Colors';
+import globalStyles from '../../styles/global-stylesheet';
 
 //API Calls
 import AgentAPICalls from '../../api-calls/agent-api-calls';
@@ -59,35 +58,17 @@ export default class MyAgentDetails extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
-                <Text style={styles.headerText}>Agent Details</Text>
-                <Text style={styles.detailsText}>Symbol: {this.state.symbol}</Text>
-                {/*<Text>AccountID: {this.state.accountID}</Text>*/}
-                <Text style={styles.detailsText}>Headquarters: {this.state.headquarters}</Text>
-                <Text style={styles.detailsText}>Faction: {this.state.startingFaction}</Text>
-                <Text style={styles.detailsText}>Credits: ${this.state.credits}</Text>
+            <View style={globalStyles.listViewWrapper1}>
+                <Text style={globalStyles.header2Text}>Agent Details</Text>
+                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Symbol: {this.state.symbol}</Text>
+                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Headquarters: {this.state.headquarters}</Text>
+                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Faction: {this.state.startingFaction}</Text>
+                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Credits: ${this.state.credits}</Text>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#000',
-        padding: 5
-    },
-
-    headerText: {
-        fontFamily: Fonts.monospace,
-        fontSize: 18,
-        fontWeight: 'bold',
-        paddingBottom: 5,
-    },
-
-    detailsText: {
-        fontFamily: Fonts.monospace,
-        fontSize: 14,
-        paddingLeft: 10
-    }
+    
 });

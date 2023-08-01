@@ -7,6 +7,7 @@ import Logo from '../../assets/icons/logo-over-black.svg';
 //Styles
 import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
+import globalStyles from '../../styles/global-stylesheet';
 
 //API Calls
 import AccountAPICalls from '../../api-calls/account-api-calls';
@@ -119,20 +120,20 @@ export default class UserLogin extends Component {
                             onChangeText={(newToken) => this.setToken(newToken)}
                         />
                     </View>
-                    {(this.state.invalidLogin) && <Text style={styles.invalidText}>Invalid Username or Token</Text>}
+                    {(this.state.invalidLogin) && <Text style={globalStyles.invalidText}>Invalid Username or Token</Text>}
 
                     <TouchableOpacity
-                        style={styles.loginButton}
+                        style={globalStyles.bigButton}
                         onPress={() => this.login()}
                     >
-                        <Text style={styles.loginButtonText}>Login</Text>
+                        <Text style={globalStyles.bigButtonText}>Login</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={styles.newAccountButton}
                         onPress={() => this.props.navigation.navigate("NewAccount")}
                     >
-                        <Text style={styles.newAccountText}>Create Account</Text>
+                        <Text style={globalStyles.hyperlinkText}>Create Account</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -149,10 +150,6 @@ const styles = StyleSheet.create({
     logo: {
         alignSelf: 'center',
         margin: 20
-    },
-
-    inputBox: {
-
     },
 
     inputRow: {
@@ -178,43 +175,8 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.monospace
     },
 
-    invalidText: {
-        fontFamily: Fonts.monospoace,
-        marginTop: 5,
-        textAlign: 'center',
-        color: Colors.textErrorColor
-    },
-
-    loginButton: {
-        backgroundColor: Colors.button1Color,
-        borderRadius: 5,
-        alignItems: "center",
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingTop: 8,
-        paddingBottom: 8,
-        marginTop: 15,
-        alignSelf: 'center'
-    },
-
-    loginButtonText: {
-        color: Colors.button1TextColor,
-        fontSize: 20,
-        fontFamily: Fonts.monospace,
-        fontWeight: "bold",
-        paddingLeft: 20,
-        paddingRight: 20
-    },
-
     newAccountButton: {
         alignItems: "center",
         margin: 5
     },
-
-    newAccountText: {
-        fontSize: 15,
-        color: Colors.textHyperlinkColor,
-        fontFamily: Fonts.monospace,
-        padding: 7
-    }
 });

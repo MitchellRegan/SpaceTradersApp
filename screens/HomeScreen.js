@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 
 //Styles
-import Fonts from '../styles/Fonts';
-import Colors from '../styles/Colors';
 
 //Components
 import HeaderBar from '../components/HeaderBar';

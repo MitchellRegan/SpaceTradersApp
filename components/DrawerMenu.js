@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 //Styles
 import Fonts from '../styles/Fonts';
 import Colors from '../styles/Colors';
+import globalStyles from '../styles/global-stylesheet';
 
 
 /**
@@ -23,26 +24,28 @@ export default class DrawerMenu extends Component {
         return (
             <View style={styles.wrapper}>
                 <View>
-                    <TouchableOpacity style={styles.topPadding} onPress={() => this.props.navigation.navigate("Home")}>
-                        <Text style={styles.buttonText}
+                    <View style={styles.topPadding} />
+
+                    <TouchableOpacity style={globalStyles.drawerButton} onPress={() => this.props.navigation.navigate("Home")}>
+                        <Text style={globalStyles.drawerButtonText}
                             allowFontScaling={Fonts.allowScaling}
                             maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Home</Text>
                     </TouchableOpacity>
 
-                    <View style={styles.break} />
+                    <View style={globalStyles.pageBreak} />
 
-                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate("Map")}>
-                        <Text style={styles.buttonText}
+                    <TouchableOpacity style={globalStyles.drawerButton} onPress={() => this.props.navigation.navigate("Map")}>
+                        <Text style={globalStyles.drawerButtonText}
                             allowFontScaling={Fonts.allowScaling}
                             maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Map</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View>
-                    <Text style={styles.versionText}
+                <View style={styles.versionView }>
+                    <Text style={globalStyles.smallText}
                         allowFontScaling={Fonts.allowScaling}
                         maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>App Version: v0.0.1</Text>
-                    <Text style={styles.versionText}
+                    <Text style={globalStyles.smallText}
                         allowFontScaling={Fonts.allowScaling}
                         maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Created by Mitch Regan, 2023</Text>
                 </View>
@@ -58,42 +61,12 @@ const styles = StyleSheet.create({
     },
 
     topPadding: {
-        flexDirection: 'row',
+        paddingTop: 25,
+    },
+
+    versionView: {
+        width: '100%',
+        marginBottom: 10,
         alignItems: 'center',
-        paddingTop: 45,
-        paddingBottom: 15,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-
-    break: {
-        height: 3,
-        width: '85%',
-        alignSelf: 'center',
-        margin: 10,
-        borderBottomLeftRadius: 40,
-        borderBottomRightRadius: 40,
-    },
-
-    button: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingTop: 15,
-        paddingBottom: 15,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-
-    buttonText: {
-        fontFamily: Fonts.monospace,
-        fontSize: 18,
-        paddingLeft: 15,
-    },
-
-    versionText: {
-        fontFamily: Fonts.monospace,
-        fontSize: 11,
-        alignSelf: 'center',
-        paddingBottom: 5,
     },
 });
