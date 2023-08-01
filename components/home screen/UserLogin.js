@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 
 //SVG Icons
-import Logo from '../assets/icons/logo-over-black.svg';
+import Logo from '../../assets/icons/logo-over-black.svg';
 
 //Styles
-import Fonts from '../styles/Fonts';
-import Colors from '../styles/Colors';
-
-//Components
-import HeaderBar from '../components/HeaderBar';
+import Fonts from '../../styles/Fonts';
+import Colors from '../../styles/Colors';
 
 //API Calls
-import AccountAPICalls from '../api-calls/account-api-calls';
+import AccountAPICalls from '../../api-calls/account-api-calls';
 
 
-export default class LoginScreen extends Component {
+/**
+ * Component displayed on the HomeScreen to handle showing the user logins fields.
+ * Props:
+ *  onLogin: Function passed from HomeScreen to reload the page once we successfully login.
+ */
+export default class UserLogin extends Component {
     constructor(props) {
         super(props);
 
@@ -23,27 +25,6 @@ export default class LoginScreen extends Component {
             username: "",
             token: "",
             invalidLogin: false
-        }
-    }
-
-
-    /**
-     * Function called when this screen loads. If there's an account login saved locally, we automatically redirect to the Home screen.
-     */
-    componentDidMount() {
-        var localData = require("../user-preferences.json");
-
-        this.setState(prevState => {
-            return ({
-                ...prevState,
-                username: localData.username,
-                token: localData.token,
-                invalidLogin: false
-            })
-        })
-
-        if (localData.username != "" && localData.token != "") {
-            this.props.navigation.navigate("Home");
         }
     }
 
@@ -99,8 +80,8 @@ export default class LoginScreen extends Component {
                 }
                 //If there's no error, we save the login details and then move to the Home screen
                 else {
-                    AccountAPICalls.userLogin(this.state.username, data.token);
-                    this.props.navigation.navigate("Home");
+                    AccountAPICalls.userLogin(this.state.username, data.token)
+                        .then(() => this.props.onLogin(true))
                 }
             })
             .catch(error => { })
@@ -110,13 +91,6 @@ export default class LoginScreen extends Component {
     render() {
         return (
             <View style={styles.wrapper}>
-                <HeaderBar
-                    title={"SpaceTraders"}
-                    navigation={this.props.navigation}
-                    showBackButton={false}
-                    showMenuButton={false}
-                />
-
                 <View style={styles.inputBox}>
                     <Logo
                         height={180}
@@ -148,7 +122,7 @@ export default class LoginScreen extends Component {
 
                     <TouchableOpacity
                         style={styles.loginButton}
-                        onPress={() => this.login() }
+                        onPress={() => this.login()}
                     >
                         <Text style={styles.loginButtonText}>Login</Text>
                     </TouchableOpacity>
@@ -163,6 +137,7 @@ export default class LoginScreen extends Component {
             </View>
         );
     }
+
 }
 
 const styles = StyleSheet.create({
