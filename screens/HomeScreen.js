@@ -10,6 +10,7 @@ import HeaderBar from '../components/HeaderBar';
 import UserLogin from '../components/home screen/UserLogin';
 import MyAgentDetails from '../components/home screen/MyAgentDetails';
 import MyContracts from '../components/home screen/MyContracts';
+import MyShips from '../components/home screen/MyShips';
 
 export default class HomeScreen extends Component {
     constructor(props) {
@@ -73,6 +74,9 @@ export default class HomeScreen extends Component {
                         navigation={this.props.navigation }
                     />
                     <MyContracts
+                        navigation={this.props.navigation }
+                    />
+                    <MyShips
                         navigation={this.props.navigation }
                     />
                 </ScrollView>}

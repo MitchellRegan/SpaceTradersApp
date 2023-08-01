@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
     headerText: {
         fontFamily: Fonts.monospace,
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        paddingBottom: 5,
     },
 
     detailsText: {
