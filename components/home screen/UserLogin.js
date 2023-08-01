@@ -15,6 +15,7 @@ import AccountAPICalls from '../../api-calls/account-api-calls';
 /**
  * Component displayed on the HomeScreen to handle showing the user logins fields.
  * Props:
+ *  navigation: React.Navigation prop used for changing screens.
  *  onLogin: Function passed from HomeScreen to reload the page once we successfully login.
  */
 export default class UserLogin extends Component {

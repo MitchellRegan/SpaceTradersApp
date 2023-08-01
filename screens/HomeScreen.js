@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 
 //Styles
 import Fonts from '../styles/Fonts';
@@ -8,6 +8,7 @@ import Colors from '../styles/Colors';
 //Components
 import HeaderBar from '../components/HeaderBar';
 import UserLogin from '../components/home screen/UserLogin';
+import MyAgentDetails from '../components/home screen/MyAgentDetails';
 
 export default class HomeScreen extends Component {
     constructor(props) {
@@ -60,8 +61,17 @@ export default class HomeScreen extends Component {
                 />
 
                 {(!this.state.loggedIn) && <UserLogin
+                    navigation={this.props.navigation}
                     onLogin={this.hideLogin.bind(this)}
                 />}
+
+                {(this.state.loggedIn) && <ScrollView
+                    style={styles.scrollView }
+                >
+                    <MyAgentDetails
+                        navigation={this.props.navigation }
+                    />
+                </ScrollView>}
             </View>
         );
     }
@@ -70,5 +80,10 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1
+    },
+
+    scrollView: {
+        flex: 1,
+        backgroundColor: '#f00'
     }
 });

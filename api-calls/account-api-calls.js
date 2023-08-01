@@ -99,29 +99,6 @@ const AccountAPICalls = {
             })
 
         return callData;
-    },
-
-
-    /**
-     * API call to view details about your user account.
-     * @param {string} bearerToken_ The user's bearer token for authorization.
-     */
-    viewAccountDetails: async function (bearerToken_) {
-        let callData = await fetch('https://api.spacetraders.io/v2/my/agent', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + bearerToken_
-            }
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log("AccountAPICalls.viewAccountDetails error: " + error);
-            })
-
-        return callData;
     }
 }
 
