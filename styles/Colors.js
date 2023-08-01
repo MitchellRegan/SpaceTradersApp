@@ -1,5 +1,11 @@
 export default {
-    headerColor: "#ca8a04",
+    primaryColor: '#ca8a04',
+    primaryColorLight: '#e9c14b',
+    primaryColorDark: '#f2994a',
+
+    secondaryColor: '#36393d',
+    secondaryColorLight: '#545659',
+    secondaryColorDark: '#222529',
 
     button1Color: "#ca8a04",
     button1TextColor: "#ffffff",
@@ -9,5 +15,6 @@ export default {
 
     textDefaultColor1: "#000",
     textHyperlinkColor: "#00f",
-    textErrorColor: "#f00"
+    textErrorColor: "#f00",
+    textValidColor: "#479030",
 }

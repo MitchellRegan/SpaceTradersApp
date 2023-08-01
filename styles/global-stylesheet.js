@@ -30,6 +30,18 @@ module.exports = StyleSheet.create({
         fontSize: 12,
     },
 
+    textList: {
+        fontFamily: Fonts.monospace,
+        fontSize: 14,
+        paddingLeft: 20,
+    },
+
+    textListSmall: {
+        fontFamily: Fonts.monospace,
+        fontSize: 12,
+        paddingLeft: 30,
+    },
+
     invalidText: {
         fontFamily: Fonts.monospoace,
         marginTop: 5,
@@ -80,6 +92,27 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         paddingLeft: 15,
         textAlign: 'center',
+    },
+
+    acceptButton: {
+        backgroundColor: Colors.textValidColor,
+        borderRadius: 5,
+        alignItems: "center",
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 3,
+        paddingBottom: 3,
+        marginTop: 3,
+        alignSelf: 'center',
+    },
+
+    acceptButtonText: {
+        color: Colors.button1TextColor,
+        fontSize: 14,
+        fontFamily: Fonts.monospace,
+        fontWeight: "bold",
+        paddingLeft: 5,
+        paddingRight: 5,
     },
 
     /*============================== List Views ==============================*/

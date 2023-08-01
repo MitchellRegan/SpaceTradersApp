@@ -29,6 +29,37 @@ const ContractAPICalls = {
             })
 
         return callData;
+    },
+
+
+    /**
+     * API call to accept a given contract based on the ID given.
+     * @param {string} ID for the contract to accept.
+     */
+    acceptContract: async function (id_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch('https://api.spacetraders.io/v2/my/contracts/' + id_ + '/accept', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            })
+            .catch(error => {
+                return {
+                    error: {
+                        title: "ContractAPICalls.getContractList Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
     }
 }
 

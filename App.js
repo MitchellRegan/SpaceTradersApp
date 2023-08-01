@@ -15,6 +15,7 @@ import HomeScreen from './screens/HomeScreen';
 import NewAccountScreen from './screens/NewAccountScreen';
 import MapScreen from './screens/MapScreen';
 import ErrorScreen from './screens/ErrorScreen';
+import ContractsScreen from './screens/ContractsScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -32,6 +33,7 @@ export default function App() {
                 >
                     <Drawer.Screen name="Home" component={HomeScreen} />
                     <Drawer.Screen name="NewAccount" component={NewAccountScreen} />
+                    <Drawer.Screen name="Contracts" component={ContractsScreen } />
                     <Drawer.Screen name="Map" component={MapScreen} />
                     <Drawer.Screen name="Error" component={ErrorScreen} />
                 </Drawer.Navigator>
@@ -44,6 +46,6 @@ const styles = StyleSheet.create({
   container: {
         flex: 1,
         paddingTop: 25,
-        backgroundColor: Colors.headerColor
+        backgroundColor: Colors.primaryColor
   },
 });

@@ -39,6 +39,14 @@ export default class DrawerMenu extends Component {
                             allowFontScaling={Fonts.allowScaling}
                             maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Map</Text>
                     </TouchableOpacity>
+
+                    <View style={globalStyles.pageBreak} />
+
+                    <TouchableOpacity style={globalStyles.drawerButton} onPress={() => this.props.navigation.navigate("Contracts")}>
+                        <Text style={globalStyles.drawerButtonText}
+                            allowFontScaling={Fonts.allowScaling}
+                            maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Contracts</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.versionView }>

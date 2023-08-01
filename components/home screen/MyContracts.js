@@ -76,9 +76,9 @@ export default class MyContracts extends Component {
         return (
             <View style={globalStyles.listViewWrapper1}>
                 <Text style={globalStyles.header2Text}>Contract List</Text>
-                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Available: {this.state.available}</Text>
-                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Completed: {this.state.completed}</Text>
-                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Incomplete: {this.state.incomplete}</Text>
+                <Text style={globalStyles.textList}>In Progress: {this.state.incomplete}</Text>
+                <Text style={globalStyles.textList}>Pending: {this.state.available}</Text>
+                <Text style={globalStyles.textList}>Completed: {this.state.completed}</Text>
             </View>
         );
     }
