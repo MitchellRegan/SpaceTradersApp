@@ -66,9 +66,7 @@ const AccountAPICalls = {
         let callData = await fetch('https://api.spacetraders.io/v2/my/agent', options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                console.log("Symbol:   " + data.data.symbol);
-                console.log("Username: " + username_.toUpperCase());
+                //If there was some kind of server error, we make a new JSON object with the error message to be displayed on the Error screen.
                 if (data.error) {
                     return {
                         error: {
@@ -77,29 +75,17 @@ const AccountAPICalls = {
                         }
                     };
                 }
+                //Saving the username and token locally in the user-preferences.json file
                 else if (data.data.symbol == username_.toUpperCase()) {
                     var localData = require("../user-preferences.json");
-                    //Checking to see if the user's data has already been saved locally
-                    for (var i = 0; i < localData.accounts.length; i++) {
-                        if (localData.accounts[i].username == username_ && localData.accounts[i].email == email_) {
-                            return;
-                        }
-                    }
-
-                    //If this account's data is new, we save it
-                    localData.accounts.push({
-                        username: username_,
-                        bearerToken_: bearerToken_
-                    });
-
+                    localData.username = username_.toUpperCase();
+                    localData.token = bearerToken_;
                     return data;
                 }
+                //If there wasn't an error but the symbol doesn't match the token, we say that it's an invalid login
                 else {
                     return {
-                        error: {
-                            title: "AccountAPICalls.userLogin Error",
-                            message: "Invalid Username/Token Combination."
-                        }
+                        invalid: true
                     }
                 }
             })
@@ -129,7 +115,7 @@ const AccountAPICalls = {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                return data;
             })
             .catch((error) => {
                 console.log("AccountAPICalls.viewAccountDetails error: " + error);

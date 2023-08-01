@@ -20,9 +20,30 @@ export default class LoginScreen extends Component {
         super(props);
 
         this.state = {
-            username: '',
-            token: '',
+            username: "",
+            token: "",
             invalidLogin: false
+        }
+    }
+
+
+    /**
+     * Function called when this screen loads. If there's an account login saved locally, we automatically redirect to the Home screen.
+     */
+    componentDidMount() {
+        var localData = require("../user-preferences.json");
+
+        this.setState(prevState => {
+            return ({
+                ...prevState,
+                username: localData.username,
+                token: localData.token,
+                invalidLogin: false
+            })
+        })
+
+        if (localData.username != "" && localData.token != "") {
+            this.props.navigation.navigate("Home");
         }
     }
 
@@ -61,13 +82,14 @@ export default class LoginScreen extends Component {
     login = async function () {
         let data = await AccountAPICalls.userLogin(this.state.username, this.state.token)
             .then(data => {
-                console.log(data);
                 //If there's an error, we display the Error screen with details about what went wrong
                 if (data.error) {
-                    /*this.props.navigation.navigate("Error", {
+                    this.props.navigation.navigate("Error", {
                         title: data.error.title,
                         message: data.error.message
-                    });*/
+                    });
+                }
+                else if (data.invalid) {
                     this.setState((prevState) => {
                         return ({
                             ...prevState,

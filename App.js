@@ -7,6 +7,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import Fonts from './styles/Fonts';
 import Colors from './styles/Colors';
 
+//Components
+import DrawerMenu from './components/DrawerMenu';
+
 //Screens
 import LoginScreen from './screens/LoginScreen';
 import NewAccountScreen from './screens/NewAccountScreen';
@@ -23,9 +26,10 @@ export default function App() {
                 <Drawer.Navigator
                     screenOptions={{
                         headerShown: false,
-                        swipeEdgeWidth: 0,
+                        swipeMinDistance: 5,
                         drawerPosition: 'right'
                     }}
+                    drawerContent={props => <DrawerMenu {...props }/>}
                 >
                     <Drawer.Screen name="Login" component={LoginScreen}/>
                     <Drawer.Screen name="NewAccount" component={NewAccountScreen} />

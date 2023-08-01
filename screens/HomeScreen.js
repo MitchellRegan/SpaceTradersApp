@@ -11,10 +11,6 @@ import HeaderBar from '../components/HeaderBar';
 export default class HomeScreen extends Component {
     constructor(props) {
         super(props);
-
-
-        var localData = require("../user-preferences.json");
-        console.log(localData);
     }
 
 
