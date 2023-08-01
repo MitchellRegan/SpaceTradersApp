@@ -16,6 +16,7 @@ import NewAccountScreen from './screens/NewAccountScreen';
 import MapScreen from './screens/MapScreen';
 import ErrorScreen from './screens/ErrorScreen';
 import ContractsScreen from './screens/ContractsScreen';
+import ShipsScreen from './screens/ShipsScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -33,7 +34,8 @@ export default function App() {
                 >
                     <Drawer.Screen name="Home" component={HomeScreen} />
                     <Drawer.Screen name="NewAccount" component={NewAccountScreen} />
-                    <Drawer.Screen name="Contracts" component={ContractsScreen } />
+                    <Drawer.Screen name="Contracts" component={ContractsScreen} />
+                    <Drawer.Screen name="Ships" component={ShipsScreen} />
                     <Drawer.Screen name="Map" component={MapScreen} />
                     <Drawer.Screen name="Error" component={ErrorScreen} />
                 </Drawer.Navigator>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, SafeAreaView, FlatList, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //Styles
 import globalStyles from '../styles/global-stylesheet';

@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //Styles
 import Fonts from '../styles/Fonts';
-import Colors from '../styles/Colors';
 import globalStyles from '../styles/global-stylesheet';
 
 
@@ -46,6 +45,14 @@ export default class DrawerMenu extends Component {
                         <Text style={globalStyles.drawerButtonText}
                             allowFontScaling={Fonts.allowScaling}
                             maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Contracts</Text>
+                    </TouchableOpacity>
+
+                    <View style={globalStyles.pageBreak} />
+
+                    <TouchableOpacity style={globalStyles.drawerButton} onPress={() => this.props.navigation.navigate("Ships")}>
+                        <Text style={globalStyles.drawerButtonText}
+                            allowFontScaling={Fonts.allowScaling}
+                            maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Ships</Text>
                     </TouchableOpacity>
                 </View>
 
