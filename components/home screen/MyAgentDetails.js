@@ -13,7 +13,6 @@ import AgentAPICalls from '../../api-calls/agent-api-calls';
  * Component displayed on the HomeScreen to handle showing the basic overview of the player's account.
  * Props:
  *  navigation: React.Navigation prop used for changing screens.
- *  onLogin: Function passed from HomeScreen to reload the page once we successfully login.
  */
 export default class MyAgentDetails extends Component {
     constructor(props) {
@@ -61,11 +60,12 @@ export default class MyAgentDetails extends Component {
     render() {
         return (
             <View style={styles.wrapper}>
-                <Text>AccountID: {this.state.accountID}</Text>
-                <Text>Symbol: {this.state.symbol}</Text>
-                <Text>Headquarters: {this.state.headquarters}</Text>
-                <Text>Starting Faction: {this.state.startingFaction}</Text>
-                <Text>Credits: ${this.state.credits}</Text>
+                <Text style={styles.headerText}>Agent Details</Text>
+                <Text style={styles.detailsText}>Symbol: {this.state.symbol}</Text>
+                {/*<Text>AccountID: {this.state.accountID}</Text>*/}
+                <Text style={styles.detailsText}>Headquarters: {this.state.headquarters}</Text>
+                <Text style={styles.detailsText}>Faction: {this.state.startingFaction}</Text>
+                <Text style={styles.detailsText}>Credits: ${this.state.credits}</Text>
             </View>
         );
     }
@@ -74,6 +74,19 @@ export default class MyAgentDetails extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         borderBottomWidth: 1,
-        borderBottomColor: '#000'
+        borderBottomColor: '#000',
+        padding: 5
     },
+
+    headerText: {
+        fontFamily: Fonts.monospace,
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+
+    detailsText: {
+        fontFamily: Fonts.monospace,
+        fontSize: 14,
+        paddingLeft: 10
+    }
 });

@@ -9,6 +9,7 @@ import Colors from '../styles/Colors';
 import HeaderBar from '../components/HeaderBar';
 import UserLogin from '../components/home screen/UserLogin';
 import MyAgentDetails from '../components/home screen/MyAgentDetails';
+import MyContracts from '../components/home screen/MyContracts';
 
 export default class HomeScreen extends Component {
     constructor(props) {
@@ -71,6 +72,9 @@ export default class HomeScreen extends Component {
                     <MyAgentDetails
                         navigation={this.props.navigation }
                     />
+                    <MyContracts
+                        navigation={this.props.navigation }
+                    />
                 </ScrollView>}
             </View>
         );
@@ -84,6 +88,5 @@ const styles = StyleSheet.create({
 
     scrollView: {
         flex: 1,
-        backgroundColor: '#f00'
     }
 });
