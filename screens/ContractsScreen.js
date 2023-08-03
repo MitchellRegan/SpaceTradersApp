@@ -89,7 +89,7 @@ export default class ContractsScreen extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
+            <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
                     title={"Contract List"}
                     navigation={this.props.navigation}
@@ -192,10 +192,6 @@ export default class ContractsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1
-    },
-
     viewToggleButton: {
         width: '100%',
         flexDirection: 'row',

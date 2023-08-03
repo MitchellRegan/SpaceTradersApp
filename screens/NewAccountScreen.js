@@ -5,6 +5,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 //Styles
 import Fonts from '../styles/Fonts';
 import Colors from '../styles/Colors';
+import globalStyles from '../styles/global-stylesheet';
 
 //Components
 import HeaderBar from '../components/HeaderBar';
@@ -96,7 +97,7 @@ export default class NewAccountScreen extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
+            <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
                     title={"New Account"}
                     navigation={this.props.navigation}
@@ -173,10 +174,6 @@ export default class NewAccountScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-    },
-
     inputBox: {
         paddingTop: '45%'
     },

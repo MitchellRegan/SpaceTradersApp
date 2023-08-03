@@ -66,7 +66,7 @@ export default class GameInfoScreen extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
+            <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
                     title={"Game Info"}
                     navigation={this.props.navigation}
@@ -129,10 +129,6 @@ export default class GameInfoScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1
-    },
-
     scrollView: {
         flex: 1,
         marginBottom: 20,

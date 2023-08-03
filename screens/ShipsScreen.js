@@ -64,7 +64,7 @@ export default class ShipsScreen extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
+            <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
                     title={"Ship List"}
                     navigation={this.props.navigation}
@@ -93,10 +93,6 @@ export default class ShipsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1
-    },
-
     scrollView: {
         flex: 1,
     },

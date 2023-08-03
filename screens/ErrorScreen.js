@@ -7,6 +7,7 @@ import HeaderBar from '../components/HeaderBar';
 //Styles
 import Fonts from '../styles/Fonts';
 import Colors from '../styles/Colors';
+import globalStyles from '../styles/global-stylesheet';
 
 
 /**
@@ -23,7 +24,7 @@ export default class ErrorScreen extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
+            <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
                     navigation={this.props.navigation}
                     title={"ERROR!"}
@@ -51,10 +52,6 @@ export default class ErrorScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1
-    },
-
     centerView: {
         alignSelf: 'center',
         width: '100%',

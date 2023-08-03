@@ -121,6 +121,11 @@ module.exports = StyleSheet.create({
         paddingRight: 5,
     },
 
+    /*============================== Views ==============================*/
+    screenWrapperView: {
+        flex: 1
+    },
+
     /*============================== List Views ==============================*/
     listViewWrapper1: {
         borderBottomWidth: 2,
