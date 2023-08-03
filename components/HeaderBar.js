@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //SVG Icons
-import BackArrowIcon from '../assets/icons/BackArrow_icon.svg';
+import BackArrowIcon from '../assets/icons/BackArrow2_icon.svg';
 import HamburgerIcon from '../assets/icons/Hamburger_icon.svg';
 
 //Styles

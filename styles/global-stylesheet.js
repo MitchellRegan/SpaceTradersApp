@@ -20,6 +20,13 @@ module.exports = StyleSheet.create({
         paddingBottom: 5,
     },
 
+    header3Text: {
+        fontFamily: Fonts.monospace,
+        fontSize: 15,
+        fontStyle: 'italic',
+        paddingBottom: 5,
+    },
+
     defaultText: {
         fontFamily: Fonts.monospace,
         fontSize: 14,
@@ -53,7 +60,6 @@ module.exports = StyleSheet.create({
         fontSize: 15,
         color: Colors.textHyperlinkColor,
         fontFamily: Fonts.monospace,
-        padding: 7,
     },
 
     /*============================== Buttons ==============================*/
@@ -127,8 +133,8 @@ module.exports = StyleSheet.create({
         paddingRight: 10,
         paddingTop: 3,
         paddingBottom: 3,
-        borderTopWidth: 1,
-        borderTopColor: '#bbb',
+        borderBottomWidth: 1,
+        borderBottomColor: '#bbb',
     },
 
     /*============================== Page Break Views ==============================*/

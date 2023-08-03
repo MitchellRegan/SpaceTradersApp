@@ -15,7 +15,7 @@ export default class DrawerMenu extends Component {
     constructor(props) {
         super(props);
 
-        this.props.navigation.swipeEnabled = false;
+        appData = require("../app.json");
     }
 
 
@@ -54,12 +54,20 @@ export default class DrawerMenu extends Component {
                             allowFontScaling={Fonts.allowScaling}
                             maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Ships</Text>
                     </TouchableOpacity>
+
+                    <View style={globalStyles.pageBreak} />
+
+                    <TouchableOpacity style={globalStyles.drawerButton} onPress={() => this.props.navigation.navigate("GameInfo")}>
+                        <Text style={globalStyles.drawerButtonText}
+                            allowFontScaling={Fonts.allowScaling}
+                            maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Game Info</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.versionView }>
                     <Text style={globalStyles.smallText}
                         allowFontScaling={Fonts.allowScaling}
-                        maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>App Version: v0.0.1</Text>
+                        maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>App Version: v{appData.version}</Text>
                     <Text style={globalStyles.smallText}
                         allowFontScaling={Fonts.allowScaling}
                         maxFontSizeMultiplier={Fonts.maxFontSizeMultiplier}>Created by Mitch Regan, 2023</Text>
