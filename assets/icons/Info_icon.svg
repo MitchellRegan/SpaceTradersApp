@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>New Project</title>
+	<defs>
+		<image  width="64" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAAPSURBVHicY2AYBaOAfAAAAkAAAVk2oQMAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		.s0 { fill: #ffffff } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<path id="Shape 5" fill-rule="evenodd" class="s0" d="m42.3 53q-0.4 0.3-1 0.3h-18.6q-0.6 0-1-0.3-0.4-0.4-0.4-1v-6.7q0-0.5 0.4-0.9 0.4-0.4 1-0.4h4v-13.3h-4q-0.6 0-1-0.4-0.4-0.4-0.4-1v-6.6q0-0.6 0.4-1 0.4-0.4 1-0.4h13.3q0.6 0 1 0.4 0.3 0.4 0.3 1v21.3h4q0.6 0 1 0.4 0.4 0.4 0.4 0.9v6.7q0 0.6-0.4 1zm-5.3-37.4q-0.4 0.4-1 0.4h-8q-0.6 0-1-0.4-0.3-0.3-0.3-0.9v-6.7q0-0.6 0.3-1 0.4-0.3 1-0.3h8q0.6 0 1 0.3 0.3 0.4 0.3 1v6.7q0 0.6-0.3 0.9zm11.1-11.3q-7.4-4.3-16.1-4.3-8.7 0-16.1 4.3-7.3 4.3-11.6 11.6-4.3 7.4-4.3 16.1 0 8.7 4.3 16.1 4.3 7.3 11.6 11.6 7.4 4.3 16.1 4.3 8.7 0 16.1-4.3 7.3-4.3 11.6-11.6 4.3-7.4 4.3-16.1 0-8.7-4.3-16.1-4.3-7.3-11.6-11.6z"/>
+</svg>

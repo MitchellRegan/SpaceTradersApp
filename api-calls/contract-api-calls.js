@@ -1,6 +1,7 @@
 /**
  * Container for all of the API calls used for viewing and interacting with job contracts.
  */
+import sa from './server-address';
 const ContractAPICalls = {
     /**
      * API call to retrieve a list of contracts, both available and completed, for the logged-in player.
@@ -8,7 +9,7 @@ const ContractAPICalls = {
     getContractList: async function () {
         const localData = require("../user-preferences.json");
 
-        let callData = await fetch('https://api.spacetraders.io/v2/my/contracts', {
+        let callData = await fetch(sa.address + 'my/contracts', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +40,7 @@ const ContractAPICalls = {
     acceptContract: async function (id_) {
         const localData = require("../user-preferences.json");
 
-        let callData = await fetch('https://api.spacetraders.io/v2/my/contracts/' + id_ + '/accept', {
+        let callData = await fetch(sa.address + 'my/contracts/' + id_ + '/accept', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ const ContractAPICalls = {
             .catch(error => {
                 return {
                     error: {
-                        title: "ContractAPICalls.getContractList Error",
+                        title: "ContractAPICalls.acceptContract Error",
                         message: error
                     }
                 }

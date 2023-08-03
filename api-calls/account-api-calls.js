@@ -1,6 +1,7 @@
 /**
  * Container for all of the API calls used for managing your user account.
  */
+import sa from './server-address';
 const AccountAPICalls = {
     /** 
      * API call to create a new account for SpaceTraders.
@@ -21,7 +22,7 @@ const AccountAPICalls = {
             }),
         };
 
-        let callData = await fetch('https://api.spacetraders.io/v2/register', options)
+        let callData = await fetch(sa.address + 'register', options)
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
@@ -63,7 +64,7 @@ const AccountAPICalls = {
             }
         };
 
-        let callData = await fetch('https://api.spacetraders.io/v2/my/agent', options)
+        let callData = await fetch(sa.address + 'my/agent', options)
             .then(response => response.json())
             .then(data => {
                 //If there was some kind of server error, we make a new JSON object with the error message to be displayed on the Error screen.

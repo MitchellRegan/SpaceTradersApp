@@ -1,36 +1,36 @@
 /**
- * Container for all of the API calls used for getting details about agents (i.e. players).
+ * Container for all of the API calls used for getting info about the game server and announcements.
  */
 import sa from './server-address';
-const AgentAPICalls = {
+const ServerInfoAPICalls = {
     /**
-     * API call to view details about your user account.
+     * API call to get info about the game server and announcements.
      */
-    myAgentDetails: async function () {
+    getServerInfo: async function () {
         const localData = require("../user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/agent', {
+        let callData = await fetch(sa.address, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             }
         })
-            .then((response) => response.json())
-            .then((data) => {
+            .then(response => response.json())
+            .then(data => {
                 return data;
             })
-            .catch((error) => {
+            .catch(error => {
                 return {
                     error: {
-                        title: "AgentAPICalls.myAgentDetails Error",
+                        title: "ServerInfoAPICalls.getServerInfo Error",
                         message: error
                     }
-                };
+                }
             })
 
         return callData;
     }
 }
 
-export default AgentAPICalls;
+export default ServerInfoAPICalls;
