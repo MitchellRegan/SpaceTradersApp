@@ -789,6 +789,232 @@ const ShipAPICalls = {
 
         return callData;
     },
+
+
+    /**
+     * Purchase cargo from a market. The ship must be docked in a waypoint that has [Marketplace] trait, and the market
+     * must be selling a good to be able to purchase it. The maximum amount of units of a good that can be purchased in
+     * each transaction are denoted by the tradeVolume value of the good, which can be viewed by using the "Get Market"
+     * action. Purchased goods are added to the ship's cargo hold.
+     * https://spacetraders.stoplight.io/docs/spacetraders/45acbf7dc3005-purchase-cargo
+     * @param {string} shipSymbol_ The name of the ship that will hold the cargo.
+     * @param {string} cargo_ The symbol for the type of cargo to buy.
+     * @param {number} amount_ The number of resources to buy.
+     */
+    purchaseCargo: async function (shipSymbol_, cargo_, amount_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /purchase', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                "symbol": cargo_,
+                "units": amount_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.purchaseCargo Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Transfer cargo between ships. The receiving ship must be in the same waypoint as the transferring ship, and it must
+     * able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either
+     * both are docked or both are orbiting. The response body's cargo shows the cargo of the transferring ship after the
+     * transfer is complete.
+     * https://spacetraders.stoplight.io/docs/spacetraders/78b22e13e1ea1-transfer-cargo
+     * @param {string} shipSymbol_ The name of the ship that is currently holding the cargo to transfer.
+     * @param {string} cargo_ The symbol for the type of cargo to transfer.
+     * @param {number} amount_ The number of resources to transfer.
+     * @param {string} targetShipSymbol_ The name of the ship to transfer the cargo to.
+     */
+    transferCargo: async function (shipSymbol_, cargo_, amount_, targetShipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /transfer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                "tradeSymbol": cargo_,
+                "units": amount_,
+                "shipSymbol": targetShipSymbol_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.transferCargo Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Negotiate a new contract with the HQ. In order to negotiate a new contract, an agent must not have ongoing or offered
+     * contracts over the allowed maximum amount. Once a contract is negotiated, it is added to the list of contracts offered
+     * to the agent, which the agent can then accept. The ship must be present at a faction's HQ waypoint to negotiate a
+     * contract with that faction.
+     * https://spacetraders.stoplight.io/docs/spacetraders/1582bafa95003-negotiate-contract
+     * @param {string} shipSymbol_ The name of the ship to perform the negotiation.
+     */
+    negotiateContract: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /negotiate/contract', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.negotiateContract Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Get the mounts installed on a ship.
+     * https://spacetraders.stoplight.io/docs/spacetraders/23ab20baf0ea8-get-mounts
+     * @param {string} shipSymbol_ The name of the ship to get the mounts of.
+     */
+    getMounts: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.getMounts Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Install a mount on a ship. In order to install a mount, the ship must be docked and located in a waypoint that has a
+     * [Shipyard] trait. The ship also must have the mount to install in its cargo hold. An installation fee will be deduced
+     * by the Shipyard for installing the mount on the ship.
+     * https://spacetraders.stoplight.io/docs/spacetraders/266f3d0591399-install-mount
+     * @param {string} shipSymbol_ The name of the ship to install the mount on.
+     * @param {string} mountSymbol_ The name of the mount to install on the ship.
+     */
+    installMount: async function (shipSymbol_, mountSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts/install', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                'symbol': mountSymbol_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.installMount Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Remove a mount from a ship. The ship must be docked in a waypoint that has the [Shipyard] trait, and must have the
+     * desired mount that it wish to remove installed. A removal fee will be deduced from the agent by the Shipyard.
+     * https://spacetraders.stoplight.io/docs/spacetraders/9380132527c1d-remove-mount
+     * @param {string} shipSymbol_ The name of the ship to remove the mount.
+     * @param {string} mountSymbol_ The name of the mount to remove from the ship.
+     */
+    removeMount: async function (shipSymbol_, mountSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts/remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                'symbol': mountSymbol_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.removeMount Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
 }
 
 export default ShipAPICalls;
