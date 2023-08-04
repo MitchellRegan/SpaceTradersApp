@@ -6,8 +6,8 @@ const ShipAPICalls = {
     /**
      * Returns a paginated list of all ships under your agent's ownership.
      * https://spacetraders.stoplight.io/docs/spacetraders/64435cafd9005-list-ships
-     * @param {int} resultsPerPage_ How many ships will be returned per page. Defaults to 20. Range is 1-20.
-     * @param {int} pageNum_ The page number of the list of ships to view. Defaults to 1.
+     * @param {number} resultsPerPage_ How many ships will be returned per page. Defaults to 20. Range is 1-20.
+     * @param {number} pageNum_ The page number of the list of ships to view. Defaults to 1.
      */
     listShips: async function (resultsPerPage_=20, pageNum_=1) {
         const localData = require("../user-preferences.json");
@@ -279,6 +279,7 @@ const ShipAPICalls = {
 
     /**
      * Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of request.
+     * https://spacetraders.stoplight.io/docs/spacetraders/a1061ae6545d5-dock-ship
      * @param {string} shipSymbol_ The name of the ship to dock.
      */
     dockShip: async function (shipSymbol_) {
@@ -309,14 +310,214 @@ const ShipAPICalls = {
 
 
     /**
-     * API call to change your ship's flight mode.
-     * @param {string} shipSymbol_ The name of the ship to change the flight mode of.
-     * @param {string} mode_ The mode to switch your ship into. Options are "CRUISE", "BURN", "DRIFT", "STEALTH".
+     * Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the
+     * extracted location. A ship must have the [Surveyor] mount installed in order to use this function.
+     * https://spacetraders.stoplight.io/docs/spacetraders/6b7cb030c3b91-create-survey
+     * @param {string} shipSymbol_ The name of the ship that will create the survey.
      */
-    setShipFlightMode: async function (shipSymbol_, mode_) {
+    createSurvey: async function (shipSymbol_) {
         const localData = require("../user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol + ' /nav', {
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /survey', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.createSurvey Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload
+     * to target specific yields.The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods,
+     * such as the [Gas Siphon] mount for gas-based goods or [Mining Laser] mount for ore-based goods.
+     * https://spacetraders.stoplight.io/docs/spacetraders/b3931d097608d-extract-resources
+     * @param {string} shipSymbol_ The name of the ship that will extract resources.
+     * @param {string} surveySig_ The unique signature for the location of the survey.
+     * @param {string} waypointSymbol_ The name of the waypoint where the survey is.
+     * @param {[object]} deposits_ A list of objects for each resource found at this survey.
+     * @param {string} expires_ The date-time string for when this survey expires.
+     * @param {string} size_ The size of the deposit. Allowed values: SMALL, MODERATE, LARGE
+     */
+    extractResources: async function (shipSymbol_, surveySig_, waypointSymbol_, deposits_, expires_, size_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /extract', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                "survey": {
+                    "signature": surveySig_,
+                    "symbol": waypointSymbol_,
+                    "deposits": deposits_,
+                    "expiration": expires_,
+                    "size": size_
+                }
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.extractResources Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Jettison cargo from your ship's cargo hold.
+     * https://spacetraders.stoplight.io/docs/spacetraders/3b0f8b69f56ac-jettison-cargo
+     * @param {string} shipSymbol_ The name of the ship that holds the cargo.
+     * @param {string} cargo_ The symbol for the type of cargo to jettison.
+     * @param {number} amount_ The number of resources to jettison.
+     */
+    jettisonCargo: async function (shipSymbol_, cargo_, amount_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /jettison', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                "symbol": cargo_,
+                "units": amount_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.jettisonCargo Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate
+     * waypoint, any ship can use this command, jumping to the target system's Jump Gate waypoint.
+     * When used elsewhere, jumping requires the ship to have a [Jump Drive] module installed and consumes a unit of antimatter from the ship's
+     * cargo. The command will fail if there is no antimatter to consume. When jumping via the [Jump Drive] module, the ship ends up at its
+     * largest source of energy in the system, such as a gas planet or a jump gate.
+     * https://spacetraders.stoplight.io/docs/spacetraders/19f0dd2d633de-jump-ship
+     * @param {string} shipSymbol_ The name of the ship that will perform the jump.
+     * @param {string} systemSymbol_ The name of the system to jump to.
+     */
+    jumpShip: async function (shipSymbol_, systemSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /jump', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                systemSymbol: systemSymbol_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.jumpShip Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within
+     * the same system as the ship's current location. Navigating will consume the necessary fuel from the ship's manifest based
+     * on the distance to the target waypoint.
+     * The returned response will detail the route information including the expected time of arrival. Most ship actions are
+     * unavailable until the ship has arrived at it's destination.
+     * https://spacetraders.stoplight.io/docs/spacetraders/c766b84253edc-navigate-ship
+     * @param {string} shipSymbol_ The name of the ship that will be traveling.
+     * @param {string} waypointSymbol_ The name of the waypoint to travel to.
+     */
+    navigateShip: async function (shipSymbol_, waypointSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /navigate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                waypointSymbol: waypointSymbol_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.navigateShip Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Update the nav configuration of a ship.
+     * https://spacetraders.stoplight.io/docs/spacetraders/34a305032ec79-patch-ship-nav
+     * @param {string} shipSymbol_ The name of the ship to change the flight mode of.
+     * @param {string} mode_ The mode to switch your ship into. Options are CRUISE, BURN, DRIFT, STEALTH
+     */
+    patchShipNav: async function (shipSymbol_, mode_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /nav', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -333,14 +534,261 @@ const ShipAPICalls = {
             .catch((error) => {
                 return {
                     error: {
-                        title: "ShipAPICalls.setShipFlightMode Error",
+                        title: "ShipAPICalls.patchShipNav Error",
                         message: error
                     }
                 }
             })
 
         return callData;
-    }
+    },
+
+
+    /**
+     * Get the current nav status of a ship.
+     * https://spacetraders.stoplight.io/docs/spacetraders/6e80adc7cc4f5-get-ship-nav
+     * @param {string} shipSymbol_ The name of the ship to get the nav status of.
+     */
+    getShipNav: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /nav', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.getShipNav Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the 
+     * [Warp Drive] module installed. Warping will consume the necessary fuel from the ship's manifest. The returned response will
+     * detail the route information including the expected time of arrival.
+     * https://spacetraders.stoplight.io/docs/spacetraders/faaf6603fc732-warp-ship
+     * @param {string} shipSymbol_ The name of the ship to warp.
+     * @param {string} waypointSymbol_ The name of the waypoint to warp to.
+     */
+    warpShip: async function (shipSymbol_, waypointSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /warp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                'waypointSymbol': waypointSymbol_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.warpShip Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the
+     * [Marketplace] trait in order to use this function.
+     * https://spacetraders.stoplight.io/docs/spacetraders/b8ed791381b41-sell-cargo
+     * @param {string} shipSymbol_ The name of the ship that holds the cargo.
+     * @param {string} cargo_ The symbol for the type of cargo to sell.
+     * @param {number} amount_ The number of resources to sell.
+     */
+    sellCargo: async function (shipSymbol_, cargo_, amount_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /sell', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                "symbol": cargo_,
+                "units": amount_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.sellCargo Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Scan for nearby systems, retrieving information on the systems' distance from the ship and their waypoints.
+     * Requires a ship to have the [Sensor Array] mount installed to use. The ship will enter a cooldown after using this function.
+     * https://spacetraders.stoplight.io/docs/spacetraders/d3358a9202901-scan-systems
+     * @param {string} shipSymbol_ The name of the ship to perform the scan.
+     */
+    scanSystems: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/systems', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.scanSystems Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints
+     * will allow you to ignore their uncharted state and will list the waypoints' traits. Requires a ship to have the
+     * [Sensor Array] mount installed to use. The ship will enter a cooldown after using this function.
+     * https://spacetraders.stoplight.io/docs/spacetraders/23dbc0fed17ec-scan-waypoints
+     * @param {string} shipSymbol_ The name of the ship to perform the scan.
+     */
+    scanWaypoints: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/waypoints', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.scanWaypoints Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Scan for nearby ships, retrieving information for all ships in range. Requires a ship to have the [Sensor Array]
+     * mount installed to use. The ship will enter a cooldown after using this function.
+     * https://spacetraders.stoplight.io/docs/spacetraders/74da68b7c32a7-scan-ships
+     * @param {string} shipSymbol_ The name of the ship to perform the scan.
+     */
+    scanShips: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/ships', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.scanShips Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Refuel your ship by buying fuel from the local market. Requires the ship to be docked in a waypoint that has the
+     * [Marketplace] trait, and the market must be selling fuel in order to refuel. Each fuel bought from the market
+     * replenishes 100 units in your ship's fuel.
+     * https://spacetraders.stoplight.io/docs/spacetraders/1bfb58c5239dd-refuel-ship
+     * @param {string} shipSymbol_ The name of the ship to refuel.
+     * @param {number} amount_ The amount of fuel to purchase. 
+     */
+    refuelShip: async function (shipSymbol_, amount_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /refuel', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                "units": amount_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.refuelShip Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
 }
 
 export default ShipAPICalls;

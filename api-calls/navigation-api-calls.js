@@ -6,8 +6,8 @@ const NavigationAPICalls = {
     /**
      * Returns a paginated list of all systems in the game.
      * https://spacetraders.stoplight.io/docs/spacetraders/94269411483d0-list-systems
-     * @param {int} resultsPerPage_ How many systems will be returned per page. Defaults to 20. Range is 1-20.
-     * @param {int} pageNum_ The page number of the list of systems to view. Defaults to 1.
+     * @param {number} resultsPerPage_ How many systems will be returned per page. Defaults to 20. Range is 1-20.
+     * @param {number} pageNum_ The page number of the list of systems to view. Defaults to 1.
      */
     listSystems: async function (resultsPerPage_=20, pageNum_=1) {
         const localData = require("../user-preferences.json");
@@ -72,8 +72,8 @@ const NavigationAPICalls = {
      * Returns a paginated list of all of the waypoints for a given system. If a waypoint is uncharted, it will return the [Uncharted] trait instead of its actual traits.
      * https://spacetraders.stoplight.io/docs/spacetraders/32186cf59e324-list-waypoints-in-system
      * @param {string} systemSymbol_ The name of the system to get waypoints from.
-     * @param {int} resultsPerPage_ How many waypoints will be returned per page. Defaults to 20. Range is 1-20.
-     * @param {int} pageNum_ The page number of the list of waypoints to view. Defaults to 1.
+     * @param {number} resultsPerPage_ How many waypoints will be returned per page. Defaults to 20. Range is 1-20.
+     * @param {number} pageNum_ The page number of the list of waypoints to view. Defaults to 1.
      */
     listWaypointsInSystem: async function (systemSymbol_, resultsPerPage_ = 20, pageNum_ = 1) {
         const localData = require("../user-preferences.json");
