@@ -76,10 +76,76 @@ const ShipAPICalls = {
 
 
     /**
-     * API call to go into orbit at the current location.
+     * Retrieve the details of a ship under your agent's ownership.
+     * https://spacetraders.stoplight.io/docs/spacetraders/800936299c838-get-ship
+     * @param {string} shipSymbol_ The name of the ship to get details about.
+     */
+    getShip: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.getShip Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Retrieve the cargo of a ship under your agent's ownership.
+     * https://spacetraders.stoplight.io/docs/spacetraders/1324f523e2c9c-get-ship-cargo
+     * @param {string} shipSymbol_ The name of the ship to get cargo details about.
+     */
+    getShipCargo: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + '/cargo', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.getShipCargo Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Attempt to move your ship into orbit at its current location. The request will only
+     * succeed if your ship is capable of moving into orbit at the time of the request.
+     * https://spacetraders.stoplight.io/docs/spacetraders/08777d60b6197-orbit-ship
      * @param {string} shipSymbol_ The name of the ship to put into orbit.
      */
-    goIntoOrbit: async function (shipSymbol_) {
+    orbitShip: async function (shipSymbol_) {
         const localData = require("../user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /orbit', {
@@ -96,7 +162,7 @@ const ShipAPICalls = {
             .catch((error) => {
                 return {
                     error: {
-                        title: "ShipAPICalls.goIntoOrbit Error",
+                        title: "ShipAPICalls.orbitShip Error",
                         message: error
                     }
                 }
@@ -107,7 +173,112 @@ const ShipAPICalls = {
 
 
     /**
-     * API call to dock your ship at the current location.
+     * Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+     * In order to be able to refine, a ship must have goods that can be refined and have a [Refinery] module that can refine it.
+     * When refining, 30 basic goods will be converted into 10 processed goods.
+     * https://spacetraders.stoplight.io/docs/spacetraders/c42b57743a49f-ship-refine
+     * @param {string} shipSymbol_ The name of the ship to perform the refining.
+     * @param {string} produce_ The type of good to produce out of the refining process. Allowed types:
+     * IRON, COPPER, SILVER, GOLD, ALUMINUM, PLATINUM, URANITE, MERITIUM, FUEL
+     */
+    shipRefine: async function (shipSymbol_, produce_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /refine', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            },
+            body: {
+                'produce': produce_
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.shipRefine Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Command a ship to chart the waypoint at its current location. Most waypoints in the universe are uncharted by default.
+     * These waypoints have their traits hidden until they have been charted by a ship. Charting a waypoint will record your
+     * agent as the one who created the chart, and all other agents would also be able to see the waypoint's traits.
+     * https://spacetraders.stoplight.io/docs/spacetraders/177f127c7f888-create-chart
+     * @param {string} shipSymbol_ The name of the ship to create the waypoint chart.
+     */
+    createChart: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /chart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.createChart Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Retrieve the details of your ship's reactor cooldown. Response returns a 204 status code (no-content) when the ship has no cooldown.
+     * https://spacetraders.stoplight.io/docs/spacetraders/d20ef14bc0742-get-ship-cooldown
+     * @param {string} shipSymbol_ The name of the ship to view the cooldown of.
+     */
+    getShipCooldown: async function (shipSymbol_) {
+        const localData = require("../user-preferences.json");
+
+        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /cooldown', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localData.token
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                return {
+                    error: {
+                        title: "ShipAPICalls.getShipCooldown Error",
+                        message: error
+                    }
+                }
+            })
+
+        return callData;
+    },
+
+
+    /**
+     * Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of request.
      * @param {string} shipSymbol_ The name of the ship to dock.
      */
     dockShip: async function (shipSymbol_) {
