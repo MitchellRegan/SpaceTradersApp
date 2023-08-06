@@ -31,7 +31,7 @@ export default class ContractsScreen extends Component {
      * Function called when this screen loads. Calls the getContractList API to get the list of all contracts
      */
     componentDidMount() {
-        let data = ContractAPICalls.getContractList()
+        let data = ContractAPICalls.listContracts()
             .then(data => {
                 var completed_ = [];
                 var available_ = [];

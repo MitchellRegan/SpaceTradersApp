@@ -27,7 +27,7 @@ export default class MyShips extends Component {
      * Function called when this component loads. Calls the getMyShipList API call to get the overview of all of the player's ships.
      */
     componentDidMount() {
-        let data = ShipAPICalls.getMyShipList()
+        let data = ShipAPICalls.listShips()
             .then(data => {
                 this.setState(prevState => {
                     return ({

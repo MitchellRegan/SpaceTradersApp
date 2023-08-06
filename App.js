@@ -18,6 +18,7 @@ import ErrorScreen from './screens/ErrorScreen';
 import ContractsScreen from './screens/ContractsScreen';
 import ShipsScreen from './screens/ShipsScreen';
 import GameInfoScreen from './screens/GameInfoScreen';
+import WaypointsMapScreen from './screens/WaypointsMapScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,7 +40,8 @@ export default function App() {
                     <Drawer.Screen name="Error" component={ErrorScreen} />
                     <Drawer.Screen name="Contracts" component={ContractsScreen} />
                     <Drawer.Screen name="Ships" component={ShipsScreen} />
-                    <Drawer.Screen name="GameInfo" component={GameInfoScreen } />
+                    <Drawer.Screen name="GameInfo" component={GameInfoScreen} />
+                    <Drawer.Screen name="WaypointsMap" component={WaypointsMapScreen} />
                 </Drawer.Navigator>
             </NavigationContainer>
          </View>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Image } from 'react-native';
 
 //Styles
 import globalStyles from '../styles/global-stylesheet';
@@ -53,7 +53,7 @@ export default class HomeScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView }>
+            <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
                     title={"SpaceTraders"}
                     navigation={this.props.navigation}

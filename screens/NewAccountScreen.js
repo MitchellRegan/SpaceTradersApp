@@ -21,7 +21,8 @@ export default class NewAccountScreen extends Component {
         this.state = {
             username: "",
             email: "",
-            faction: "COSMIC"
+            faction: "COSMIC",
+            token: ""
         }
     }
 
@@ -59,8 +60,8 @@ export default class NewAccountScreen extends Component {
      * @param {string} faction_ The string currently in the token text entry field.
      */
     setFaction = function (faction_) {
-        console.log("Old Faction: " + this.state.faction);
-        console.log("New Faction: " + faction_);
+        var localData = require("../user-preferences.json");
+        console.log(localData.token);
 
         this.setState((prevState) => {
             return ({
@@ -86,8 +87,21 @@ export default class NewAccountScreen extends Component {
                 }
                 //If there's no error, we save the login details and then move to the Home screen
                 else {
-                    AccountAPICalls.userLogin(this.state.username, data.token);
-                    this.props.navigation.navigate("Home");
+                    console.log("Login data:");
+                    console.log(data);
+                    let loginData = AccountAPICalls.userLogin(this.state.username, data.data.token)
+                        .then(validLogin => {
+                            this.setState(prevState => {
+                                return ({
+                                    ...prevState,
+                                    token: data.data.token
+                                })
+                            })
+                        })
+                        .catch(error => {
+
+                        })
+                    //this.props.navigation.navigate("Home");
                 }
             })
             .catch(error => {
@@ -105,7 +119,7 @@ export default class NewAccountScreen extends Component {
                     showMenuButton={false}
                 />
                 
-                <View style={styles.inputBox}>
+                {(this.state.token == "") && <View style={styles.inputBox}>
                     <View style={styles.inputRow}>
                         <Text style={styles.inputHeaderText}>Username:</Text>
                         <TextInput
@@ -167,7 +181,25 @@ export default class NewAccountScreen extends Component {
                     >
                         <Text style={styles.createAccountButtonText}>Create</Text>
                     </TouchableOpacity>
-                </View>
+                </View>}
+
+                {(this.state.token != "") && <View style={styles.successView}>
+                    <Text style={[globalStyles.header1Text, {alignSelf:'center'}] }>SUCCESS!</Text>
+                    <Text style={[globalStyles.header2Text, {alignSelf:'center'}]}>Created account '{this.state.username}'</Text>
+                    <Text style={[globalStyles.defaultText, {alignSelf:'center'}]}>This is your account's unique bearer token. Save it in a secure location, because you will need it to log into your account:</Text>
+                    <Text
+                        style={styles.tokenText}
+                        selectable={true}
+                    >
+                        {this.state.token}
+                    </Text>
+                    <TouchableOpacity
+                        style={styles.createAccountButton}
+                        onPress={() => this.props.navigation.navigate("Home", {refresh:true})}
+                    >
+                        <Text style={styles.createAccountButtonText }>Login</Text>
+                    </TouchableOpacity>
+                </View>}
             </View>
         );
     }
@@ -241,5 +273,23 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: Fonts.monospace,
         padding: 5
+    },
+
+    successView: {
+        flex: 1,
+        padding: 10,
+        marginTop: 30,
+        verticalAlign: 'center',
+    },
+
+    tokenText: {
+        fontFamily: Fonts.monospace,
+        fontSize: 10,
+        color: Colors.primaryColorDark,
+        marginTop: 10,
+        padding: 5,
+        borderWidth: 1,
+        borderColor: '#000',
+        borderRadius: 5,
     }
 });

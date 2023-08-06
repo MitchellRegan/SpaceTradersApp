@@ -31,7 +31,7 @@ export default class MyAgentDetails extends Component {
      * Function called when this component loads. Calls the myAgentDetails API call to get the overview of the player's state.
      */
     componentDidMount() {
-        let data = AgentAPICalls.myAgentDetails()
+        let data = AgentAPICalls.getAgent()
             .then(data => {
                 this.setState(prevState => {
                     return ({
@@ -61,7 +61,13 @@ export default class MyAgentDetails extends Component {
             <View style={globalStyles.listViewWrapper1}>
                 <Text style={globalStyles.header2Text}>Agent Details</Text>
                 <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Symbol: {this.state.symbol}</Text>
-                <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Headquarters: {this.state.headquarters}</Text>
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate("WaypointsMap", {systemName_:this.state.headquarters})}
+                >
+                    <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>
+                        Headquarters: <Text style={globalStyles.hyperlinkText}>{this.state.headquarters}</Text>
+                    </Text>
+                </TouchableOpacity>
                 <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Faction: {this.state.startingFaction}</Text>
                 <Text style={[globalStyles.defaultText, { paddingLeft: 20 }]}>Credits: ${this.state.credits}</Text>
             </View>

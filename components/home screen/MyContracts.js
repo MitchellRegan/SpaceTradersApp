@@ -29,7 +29,7 @@ export default class MyContracts extends Component {
      * Function called when this component loads. Calls the getContractList API to get an overview of available contracts.
      */
     componentDidMount() {
-        let data = ContractAPICalls.getContractList()
+        let data = ContractAPICalls.listContracts()
             .then(data => {
                 var completed_ = 0;
                 var available_ = 0;

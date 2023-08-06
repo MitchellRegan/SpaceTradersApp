@@ -37,16 +37,23 @@ module.exports = StyleSheet.create({
         fontSize: 12,
     },
 
+    textListLarge: {
+        fontFamily: Fonts.monospace,
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: Colors.primaryColor,
+    },
+
     textList: {
         fontFamily: Fonts.monospace,
         fontSize: 14,
-        paddingLeft: 20,
+        color: Colors.primaryColor,
     },
 
     textListSmall: {
         fontFamily: Fonts.monospace,
         fontSize: 12,
-        paddingLeft: 30,
+        color: Colors.primaryColor,
     },
 
     invalidText: {

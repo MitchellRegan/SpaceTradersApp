@@ -1,0 +1,15 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>New Project</title>
+	<defs>
+		<radialGradient id="g1" cx="32" cy="32" r="34.6" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset=".08" stop-color="#000000"/>
+			<stop offset=".794" stop-color="#000000"/>
+			<stop offset="1" stop-color="#cefffe"/>
+		</radialGradient>
+	</defs>
+	<style>
+		.s0 { fill: url(#g1) } 
+	</style>
+	<path id="Layer 3 copy 9" class="s0" d="m32 64c-17.7 0-32-14.3-32-32 0-17.7 14.3-32 32-32 17.7 0 32 14.3 32 32 0 17.7-14.3 32-32 32z"/>
+</svg>

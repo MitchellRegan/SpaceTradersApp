@@ -26,7 +26,7 @@ export default class ShipsScreen extends Component {
      * Function called when this screen loads. Calls the getMyShipList API to get the list of all ships owned by this player
      */
     componentDidMount() {
-        let data = ShipAPICalls.getMyShipList()
+        let data = ShipAPICalls.listShips()
             .then(data => {
                 var ships_ = data.data;
 
