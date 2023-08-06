@@ -40,7 +40,9 @@ export default class ContractDetailsButton extends Component {
     acceptContract = function () {
         ContractAPICalls.acceptContract(this.props.contractData.id)
             //If there isn't an error, we force the ContractsScreen to reload to correctly switch this contract to the "In-progress" category.
-            .then(() => this.props.reloadScreen(true))
+            .then((data) => {
+                this.props.reloadScreen(true);
+            })
             .catch(error => {
                 //If there's an error, we display the Error screen with details about what went wrong
                 if (data.error) {

@@ -81,6 +81,7 @@ const ContractAPICalls = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Accept:'application/json',
                 'Authorization': 'Bearer ' + localData.token
             }
         })
@@ -148,7 +149,7 @@ const ContractAPICalls = {
      * https://spacetraders.stoplight.io/docs/spacetraders/d4ff41c101af0-fulfill-contract
      * @param {string} contractId_ ID for the contract to fulfill.
      */
-    acceptContract: async function (contractId_) {
+    fulfillContract: async function (contractId_) {
         const localData = require("../user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/contracts/' + contractId_ + '/fulfill', {

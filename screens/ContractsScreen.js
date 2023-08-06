@@ -17,6 +17,7 @@ export default class ContractsScreen extends Component {
         super(props);
 
         this.state = {
+            loading: true,
             incompleteContracts: [],
             availableContracts: [],
             completedContracts: [],
@@ -56,6 +57,7 @@ export default class ContractsScreen extends Component {
                 this.setState(prevState => {
                     return ({
                         ...prevState,
+                        loading: false,
                         completedContracts: completed_,
                         availableContracts: available_,
                         incompleteContracts: incomplete_
@@ -124,7 +126,8 @@ export default class ContractsScreen extends Component {
                     ))
                 }
                 {(this.state.showIncomplete && this.state.incompleteContracts.length == 0) && <View style={styles.emptyListView}>
-                    <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>
+                    {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
+                    {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
                 </View>}
 
 
@@ -154,7 +157,8 @@ export default class ContractsScreen extends Component {
                     ))
                 }
                 {(this.state.showAvailable && this.state.availableContracts.length == 0) && <View style={styles.emptyListView}>
-                    <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>
+                    {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
+                    {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
                 </View>}
 
 
@@ -184,7 +188,8 @@ export default class ContractsScreen extends Component {
                     ))
                 }
                 {(this.state.showCompleted && this.state.completedContracts.length == 0) && <View style={styles.emptyListView}>
-                    <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>
+                    {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
+                    {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
                 </View>}
             </View>
         );

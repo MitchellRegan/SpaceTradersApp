@@ -164,10 +164,6 @@ const styles = StyleSheet.create({
     },
 
     systemNameBox: {
-        //backgroundColor: Colors.primaryColorDark,
-        //borderColor: Colors.primaryColorLight,
-        //borderBottomWidth: 4,
-        //borderRightWidth: 4,
         alignItems: "center",
         position: 'absolute',
         left: 0,

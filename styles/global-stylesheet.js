@@ -152,7 +152,8 @@ module.exports = StyleSheet.create({
 
     /*============================== Views ==============================*/
     screenWrapperView: {
-        flex: 1
+        flex: 1,
+        backgroundColor: Colors.secondaryColor
     },
 
     /*============================== List Views ==============================*/
