@@ -59,14 +59,16 @@ export default class SystemCoreDetailsButton extends Component {
                 <View style={styles.iconBox}>
                     <DynamicMapIcon
                         typeName_={this.props.systemObj_.type}
-                        pixelSize_={60}
+                        pixelSize_={45}
                     />
                 </View>
 
                 <View style={styles.textbox }>
                     <Text style={globalStyles.textListLarge}>{this.formatName()} {this.props.systemObj_.symbol}</Text>
                     <View>
-                        <Text style={globalStyles.textList}>Coords: [{this.props.systemObj_.x}, {this.props.systemObj_.y}]</Text>
+                        <Text style={globalStyles.textList}>Galactic Position:</Text>
+                        <Text style={globalStyles.textListSmall}> X: {this.props.systemObj_.x}</Text>
+                        <Text style={globalStyles.textListSmall}> Y: {this.props.systemObj_.y}</Text>
                         {(this.props.systemObj_.factions.length > 0) && <Text style={globalStyles.textList }>Controlling Factions:</Text>}
                         {this.props.systemObj_.factions.map((item, key) => (
                             <Text key={key}>{item.symbol}</Text>
@@ -89,9 +91,7 @@ const styles = StyleSheet.create({
 
     iconBox: {
         verticalAlign: 'center',
-        width: 60,
-        marginLeft: 10,
-        marginRight: 10,
+        margin: 7,
         justifyContent: 'center',
     },
 

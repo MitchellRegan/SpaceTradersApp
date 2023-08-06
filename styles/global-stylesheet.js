@@ -58,7 +58,8 @@ module.exports = StyleSheet.create({
 
     invalidText: {
         fontFamily: Fonts.monospoace,
-        marginTop: 5,
+        fontSize: 12,
+        fontStyle: 'italic',
         textAlign: 'center',
         color: Colors.textErrorColor,
     },
@@ -128,6 +129,27 @@ module.exports = StyleSheet.create({
         paddingRight: 5,
     },
 
+    traitButton: {
+        borderColor: '#88',
+        borderRadius: 3,
+        borderWidth: 1,
+        backgroundColor: '#fff',
+        marginLeft: 1,
+        marginRight: 1,
+        alignItems: 'center',
+        alignSelf: 'flex-start',
+    },
+
+    traitButtonText: {
+        color: '#888',
+        fontFamily: Fonts.monospace,
+        fontSize: 11,
+        paddingTop: 1,
+        paddingBottom: 1,
+        paddingLeft: 3,
+        paddingRight: 3,
+    },
+
     /*============================== Views ==============================*/
     screenWrapperView: {
         flex: 1
@@ -147,6 +169,13 @@ module.exports = StyleSheet.create({
         paddingBottom: 3,
         borderBottomWidth: 1,
         borderBottomColor: '#bbb',
+    },
+
+    traitListView: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginBottom: 3,
+        paddingRight: 3,
     },
 
     /*============================== Page Break Views ==============================*/

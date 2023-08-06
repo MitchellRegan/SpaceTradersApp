@@ -27,7 +27,7 @@ export default class WaypointsMapScreen extends Component {
 
         this.state = {
             systemData: {
-                symbol: "      ",
+                symbol: "Loading...",
                 type: "",
                 x: 0,
                 y: 0,
@@ -127,7 +127,7 @@ export default class WaypointsMapScreen extends Component {
                 </View>
 
                 <ScrollView style={styles.scrollView}>
-                    {(this.state.systemData.symbol != "      ") && <SystemCoreDetailsButton systemObj_={{
+                    {(this.state.systemData.symbol != "Loading...") && <SystemCoreDetailsButton systemObj_={{
                         symbol: this.state.systemData.symbol,
                         type: this.state.systemData.type,
                         x: this.state.systemData.x,
@@ -137,12 +137,12 @@ export default class WaypointsMapScreen extends Component {
                     />}
                     {this.state.systemData.waypoints.map((item, key) => (
                         <View key={key}>
-                            <WaypointDetailsButton waypointObj_={item} />
+                            <WaypointDetailsButton waypointObj={item} />
                             {item.orbitals.map((orbitItem, oKey) => (
                                 <WaypointDetailsButton
                                     key={oKey}
-                                    waypointObj_={orbitItem}
-                                    isOrbital_={true}
+                                    waypointObj={orbitItem}
+                                    isOrbital={true}
                                 />
                             ))}
                         </View>
@@ -157,17 +157,17 @@ export default class WaypointsMapScreen extends Component {
 const styles = StyleSheet.create({
     mapBox: {
         width: '100%',
-        height: '35%',
+        height: '30%',
         backgroundColor: '#000',
         borderBottomColor: Colors.primaryColor,
-        borderBottomWidth: 10,
+        borderBottomWidth: 4,
     },
 
     systemNameBox: {
-        backgroundColor: Colors.primaryColorDark,
-        borderColor: Colors.primaryColorLight,
-        borderBottomWidth: 4,
-        borderRightWidth: 4,
+        //backgroundColor: Colors.primaryColorDark,
+        //borderColor: Colors.primaryColorLight,
+        //borderBottomWidth: 4,
+        //borderRightWidth: 4,
         alignItems: "center",
         position: 'absolute',
         left: 0,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     },
 
     systemNameText: {
-        color: Colors.button1TextColor,
+        color: Colors.primaryColor,
         fontFamily: Fonts.monospace,
         fontSize: 25,
         paddingLeft: 10,

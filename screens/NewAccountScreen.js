@@ -35,7 +35,7 @@ export default class NewAccountScreen extends Component {
         this.setState((prevState) => {
             return ({
                 ...prevState,
-                username: uname_
+                username: uname_.toUpperCase()
             });
         });
     }
@@ -128,8 +128,13 @@ export default class NewAccountScreen extends Component {
                             placeholder={"Example: Han Solo"}
                             value={this.state.username}
                             onChangeText={(newUname) => this.setUsername(newUname)}
+                            maxLength={14}
                         />
                     </View>
+                    {(this.state.username.length < 3) &&
+                        <Text style={globalStyles.invalidText}>
+                            *Must be between 3 and 14 characters
+                        </Text>}
 
                     <View style={styles.inputRow}>
                         <Text style={styles.inputHeaderText}>Email:</Text>

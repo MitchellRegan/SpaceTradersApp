@@ -42,25 +42,25 @@ export default class DynamicMapIcon extends Component {
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
                 return (<NeutronStarIcon height={size} width={size} />);
             case "RED_STAR":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 45);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 60);
                 return (<RedStarIcon height={size} width={size} />);
             case "ORANGE_STAR":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 50);
                 return (<OrangeStarIcon height={size} width={size} />);
             case "BLUE_STAR":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 35);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 55);
                 return (<BlueStarIcon height={size} width={size} />);
             case "YOUNG_STAR":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 40);
                 return (<YoungStarIcon height={size} width={size} />);
             case "WHITE_DWARF":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 33);
                 return (<WhiteDwarfIcon height={size} width={size} />);
             case "BLACK_HOLE":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 60);
                 return (<BlackHoleIcon height={size} width={size} />);
             case "HYPERGIANT":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 50);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 80);
                 return (<HypergiantIcon height={size} width={size} />);
             /*case "NEBULA":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
@@ -75,7 +75,7 @@ export default class DynamicMapIcon extends Component {
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
                 return (<PlanetIcon height={size} width={size} />);*/
             case "GAS_GIANT":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
                 return (<GasGiantIcon height={size} width={size} />);
             case "MOON":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
@@ -93,7 +93,7 @@ export default class DynamicMapIcon extends Component {
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 20);
                 return (<DebrisFieldIcon height={size} width={size} />);*/
             case "GRAVITY_WELL":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 20);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
                 return (<GravityWellIcon height={size} width={size} />);
             default:
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);

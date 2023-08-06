@@ -9,12 +9,13 @@ import globalStyles from '../../styles/global-stylesheet';
 
 //Components
 import DynamicMapIcon from './DynamicMapIcon';
+import TraitDetailsButton from './TraitDetailsButton';
 
 
 /**
  * Component that displays details about a given waypoint on the WaypointsMapScreen.
  * Props
- *  waypointObj_: JSON object that contains all of the waypoint's details.
+ *  waypointObj: JSON object that contains all of the waypoint's details.
  *      {
  *          systemSymbol: string,
  *          symbol: string,
@@ -24,7 +25,7 @@ import DynamicMapIcon from './DynamicMapIcon';
  *          orbitals: [strings of waypoint symbols],
  *          traits: [strings of trait types]
  *      }
- *  isOrbital_: Boolean for if this object is orbiting another object. If true, this button's style changes slightly.
+ *  isOrbital: Boolean for if this object is orbiting another object. If true, this button's style changes slightly.
  */
 export default class WaypointDetailsButton extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ export default class WaypointDetailsButton extends Component {
      * @returns object for the correct style.
      */
     getWrapper = function () {
-        if (this.props.isOrbital_) {
+        if (this.props.isOrbital) {
             return styles.orbitalWrapper;
         }
 
@@ -50,7 +51,7 @@ export default class WaypointDetailsButton extends Component {
      * @returns {string} The formatted type name.
      */
     formatName = function () {
-        let nameWords = this.props.waypointObj_.type.split('_');
+        let nameWords = this.props.waypointObj.type.split('_');
         let fname = "";
         for (var i = 0; i < nameWords.length; i++) {
             if (i > 0) {
@@ -60,7 +61,7 @@ export default class WaypointDetailsButton extends Component {
             fname = fname + nameWords[i].slice(1).toLowerCase();
         }
 
-        fname = fname + " " + this.props.waypointObj_.symbol.split('-')[2];
+        fname = fname + " " + this.props.waypointObj.symbol.split('-')[2];
 
         return fname;
     }
@@ -76,15 +77,25 @@ export default class WaypointDetailsButton extends Component {
             >
                 <View style={styles.iconBox}>
                     <DynamicMapIcon
-                        typeName_={this.props.waypointObj_.type}
-                        pixelSize_={60 }
+                        typeName_={this.props.waypointObj.type}
+                        pixelSize_={45}
                     />
                 </View>
 
-                <View style={styles.textbox}>
+                <View style={styles.textBox}>
                     <Text style={globalStyles.textListLarge}>{this.formatName()}</Text>
-                    <View>
-                        <Text style={globalStyles.textList}>Coords: [{this.props.waypointObj_.x}, {this.props.waypointObj_.y}]</Text>
+                    <View style={{width: '100%'} }>
+                        <Text style={globalStyles.textListSmall}>Controlling Faction: {this.props.waypointObj.faction.symbol}</Text>
+                        <Text style={globalStyles.textListSmall}>Traits:{(this.props.waypointObj.traits.length == 0) && " NONE"}</Text>
+                        <View style={globalStyles.traitListView}>
+                            {this.props.waypointObj.traits.map((item, key) => (
+                                <TraitDetailsButton 
+                                    key={key}
+                                    traitName={item.name}
+                                    traitDetails={item.description}
+                                />
+                        ))}
+                        </View>
                     </View>
                 </View>
             </LinearGradient>
@@ -109,14 +120,17 @@ const styles = StyleSheet.create({
         marginRight: 20,
         borderLeftWidth: 1,
         borderBottomWidth: 1,
-        borderColor: '#f00',
+        borderColor: Colors.primaryColor,
     },
 
     iconBox: {
         verticalAlign: 'center',
-        width: 60,
-        marginLeft: 10,
-        marginRight: 10,
+        margin: 7,
         justifyContent: 'center',
     },
+
+    textBox: {
+        flex: 1,
+        paddingRight: 3,
+    }
 })

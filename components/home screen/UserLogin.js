@@ -39,7 +39,7 @@ export default class UserLogin extends Component {
         this.setState((prevState) => {
             return ({
                 ...prevState,
-                username: uname_
+                username: uname_.toUpperCase()
             });
         });
     }
@@ -108,6 +108,7 @@ export default class UserLogin extends Component {
                             placeholder={"Example: Han Solo"}
                             value={this.state.username}
                             onChangeText={(newUname) => this.setUsername(newUname)}
+                            maxLength={14}
                         />
                     </View>
                     <View style={styles.inputRow}>
