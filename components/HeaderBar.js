@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     headerText: {
         alignSelf: 'center',
         fontFamily: Fonts.tekturBold,
-        color: Colors.button1TextColor,
+        color: Colors.tertiaryColor,
         fontSize: 20
     },
 });

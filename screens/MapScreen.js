@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 //Styles
 import Fonts from '../styles/Fonts';
@@ -27,6 +27,10 @@ export default class MapScreen extends Component {
                 />
 
                 <InteractiveMap />
+
+                <ScrollView style={{flex: 1}}>
+
+                </ScrollView>
 
                 <NavBar navigation={this.props.navigation} />
             </View>

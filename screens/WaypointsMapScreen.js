@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
     scrollView: {
         backgroundColor: Colors.secondaryColor,
         paddingTop: 10,
-        marginBottom: 61,
     },
 
     verticalView: {

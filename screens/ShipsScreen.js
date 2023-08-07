@@ -67,12 +67,14 @@ export default class ShipsScreen extends Component {
         return (
             <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
-                    title={"Ship List"}
+                    title={"Fleet List"}
                     navigation={this.props.navigation}
                     showBackButton={true}
                 />
 
                 <ScrollView style={styles.scrollView}>
+                    <Text style={globalStyles.screenInfoText}>Manage the ships under your agent's fleet.</Text>
+
                     {(this.state.ships.length > 0) &&
                         this.state.ships.map((item, key) => (
                             <ShipDetailsButton
@@ -97,7 +99,7 @@ export default class ShipsScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
-        marginBottom: 61,
+        paddingTop: 10,
     },
 
     viewToggleButton: {

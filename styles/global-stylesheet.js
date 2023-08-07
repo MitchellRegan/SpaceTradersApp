@@ -14,8 +14,9 @@ module.exports = StyleSheet.create({
     },
 
     header2Text: {
+        color: Colors.primaryColor,
         fontFamily: Fonts.tekturBold,
-        fontSize: 18,
+        fontSize: 22,
         paddingBottom: 5,
     },
 
@@ -37,7 +38,7 @@ module.exports = StyleSheet.create({
 
     textListLarge: {
         fontFamily: Fonts.tekturBold,
-        fontSize: 16,
+        fontSize: 18,
         color: Colors.primaryColor,
     },
 
@@ -49,7 +50,7 @@ module.exports = StyleSheet.create({
 
     textListSmall: {
         fontFamily: Fonts.tektur,
-        fontSize: 12,
+        fontSize: 10,
         color: Colors.primaryColor,
     },
 
@@ -66,9 +67,20 @@ module.exports = StyleSheet.create({
         fontFamily: Fonts.tektur,
     },
 
+    screenInfoText: {
+        fontFamily: Fonts.tektur,
+        fontSize: 16,
+        color: Colors.primaryColor,
+        textAlign: 'center',
+        padding: 10,
+        marginBottom: 10,
+        borderBottomColor: Colors.primaryColor,
+        borderBottomWidth: 1,
+    },
+
     /*============================== Buttons ==============================*/
     bigButton1: {
-        backgroundColor: Colors.button1Color,
+        backgroundColor: Colors.primaryColor,
         borderColor: Colors.primaryColor,
         borderWidth: 4,
         borderRadius: 50,
@@ -81,7 +93,7 @@ module.exports = StyleSheet.create({
     },
 
     bigButton1Text: {
-        color: Colors.button1TextColor,
+        color: Colors.tertiaryColor,
         textAlign: 'center',
         fontSize: 20,
         fontFamily: Fonts.tektur,
@@ -104,7 +116,7 @@ module.exports = StyleSheet.create({
     },
 
     bigButton2Text: {
-        color: Colors.button2TextColor,
+        color: Colors.primaryColor,
         textAlign: 'center',
         fontSize: 20,
         fontFamily: Fonts.tektur,
@@ -142,7 +154,7 @@ module.exports = StyleSheet.create({
     },
 
     acceptButtonText: {
-        color: Colors.button1TextColor,
+        color: Colors.tertiaryColor,
         fontSize: 14,
         fontFamily: Fonts.tekturBold,
         paddingLeft: 5,
@@ -191,8 +203,8 @@ module.exports = StyleSheet.create({
 
     /*============================== List Views ==============================*/
     listViewWrapper1: {
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 5,
+        marginBottom: 5,
         marginLeft: 20,
         marginRight: 20,
     },
@@ -221,8 +233,8 @@ module.exports = StyleSheet.create({
         margin: 5,
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
-        borderColor: Colors.button1Color,
-        backgroundColor: Colors.button1Color,
+        borderColor: Colors.primaryColor,
+        backgroundColor: Colors.primaryColor,
         borderWidth: 1,
     },
 });

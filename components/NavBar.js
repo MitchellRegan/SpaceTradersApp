@@ -91,13 +91,14 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.primaryColor,
         justifyContent: 'space-around',
         flexDirection: 'row',
-        position: 'absolute',
         width: '100%',
         paddingBottom: 8,
         paddingTop: 8,
         paddingLeft: 10,
         paddingRight: 10,
-        bottom: 0,
+        //position: 'absolute',
+        //bottom: 0,
+        alignSelf: 'flex-end',
     },
 
     buttonView: {

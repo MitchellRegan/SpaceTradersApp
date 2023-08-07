@@ -42,7 +42,7 @@ export default class WaypointDetailsButton extends Component {
             return styles.orbitalWrapper;
         }
 
-        return styles.wrapper;
+        return [globalStyles.listViewWrapper1, {flexDirection: 'row'}];
     }
 
 
@@ -104,18 +104,10 @@ export default class WaypointDetailsButton extends Component {
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flexDirection: 'row',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 20,
-        marginRight: 20,
-    },
-
     orbitalWrapper: {
         flexDirection: 'row',
-        marginTop: -5,
-        marginBottom: 10,
+        marginTop: 0,
+        marginBottom: 5,
         marginLeft: 40,
         marginRight: 20,
         borderLeftWidth: 1,

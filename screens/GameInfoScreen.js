@@ -133,7 +133,6 @@ export default class GameInfoScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
-        marginBottom: 65,
     },
 
     sectionView: {

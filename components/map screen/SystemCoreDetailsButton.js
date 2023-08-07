@@ -83,8 +83,8 @@ export default class SystemCoreDetailsButton extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: 'row',
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 5,
+        marginBottom: 5,
         marginLeft: 20,
         marginRight: 20,
     },

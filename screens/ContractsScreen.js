@@ -99,7 +99,9 @@ export default class ContractsScreen extends Component {
                     showBackButton={true}
                 />
 
-                <ScrollView style={styles.scrollView }>
+                <ScrollView style={styles.scrollView}>
+                    <Text style={globalStyles.screenInfoText}>Details regarding faction contract work available.</Text>
+
                     <TouchableOpacity
                         style={styles.viewToggleButton}
                         onPress={() => {
@@ -111,9 +113,9 @@ export default class ContractsScreen extends Component {
                             })
                         }}
                     >
-                        <Text style={globalStyles.header1Text}>In Progress</Text>
-                        {(this.state.showIncomplete) && <Text style={globalStyles.header1Text}>-</Text>}
-                        {(!this.state.showIncomplete) && <Text style={globalStyles.header1Text}>+</Text>}
+                        <Text style={globalStyles.header2Text}>In Progress  ({this.state.incompleteContracts.length})</Text>
+                        {(this.state.showIncomplete) && <Text style={globalStyles.header2Text}>-</Text>}
+                        {(!this.state.showIncomplete) && <Text style={globalStyles.header2Text}>+</Text>}
                     </TouchableOpacity>
                     {(this.state.showIncomplete && this.state.incompleteContracts.length > 0) &&
                         this.state.incompleteContracts.map((item, key) => (
@@ -142,9 +144,9 @@ export default class ContractsScreen extends Component {
                             })
                         }}
                     >
-                        <Text style={globalStyles.header1Text}>Pending</Text>
-                        {(this.state.showAvailable) && <Text style={globalStyles.header1Text}>-</Text>}
-                        {(!this.state.showAvailable) && <Text style={globalStyles.header1Text}>+</Text>}
+                        <Text style={globalStyles.header2Text}>Pending  ({this.state.availableContracts.length})</Text>
+                        {(this.state.showAvailable) && <Text style={globalStyles.header2Text}>-</Text>}
+                        {(!this.state.showAvailable) && <Text style={globalStyles.header2Text}>+</Text>}
                     </TouchableOpacity>
                     {(this.state.showAvailable && this.state.availableContracts.length > 0) && 
                         this.state.availableContracts.map((item, key) => (
@@ -173,9 +175,9 @@ export default class ContractsScreen extends Component {
                             })
                         }}
                     >
-                        <Text style={globalStyles.header1Text}>Completed</Text>
-                        {(this.state.showCompleted) && <Text style={globalStyles.header1Text}>-</Text>}
-                        {(!this.state.showCompleted) && <Text style={globalStyles.header1Text}>+</Text>}
+                        <Text style={globalStyles.header2Text}>Completed  ({this.state.completedContracts.length})</Text>
+                        {(this.state.showCompleted) && <Text style={globalStyles.header2Text}>-</Text>}
+                        {(!this.state.showCompleted) && <Text style={globalStyles.header2Text}>+</Text>}
                     </TouchableOpacity>
                     {(this.state.showAvailable && this.state.completedContracts.length > 0) &&
                         this.state.completedContracts.map((item, key) => (
@@ -204,13 +206,12 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingLeft: 10,
-        paddingRight: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
 
     scrollView: {
         flex: 1,
-        marginBottom: 61,
     },
 
     emptyListView: {
