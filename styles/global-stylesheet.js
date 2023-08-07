@@ -14,52 +14,48 @@ module.exports = StyleSheet.create({
     },
 
     header2Text: {
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tekturBold,
         fontSize: 18,
-        fontWeight: 'bold',
         paddingBottom: 5,
     },
 
     header3Text: {
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 15,
-        fontStyle: 'italic',
         paddingBottom: 5,
     },
 
     defaultText: {
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 14,
     },
 
     smallText: {
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 12,
     },
 
     textListLarge: {
-        fontFamily: Fonts.monospace,
-        fontWeight: 'bold',
+        fontFamily: Fonts.tekturBold,
         fontSize: 16,
         color: Colors.primaryColor,
     },
 
     textList: {
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 14,
         color: Colors.primaryColor,
     },
 
     textListSmall: {
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 12,
         color: Colors.primaryColor,
     },
 
     invalidText: {
-        fontFamily: Fonts.monospoace,
+        fontFamily: Fonts.tektur,
         fontSize: 12,
-        fontStyle: 'italic',
         textAlign: 'center',
         color: Colors.textErrorColor,
     },
@@ -67,7 +63,7 @@ module.exports = StyleSheet.create({
     hyperlinkText: {
         fontSize: 15,
         color: Colors.textHyperlinkColor,
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
     },
 
     /*============================== Buttons ==============================*/
@@ -127,7 +123,7 @@ module.exports = StyleSheet.create({
     },
 
     drawerButtonText: {
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 18,
         paddingLeft: 15,
         textAlign: 'center',
@@ -148,8 +144,7 @@ module.exports = StyleSheet.create({
     acceptButtonText: {
         color: Colors.button1TextColor,
         fontSize: 14,
-        fontFamily: Fonts.monospace,
-        fontWeight: "bold",
+        fontFamily: Fonts.tekturBold,
         paddingLeft: 5,
         paddingRight: 5,
     },
@@ -167,7 +162,7 @@ module.exports = StyleSheet.create({
 
     traitButtonText: {
         color: '#888',
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 11,
         paddingTop: 1,
         paddingBottom: 1,
@@ -196,9 +191,10 @@ module.exports = StyleSheet.create({
 
     /*============================== List Views ==============================*/
     listViewWrapper1: {
-        borderBottomWidth: 2,
-        borderBottomColor: '#000',
-        padding: 5,
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 20,
+        marginRight: 20,
     },
 
     listViewWrapper2: {

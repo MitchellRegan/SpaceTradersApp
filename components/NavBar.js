@@ -32,8 +32,8 @@ export default class HeaderBar extends Component {
                     onPress={() => console.log("Settings")}
                 >
                     <SettingsIcon
-                        height={'35'}
-                        width={'35'}
+                        height={'25'}
+                        width={'25'}
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -43,8 +43,8 @@ export default class HeaderBar extends Component {
                         onPress={() => this.props.navigation.navigate("Map")}
                     >
                         <MapIcon
-                            height={'35'}
-                            width={'35'}
+                            height={'25'}
+                            width={'25'}
                             style={styles.icon}
                         />
                 </TouchableOpacity>
@@ -54,8 +54,8 @@ export default class HeaderBar extends Component {
                     onPress={() => this.props.navigation.navigate("Home")}
                 >
                     <HomeIcon
-                        height={'35'}
-                        width={'35'}
+                        height={'25'}
+                        width={'25'}
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -65,8 +65,8 @@ export default class HeaderBar extends Component {
                     onPress={() => this.props.navigation.navigate("Contracts")}
                 >
                     <ContractIcon
-                        height={'35'}
-                        width={'35'}
+                        height={'25'}
+                        width={'25'}
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -76,8 +76,8 @@ export default class HeaderBar extends Component {
                     onPress={() => this.props.navigation.navigate("Ships")}
                 >
                     <ShipIcon
-                        height={'35'}
-                        width={'35'}
+                        height={'25'}
+                        width={'25'}
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         position: 'absolute',
         width: '100%',
-        paddingBottom: 10,
-        paddingTop: 6,
+        paddingBottom: 8,
+        paddingTop: 8,
         paddingLeft: 10,
         paddingRight: 10,
         bottom: 0,

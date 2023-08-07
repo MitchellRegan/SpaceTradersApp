@@ -24,7 +24,7 @@ export default class HeaderBar extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper }>
+            <View style={styles.wrapper}>
                 {(this.props.showBackButton) && <TouchableOpacity
                     style={styles.backButton}
                     onPress={() => this.props.navigation.goBack()}
