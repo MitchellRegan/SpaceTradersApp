@@ -8,6 +8,7 @@ import globalStyles from '../styles/global-stylesheet';
 
 //Components
 import HeaderBar from '../components/HeaderBar';
+import NavBar from '../components/NavBar';
 import InteractiveMap from '../components/map screen/InteractiveMap';
 
 export default class MapScreen extends Component {
@@ -26,6 +27,8 @@ export default class MapScreen extends Component {
                 />
 
                 <InteractiveMap />
+
+                <NavBar navigation={this.props.navigation} />
             </View>
         );
     }

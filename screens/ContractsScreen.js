@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
 
 //Styles
 import globalStyles from '../styles/global-stylesheet';
@@ -9,6 +9,7 @@ import ContractAPICalls from '../api-calls/contract-api-calls';
 
 //Components
 import HeaderBar from '../components/HeaderBar';
+import NavBar from '../components/NavBar';
 import ContractDetailsButton from '../components/contracts screen/ContractDetailsButton';
 
 
@@ -98,98 +99,101 @@ export default class ContractsScreen extends Component {
                     showBackButton={true}
                 />
 
-
-                <TouchableOpacity
-                    style={styles.viewToggleButton}
-                    onPress={() => {
-                        this.setState(prevState => {
-                            return ({
-                                ...prevState,
-                                showIncomplete: !this.state.showIncomplete
+                <ScrollView style={styles.scrollView }>
+                    <TouchableOpacity
+                        style={styles.viewToggleButton}
+                        onPress={() => {
+                            this.setState(prevState => {
+                                return ({
+                                    ...prevState,
+                                    showIncomplete: !this.state.showIncomplete
+                                })
                             })
-                        })
-                    }}
-                >
-                    <Text style={globalStyles.header1Text}>In Progress</Text>
-                    {(this.state.showIncomplete) && <Text style={globalStyles.header1Text}>-</Text>}
-                    {(!this.state.showIncomplete) && <Text style={globalStyles.header1Text}>+</Text>}
-                </TouchableOpacity>
-                {(this.state.showIncomplete && this.state.incompleteContracts.length > 0) &&
-                    this.state.incompleteContracts.map((item, key) => (
-                        <ContractDetailsButton
-                            key={key}
-                            navigation={this.props.navigation}
-                            contractData={item}
-                            reloadScreen={this.forceReload.bind(this)}
-                        />
-                    ))
-                }
-                {(this.state.showIncomplete && this.state.incompleteContracts.length == 0) && <View style={styles.emptyListView}>
-                    {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
-                    {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
-                </View>}
+                        }}
+                    >
+                        <Text style={globalStyles.header1Text}>In Progress</Text>
+                        {(this.state.showIncomplete) && <Text style={globalStyles.header1Text}>-</Text>}
+                        {(!this.state.showIncomplete) && <Text style={globalStyles.header1Text}>+</Text>}
+                    </TouchableOpacity>
+                    {(this.state.showIncomplete && this.state.incompleteContracts.length > 0) &&
+                        this.state.incompleteContracts.map((item, key) => (
+                            <ContractDetailsButton
+                                key={key}
+                                navigation={this.props.navigation}
+                                contractData={item}
+                                reloadScreen={this.forceReload.bind(this)}
+                            />
+                        ))
+                    }
+                    {(this.state.showIncomplete && this.state.incompleteContracts.length == 0) && <View style={styles.emptyListView}>
+                        {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
+                        {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
+                    </View>}
 
 
-                <TouchableOpacity
-                    style={styles.viewToggleButton}
-                    onPress={() => {
-                        this.setState(prevState => {
-                            return ({
-                                ...prevState,
-                                showAvailable: !this.state.showAvailable
+                    <TouchableOpacity
+                        style={styles.viewToggleButton}
+                        onPress={() => {
+                            this.setState(prevState => {
+                                return ({
+                                    ...prevState,
+                                    showAvailable: !this.state.showAvailable
+                                })
                             })
-                        })
-                    }}
-                >
-                    <Text style={globalStyles.header1Text}>Pending</Text>
-                    {(this.state.showAvailable) && <Text style={globalStyles.header1Text}>-</Text>}
-                    {(!this.state.showAvailable) && <Text style={globalStyles.header1Text}>+</Text>}
-                </TouchableOpacity>
-                {(this.state.showAvailable && this.state.availableContracts.length > 0) && 
-                    this.state.availableContracts.map((item, key) => (
-                        <ContractDetailsButton
-                            key={key}
-                            navigation={this.props.navigation}
-                            contractData={item}
-                            reloadScreen={this.forceReload.bind(this)}
-                        />
-                    ))
-                }
-                {(this.state.showAvailable && this.state.availableContracts.length == 0) && <View style={styles.emptyListView}>
-                    {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
-                    {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
-                </View>}
+                        }}
+                    >
+                        <Text style={globalStyles.header1Text}>Pending</Text>
+                        {(this.state.showAvailable) && <Text style={globalStyles.header1Text}>-</Text>}
+                        {(!this.state.showAvailable) && <Text style={globalStyles.header1Text}>+</Text>}
+                    </TouchableOpacity>
+                    {(this.state.showAvailable && this.state.availableContracts.length > 0) && 
+                        this.state.availableContracts.map((item, key) => (
+                            <ContractDetailsButton
+                                key={key}
+                                navigation={this.props.navigation}
+                                contractData={item}
+                                reloadScreen={this.forceReload.bind(this)}
+                            />
+                        ))
+                    }
+                    {(this.state.showAvailable && this.state.availableContracts.length == 0) && <View style={styles.emptyListView}>
+                        {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
+                        {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
+                    </View>}
 
 
-                <TouchableOpacity
-                    style={styles.viewToggleButton}
-                    onPress={() => {
-                        this.setState(prevState => {
-                            return ({
-                                ...prevState,
-                                showCompleted: !this.state.showCompleted
+                    <TouchableOpacity
+                        style={styles.viewToggleButton}
+                        onPress={() => {
+                            this.setState(prevState => {
+                                return ({
+                                    ...prevState,
+                                    showCompleted: !this.state.showCompleted
+                                })
                             })
-                        })
-                    }}
-                >
-                    <Text style={globalStyles.header1Text}>Completed</Text>
-                    {(this.state.showCompleted) && <Text style={globalStyles.header1Text}>-</Text>}
-                    {(!this.state.showCompleted) && <Text style={globalStyles.header1Text}>+</Text>}
-                </TouchableOpacity>
-                {(this.state.showAvailable && this.state.completedContracts.length > 0) &&
-                    this.state.completedContracts.map((item, key) => (
-                        <ContractDetailsButton
-                            key={key}
-                            navigation={this.props.navigation}
-                            contractData={item}
-                            reloadScreen={this.forceReload.bind(this)}
-                        />
-                    ))
-                }
-                {(this.state.showCompleted && this.state.completedContracts.length == 0) && <View style={styles.emptyListView}>
-                    {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
-                    {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
-                </View>}
+                        }}
+                    >
+                        <Text style={globalStyles.header1Text}>Completed</Text>
+                        {(this.state.showCompleted) && <Text style={globalStyles.header1Text}>-</Text>}
+                        {(!this.state.showCompleted) && <Text style={globalStyles.header1Text}>+</Text>}
+                    </TouchableOpacity>
+                    {(this.state.showAvailable && this.state.completedContracts.length > 0) &&
+                        this.state.completedContracts.map((item, key) => (
+                            <ContractDetailsButton
+                                key={key}
+                                navigation={this.props.navigation}
+                                contractData={item}
+                                reloadScreen={this.forceReload.bind(this)}
+                            />
+                        ))
+                    }
+                    {(this.state.showCompleted && this.state.completedContracts.length == 0) && <View style={styles.emptyListView}>
+                        {(!this.state.loading) && <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>}
+                        {(this.state.loading) && <Text style={globalStyles.defaultText}>Loading...</Text>}
+                    </View>}
+                </ScrollView>
+
+                <NavBar navigation={this.props.navigation }/>
             </View>
         );
     }
@@ -202,6 +206,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 10,
         paddingRight: 10,
+    },
+
+    scrollView: {
+        flex: 1,
+        marginBottom: 61,
     },
 
     emptyListView: {

@@ -10,6 +10,7 @@ import ServerInfoAPICalls from '../api-calls/server-info-api-calls';
 
 //Components
 import HeaderBar from '../components/HeaderBar';
+import NavBar from '../components/NavBar';
 
 
 export default class GameInfoScreen extends Component {
@@ -122,6 +123,8 @@ export default class GameInfoScreen extends Component {
                         ))}
                     </View>
                 </ScrollView>
+
+                <NavBar navigation={this.props.navigation} />
             </View>
         );
     }
@@ -130,7 +133,7 @@ export default class GameInfoScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
-        marginBottom: 20,
+        marginBottom: 65,
     },
 
     sectionView: {

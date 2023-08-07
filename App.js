@@ -31,7 +31,6 @@ export default function App() {
             'Tektur-Bold': require('./assets/fonts/Tektur-Bold.ttf')
         })
             .then(() => {
-                console.log("loaded fonts");
                 setStateVars(prevState => {
                     return ({
                         ...prevState,

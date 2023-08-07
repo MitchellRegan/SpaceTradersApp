@@ -9,6 +9,7 @@ import ShipAPICalls from '../api-calls/ship-api-calls';
 
 //Components
 import HeaderBar from '../components/HeaderBar';
+import NavBar from '../components/NavBar';
 import ShipDetailsButton from '../components/ships screen/ShipDetailsButton';
 
 
@@ -86,6 +87,8 @@ export default class ShipsScreen extends Component {
                         <Text style={globalStyles.defaultText}>--- EMPTY ---</Text>
                     </View>}
                 </ScrollView>
+
+                <NavBar navigation={this.props.navigation} />
             </View>
         );
     }
@@ -94,6 +97,7 @@ export default class ShipsScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
+        marginBottom: 61,
     },
 
     viewToggleButton: {

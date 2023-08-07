@@ -6,6 +6,7 @@ import globalStyles from '../styles/global-stylesheet';
 
 //Components
 import HeaderBar from '../components/HeaderBar';
+import NavBar from '../components/NavBar';
 import UserLogin from '../components/home screen/UserLogin';
 import MyAgentDetails from '../components/home screen/MyAgentDetails';
 import MyContracts from '../components/home screen/MyContracts';
@@ -78,6 +79,8 @@ export default class HomeScreen extends Component {
                         navigation={this.props.navigation }
                     />
                 </ScrollView>}
+
+                {(this.state.loggedIn) && <NavBar navigation={this.props.navigation} />}
             </View>
         );
     }
@@ -86,5 +89,6 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
+        marginBottom: 61,
     }
 });
