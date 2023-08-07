@@ -1,11 +1,7 @@
 <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-	<title>New Project</title>
-	<defs>
-		<image  width="64" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAAPSURBVHicY2AYBaOAfAAAAkAAAVk2oQMAAAAASUVORK5CYII="/>
-	</defs>
+	<title>JumpGate_icon-svg</title>
 	<style>
 		.s0 { fill: #ffffff } 
 	</style>
-	<use id="Background" href="#img1" x="0" y="0"/>
-	<path id="Shape 3" class="s0" d="m0.7 21.2l18.3-20.4q0.6-0.8 1.6-0.8 0.9 0 1.6 0.8 0.7 0.7 0.7 1.8v10.2h8q25.4 0 31.2 16.1 1.9 5.4 1.9 13.3 0 6.7-4.5 18.1-0.1 0.3-0.4 0.9-0.3 0.7-0.5 1.2-0.2 0.6-0.5 0.9-0.4 0.7-1 0.7-0.5 0-0.8-0.4-0.3-0.4-0.3-1 0-0.4 0.1-1.1 0.1-0.7 0.1-0.9 0.2-2.7 0.2-4.9 0-4.1-0.7-7.3-0.6-3.2-1.7-5.5-1.1-2.3-2.9-4-1.7-1.7-3.7-2.8-2-1.1-4.8-1.7-2.7-0.6-5.5-0.9-2.7-0.2-6.2-0.2h-8v10.2q0 1.1-0.7 1.8-0.7 0.8-1.6 0.8-1 0-1.6-0.8l-18.3-20.5q-0.7-0.7-0.7-1.8 0-1 0.7-1.8z"/>
+	<path id="Layer 1" class="s0" d="m8.5 28.2h55.1v7.7h-55.1zm-3.1-1.6l29.1 29-5.5 5.4-29-29zm-5.4 5.4l29-29 5.4 5.5-29 29z"/>
 </svg>

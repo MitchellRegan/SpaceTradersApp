@@ -102,7 +102,6 @@ export default class WaypointsMapScreen extends Component {
                     title={"Waypoint Map"}
                     navigation={this.props.navigation}
                     showBackButton={true}
-                    showMenuButton={true}
                 />
 
                 <View style={styles.mapBox}>

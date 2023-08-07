@@ -58,7 +58,6 @@ export default class HomeScreen extends Component {
                     title={"SpaceTraders"}
                     navigation={this.props.navigation}
                     showBackButton={false}
-                    showMenuButton={this.state.loggedIn}
                 />
 
                 {(!this.state.loggedIn) && <UserLogin

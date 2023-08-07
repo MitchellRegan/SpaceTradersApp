@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //SVG Icons
 import BackArrowIcon from '../assets/icons/BackArrow2_icon.svg';
-import HamburgerIcon from '../assets/icons/Hamburger_icon.svg';
 
 //Styles
 import Colors from '../styles/Colors';
@@ -16,7 +15,6 @@ import Fonts from '../styles/Fonts';
  *  title: String for what this screen's title is.
  *  navigation: React.Navigation component.
  *  showBackButton: Boolean to determine if the back arrow should be shown or not.
- *  showMenuButton: Boolean to determine if the menu button should be shown or not.
  */
 export default class HeaderBar extends Component {
     constructor(props) {
@@ -32,22 +30,16 @@ export default class HeaderBar extends Component {
                     onPress={() => this.props.navigation.goBack()}
                 >
                     <BackArrowIcon
-                        height={'30'}
-                        width={'40'}
+                        height={'25'}
+                        width={'35'}
                         color={'#000'}
                     />
                 </TouchableOpacity>}
-                {(!this.props.showBackButton) && <View style={{ width: 40, height: 30 }} />}
+                {(!this.props.showBackButton) && <View style={{ width: 35, height: 25 }} />}
 
                 <Text style={styles.headerText}>{this.props.title}</Text>
 
-                {(this.props.showMenuButton) && <TouchableOpacity
-                    style={styles.drawerButton}
-                    onPress={() => this.props.navigation.openDrawer()}
-                >
-                    <HamburgerIcon height={40} width={40} />
-                </TouchableOpacity>}
-                {(!this.props.showMenuButton) && <View style={{width: 40, height: 40}} />}
+                <View style={{width: 35, height: 25}} />
             </View>
         );
     }
@@ -73,12 +65,6 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.monospace,
         fontWeight: 'bold',
         color: Colors.button1TextColor,
-        fontSize: 26
+        fontSize: 20
     },
-
-    drawerButton: {
-        height: 40,
-        width: 40,
-        alignSelf: 'center'
-    }
 });

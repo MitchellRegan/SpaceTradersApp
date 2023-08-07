@@ -23,7 +23,6 @@ export default class MapScreen extends Component {
                     title={"Map"}
                     navigation={this.props.navigation}
                     showBackButton={true}
-                    showMenuButton={true}
                 />
 
                 <InteractiveMap />

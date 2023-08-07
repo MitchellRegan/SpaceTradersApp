@@ -96,7 +96,6 @@ export default class ContractsScreen extends Component {
                     title={"Contract List"}
                     navigation={this.props.navigation}
                     showBackButton={true}
-                    showMenuButton={true}
                 />
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+//import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 //Styles
@@ -20,13 +21,14 @@ import ShipsScreen from './screens/ShipsScreen';
 import GameInfoScreen from './screens/GameInfoScreen';
 import WaypointsMapScreen from './screens/WaypointsMapScreen';
 
-const Drawer = createDrawerNavigator();
+//const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
     return (
         <View style={styles.container}>
             <NavigationContainer>
-                <Drawer.Navigator
+                {/*<Drawer.Navigator
                     screenOptions={{
                         headerShown: false,
                         swipeMinDistance: 5,
@@ -42,7 +44,18 @@ export default function App() {
                     <Drawer.Screen name="Ships" component={ShipsScreen} />
                     <Drawer.Screen name="GameInfo" component={GameInfoScreen} />
                     <Drawer.Screen name="WaypointsMap" component={WaypointsMapScreen} />
-                </Drawer.Navigator>
+                </Drawer.Navigator>*/}
+
+                <Stack.Navigator screenOptions={{headerShown: false} }>
+                    <Stack.Screen name="Home" component={HomeScreen} />
+                    <Stack.Screen name="NewAccount" component={NewAccountScreen} />
+                    <Stack.Screen name="Map" component={MapScreen} />
+                    <Stack.Screen name="Error" component={ErrorScreen} />
+                    <Stack.Screen name="Contracts" component={ContractsScreen} />
+                    <Stack.Screen name="Ships" component={ShipsScreen} />
+                    <Stack.Screen name="GameInfo" component={GameInfoScreen} />
+                    <Stack.Screen name="WaypointsMap" component={WaypointsMapScreen} />
+                </Stack.Navigator>
             </NavigationContainer>
          </View>
     );

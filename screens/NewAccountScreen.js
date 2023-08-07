@@ -116,7 +116,6 @@ export default class NewAccountScreen extends Component {
                     title={"New Account"}
                     navigation={this.props.navigation}
                     showBackButton={true}
-                    showMenuButton={false}
                 />
                 
                 {(this.state.token == "") && <View style={styles.inputBox}>

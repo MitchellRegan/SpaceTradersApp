@@ -69,7 +69,6 @@ export default class ShipsScreen extends Component {
                     title={"Ship List"}
                     navigation={this.props.navigation}
                     showBackButton={true}
-                    showMenuButton={true}
                 />
 
                 <ScrollView style={styles.scrollView}>

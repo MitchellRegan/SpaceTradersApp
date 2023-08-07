@@ -71,7 +71,6 @@ export default class GameInfoScreen extends Component {
                     title={"Game Info"}
                     navigation={this.props.navigation}
                     showBackButton={true}
-                    showMenuButton={true}
                 />
 
                 <ScrollView style={styles.scrollView}>
