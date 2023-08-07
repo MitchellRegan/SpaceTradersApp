@@ -7,5 +7,7 @@ export default {
 	sansSerifCondensed: 'sans-serif-condensed',
 	sansSerifMedium: 'sans-serif-medium',
 	serif: 'serif',
-	monospace: 'monospace'
+	monospace: 'monospace',
+	tektur: 'Tektur',
+	tekturBold: 'Tektur-Bold',
 }

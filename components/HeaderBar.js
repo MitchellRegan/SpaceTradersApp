@@ -62,8 +62,7 @@ const styles = StyleSheet.create({
 
     headerText: {
         alignSelf: 'center',
-        fontFamily: Fonts.monospace,
-        fontWeight: 'bold',
+        fontFamily: Fonts.tekturBold,
         color: Colors.button1TextColor,
         fontSize: 20
     },
