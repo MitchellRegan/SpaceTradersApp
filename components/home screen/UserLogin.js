@@ -9,6 +9,14 @@ import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
 import globalStyles from '../../styles/global-stylesheet';
 
+//SVG Icons
+import ProfileIcon from '../../assets/icons/Profile_icon.svg';
+import LockIcon from '../../assets/icons/Lock_icon.svg';
+
+//Components
+import BigButton1 from '../BigButton1';
+import BigButton2 from '../BigButton2';
+
 //API Calls
 import AccountAPICalls from '../../api-calls/account-api-calls';
 
@@ -100,42 +108,35 @@ export default class UserLogin extends Component {
                         style={styles.logo}
                     />
 
-                    <View style={styles.inputRow}>
-                        <Text style={styles.inputHeaderText}>Username:</Text>
+                    <Text style={[globalStyles.header1Text, {width: '100%', textAlign:'center'}]}>User Login</Text>
+
+                    <View style={globalStyles.textInputView}>
+                        <ProfileIcon height={'30'} width={'30'} />
                         <TextInput
                             style={styles.input}
                             multiline={false}
-                            placeholder={"Example: Han Solo"}
+                            placeholder={"USERNAME"}
+                            placeholderTextColor={Colors.primaryColor}
                             value={this.state.username}
                             onChangeText={(newUname) => this.setUsername(newUname)}
                             maxLength={14}
                         />
                     </View>
-                    <View style={styles.inputRow}>
-                        <Text style={styles.inputHeaderText}>Token:</Text>
+                    <View style={globalStyles.textInputView}>
+                        <LockIcon height={'30'} width={'30'} />
                         <TextInput
                             style={styles.input}
                             multiline={false}
-                            placeholder={"Paste Token Here"}
+                            placeholder={"TOKEN"}
+                            placeholderTextColor={Colors.primaryColor}
                             value={this.state.token}
                             onChangeText={(newToken) => this.setToken(newToken)}
                         />
                     </View>
                     {(this.state.invalidLogin) && <Text style={globalStyles.invalidText}>Invalid Username or Token</Text>}
 
-                    <TouchableOpacity
-                        style={globalStyles.bigButton}
-                        onPress={() => this.login()}
-                    >
-                        <Text style={globalStyles.bigButtonText}>Login</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        style={styles.newAccountButton}
-                        onPress={() => this.props.navigation.navigate("NewAccount")}
-                    >
-                        <Text style={globalStyles.hyperlinkText}>Create Account</Text>
-                    </TouchableOpacity>
+                    <BigButton1 text={"Sign In"} onPress={() => this.login()} />
+                    <BigButton2 text={"Create Account"} onPress={() => this.props.navigation.navigate("NewAccount")} />
                 </View>
             </View>
         );
@@ -150,30 +151,15 @@ const styles = StyleSheet.create({
 
     logo: {
         alignSelf: 'center',
-        margin: 20
-    },
-
-    inputRow: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        padding: 3
-    },
-
-    inputHeaderText: {
-        width: '25%',
-        textAlignVertical: "center",
-        fontFamily: Fonts.monospace
+        margin: 8,
     },
 
     input: {
-        borderWidth: 1,
-        borderColor: '#555',
-        width: "60%",
+        width: 170,
         marginLeft: 5,
         paddingLeft: 3,
-        borderRadius: 3,
-        fontFamily: Fonts.monospace
+        fontFamily: Fonts.tektur,
+        color: Colors.primaryColorDark,
     },
 
     newAccountButton: {

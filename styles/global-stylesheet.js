@@ -7,9 +7,9 @@ import Colors from './Colors';
 module.exports = StyleSheet.create({
     /*============================== Text ==============================*/
     header1Text: {
-        fontFamily: Fonts.monospace,
-        fontSize: 24,
-        fontWeight: 'bold',
+        color: Colors.primaryColor,
+        fontFamily: Fonts.tekturBold,
+        fontSize: 34,
         paddingBottom: 5,
     },
 
@@ -71,25 +71,50 @@ module.exports = StyleSheet.create({
     },
 
     /*============================== Buttons ==============================*/
-    bigButton: {
+    bigButton1: {
         backgroundColor: Colors.button1Color,
-        borderRadius: 5,
-        alignItems: "center",
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingTop: 8,
-        paddingBottom: 8,
+        borderColor: Colors.primaryColor,
+        borderWidth: 4,
+        borderRadius: 50,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
         marginTop: 15,
         alignSelf: 'center',
     },
 
-    bigButtonText: {
+    bigButton1Text: {
         color: Colors.button1TextColor,
+        textAlign: 'center',
         fontSize: 20,
-        fontFamily: Fonts.monospace,
-        fontWeight: "bold",
+        fontFamily: Fonts.tektur,
         paddingLeft: 20,
         paddingRight: 20,
+        minWidth: 190,
+    },
+
+    bigButton2: {
+        //backgroundColor: Colors.button2Color,
+        borderColor: Colors.primaryColorDark,
+        borderWidth: 4,
+        borderRadius: 50,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
+        marginTop: 15,
+        alignSelf: 'center',
+    },
+
+    bigButton2Text: {
+        color: Colors.button2TextColor,
+        textAlign: 'center',
+        fontSize: 20,
+        fontFamily: Fonts.tektur,
+        paddingLeft: 20,
+        paddingRight: 20,
+        minWidth: 190,
     },
 
     drawerButton: {
@@ -154,6 +179,19 @@ module.exports = StyleSheet.create({
     screenWrapperView: {
         flex: 1,
         backgroundColor: Colors.secondaryColor
+    },
+
+    textInputView: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        margin: 4,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderColor: Colors.primaryColor,
+        borderWidth: 3,
+        borderRadius: 10,
     },
 
     /*============================== List Views ==============================*/

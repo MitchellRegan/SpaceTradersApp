@@ -11,7 +11,7 @@ export default {
     button1TextColor: "#ffffff",
 
     button2Color: "#ffffff",
-    button2TextColor: "ca8a04",
+    button2TextColor: "#ca8a04",
 
     textDefaultColor1: "#000",
     textHyperlinkColor: "#00f",
