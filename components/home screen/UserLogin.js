@@ -127,6 +127,10 @@ export default class UserLogin extends Component {
                     <BigButton1 text={"Sign In"} onPress={() => this.login()} />
                     <BigButton1 text={"Create Account"} onPress={() => this.props.navigation.navigate("NewAccount")} />
                 </View>
+
+                <View style={styles.mitchView}>
+                    <Text style={[globalStyles.textListSmall, {textAlign: 'center'}]}>An app developed by Mitchell Regan for the SpaceTraders API-based game.</Text>
+                </View>
             </View>
         );
     }
@@ -156,4 +160,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         margin: 5
     },
+
+    mitchView: {
+        position: 'absolute',
+        bottom: 25,
+        alignSelf: 'center',
+        width: '75%',
+    }
 });

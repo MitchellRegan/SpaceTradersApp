@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Linking, Alert } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
 //Styles
@@ -11,6 +11,7 @@ import globalStyles from '../styles/global-stylesheet';
 import HeaderBar from '../components/shared/HeaderBar';
 import BigButton1 from '../components/shared/BigButton1';
 import InputField from '../components/shared/InputField';
+import Checkbox from '../components/shared/Checkbox';
 
 //API Calls
 import AccountAPICalls from '../api-calls/account-api-calls';
@@ -24,7 +25,8 @@ export default class NewAccountScreen extends Component {
             username: "",
             email: "",
             faction: "COSMIC",
-            token: ""
+            token: "",
+            eulaAccept: false,
         }
     }
 
@@ -75,17 +77,59 @@ export default class NewAccountScreen extends Component {
 
 
     /**
+     * Method to toggle whether the user has accepted the EULA or not
+     */
+    toggleEULA = function () {
+        this.setState(prevState => {
+            return ({
+                ...prevState,
+                eulaAccept: !this.state.eulaAccept
+            })
+        })
+    }
+
+
+    /**
      * Method to attempt to create a new user with the given username and faction.
      */
     createAccount = async function () {
+        //If the username is too short, we alert the user
+        if (this.state.username.length < 3) {
+            Alert.alert("Invalid Username", "Your Username must be 3 to 14 characters long.", [
+                {
+                    text: 'OK'
+                }
+            ]);
+            return;
+        }
+        //If the EULA hasn't been accepted, we need to alert the user to do so
+        if (!this.state.eulaAccept) {
+            Alert.alert("EULA", "You must accept the End User License Agreement in order to create an account.", [
+                {
+                    text: 'OK'
+                }
+            ]);
+            return;
+        }
+
         let data = await AccountAPICalls.makeNewAccount(this.state.username, this.state.faction)
             .then(data => {
                 //If there's an error, we display the Error screen with details about what went wrong
                 if (data.error) {
-                    this.props.navigation.navigate("Error", {
-                        title: data.error.title,
-                        message: data.error.message
-                    });
+                    console.log(data.error);
+                    if (data.error.message.split(' ')[1] == "4111:") {
+                        Alert.alert("Username Taken", "The username " + this.state.username + " has already been claimed. Please pick another one.", [
+                            {
+                                text: 'OK'
+                            }
+                        ]);
+                    }
+                    else {
+                        this.props.navigation.navigate("Error", {
+                            title: data.error.title,
+                            message: data.error.message
+                        });
+                    }
                 }
                 //If there's no error, we save the login details and then move to the Home screen
                 else {
@@ -177,8 +221,20 @@ export default class NewAccountScreen extends Component {
                         />
                     </View>
 
+                    <View style={styles.eulaView }>
+                        <Checkbox isOn={this.state.eulaAccept} onPress={() => this.toggleEULA()} />
+                        <Text style={[globalStyles.invalidText, {flex: 1}]}>
+                            *I have read and accepted the <Text
+                                style={globalStyles.hyperlinkText}
+                                onPress={() => Linking.openURL("https://spacetraders.io/eula")}
+                            >
+                                End User License Agreement
+                            </Text>
+                        </Text>
+                    </View>
+
                     <BigButton1
-                        style={styles.createAccountButton}
+                        style={{ marginTop: 50 }}
                         text={"Create Account!"}
                         onPress={() => this.createAccount()}
                     />
@@ -208,7 +264,7 @@ export default class NewAccountScreen extends Component {
 
 const styles = StyleSheet.create({
     inputBox: {
-        paddingTop: '10%'
+        paddingTop: '5%'
     },
 
     inputRow: {
@@ -264,6 +320,13 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         paddingLeft: 20,
         paddingRight: 20
+    },
+
+    eulaView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 20,
+        marginRight: 20,
     },
 
     newAccountButton: {

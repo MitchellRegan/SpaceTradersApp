@@ -10,7 +10,6 @@ import EmailIcon from '../../assets/icons/Email_icon.svg';
 //Styles
 import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
-import globalStyles from '../../styles/global-stylesheet';
 
 
 /**

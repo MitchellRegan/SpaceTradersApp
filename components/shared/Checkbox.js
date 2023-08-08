@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 //Styles
-import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
+
+//SVG Icons
+import CheckmarkIcon from '../../assets/icons/Checkmark_icon.svg';
 
 
 /**
- * Component to display a button with custom text.
+ * Component to display a botton to act as a checkbox.
  * Props:
- *  text: Text to display on the button.
+ *  isOn: Bool to signal if this checkbox is checked (true) or empty (false).
  *  onPress: The function to call when pressed.
  */
 export default class BigButton1 extends Component {
@@ -22,7 +24,7 @@ export default class BigButton1 extends Component {
     render() {
         return (
             <TouchableOpacity
-                style={[styles.gradientButton1, this.props.style]}
+                style={styles.gradientView}
                 onPress={() => this.props.onPress()}
             >
                 <LinearGradient
@@ -31,11 +33,12 @@ export default class BigButton1 extends Component {
                         'rgba(0,0,0,0)',
                         Colors.primaryColor.toString()
                     ]}
-                    start={{ x: 0.5, y: -0.4 }}
-                    end={{ x: 0.5, y: 1.1 }}
-                    style={styles.gradientStyle}
+                    start={{ x: 0.5, y: -0.3 }}
+                    end={{ x: 0.5, y: 1.3 }}
+                    style={styles.iconGradientStyle}
                 >
-                    <Text style={styles.gradientText}>{this.props.text}</Text>
+                    {(this.props.isOn) && <CheckmarkIcon height={'25'} width={'25'} style={styles.iconStyle} />}
+                    {(!this.props.isOn) && <View style={styles.emptyBox}/> }
                 </LinearGradient>
             </TouchableOpacity>
         );
@@ -43,11 +46,11 @@ export default class BigButton1 extends Component {
 }
 
 const styles = StyleSheet.create({
-    gradientButton1: {
+    gradientView: {
         borderColor: Colors.primaryColor,
         borderWidth: 1,
         padding: 2,
-        marginTop: 15,
+        margin: 5,
         alignSelf: 'center',
     },
 
@@ -58,13 +61,14 @@ const styles = StyleSheet.create({
         paddingRight: 5,
     },
 
-    gradientText: {
-        color: Colors.tertiaryColor,
-        textAlign: 'center',
-        fontSize: 20,
-        fontFamily: Fonts.tektur,
-        paddingLeft: 20,
-        paddingRight: 20,
-        minWidth: 190,
-    }
+    iconStyle: {
+        alignSelf: 'center',
+        padding: 5,
+    },
+
+    emptyBox: {
+        padding: 5,
+        height: 25,
+        width: 25,
+    },
 })

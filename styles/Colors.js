@@ -18,7 +18,7 @@ if (localData.colorScheme == "orange") {
 
         textOverPrimary: '#fff',
         textOverSecondary: '#ca8a04',
-        textHyperlinkColor: "#00f",
+        textHyperlinkColor: "#0066cc",
         textErrorColor: "#ddd",
         textValidColor: "#479030",
     }
@@ -43,7 +43,7 @@ else if (localData.colorScheme == "blue") {
 
         textOverPrimary: '#36393d',
         textOverSecondary: '#fff',
-        textHyperlinkColor: "#00f",
+        textHyperlinkColor: "#0066cc",
         textErrorColor: "#f00",
         textValidColor: "#479030",
     }
@@ -64,7 +64,7 @@ else if (localData.colorScheme == "green") {
 
         textOverPrimary: '#fff',
         textOverSecondary: '#ccc',
-        textHyperlinkColor: "#00f",
+        textHyperlinkColor: "#0066cc",
         textErrorColor: "#f00",
         textValidColor: "#479030",
     }
