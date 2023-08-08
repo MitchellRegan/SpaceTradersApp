@@ -1,7 +1,8 @@
+import sa from './server-address';
+
 /**
  * Container for all of the API calls used for viewing and interacting with job contracts.
  */
-import sa from './server-address';
 const ContractAPICalls = {
     /**
      * Return a paginated list of all your contracts.
@@ -9,8 +10,8 @@ const ContractAPICalls = {
      * @param {number} resultsPerPage_ How many contracts will be returned per page. Defaults to 20. Range is 1-20.
      * @param {number} pageNum_ The page number of the list of contracts to view. Defaults to 1.
      */
-    listContracts: async function (resultsPerPage_=20, pageNum_=1) {
-        const localData = require("../user-preferences.json");
+    listContracts: async function (resultsPerPage_ = 20, pageNum_ = 1) {
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/contracts?page=' + pageNum_.toString() + '&limit=' + resultsPerPage_.toString(), {
             method: 'GET',
@@ -42,7 +43,7 @@ const ContractAPICalls = {
      * @param {string} contractId_ ID for the contract to get.
      */
     getContract: async function (contractId_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/contracts/' + contractId_, {
             method: 'GET',
@@ -75,7 +76,7 @@ const ContractAPICalls = {
      * @param {string} contractId_ ID for the contract to accept.
      */
     acceptContract: async function (contractId_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/contracts/' + contractId_ + '/accept', {
             method: 'POST',
@@ -113,7 +114,7 @@ const ContractAPICalls = {
      * @param {number} amount_ The number of resources to deliver.
      */
     deliverCargoToContract: async function (contractId_, shipSymbol_, cargo_, amount_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/contracts/' + contractId_ + '/deliver', {
             method: 'POST',
@@ -150,7 +151,7 @@ const ContractAPICalls = {
      * @param {string} contractId_ ID for the contract to fulfill.
      */
     fulfillContract: async function (contractId_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/contracts/' + contractId_ + '/fulfill', {
             method: 'POST',

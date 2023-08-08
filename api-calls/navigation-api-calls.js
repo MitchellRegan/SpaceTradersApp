@@ -1,7 +1,8 @@
+import sa from './server-address';
+
 /** 
  * Container for all of the API calls used for navigating your ship through space.
  */
-import sa from './server-address';
 const NavigationAPICalls = {
     /**
      * Returns a paginated list of all systems in the game.
@@ -9,8 +10,8 @@ const NavigationAPICalls = {
      * @param {number} resultsPerPage_ How many systems will be returned per page. Defaults to 20. Range is 1-20.
      * @param {number} pageNum_ The page number of the list of systems to view. Defaults to 1.
      */
-    listSystems: async function (resultsPerPage_=20, pageNum_=1) {
-        const localData = require("../user-preferences.json");
+    listSystems: async function (resultsPerPage_ = 20, pageNum_ = 1) {
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'systems/?page=' + pageNum_.toString() + '&limit=' + resultsPerPage_.toString(), {
             method: 'GET',
@@ -42,7 +43,7 @@ const NavigationAPICalls = {
      * @param {string} systemSymbol_ The name of the system to get info about.
      */
     getSystem: async function (systemSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'systems/' + systemSymbol_, {
             method: 'GET',
@@ -76,7 +77,7 @@ const NavigationAPICalls = {
      * @param {number} pageNum_ The page number of the list of waypoints to view. Defaults to 1.
      */
     listWaypointsInSystem: async function (systemSymbol_, resultsPerPage_ = 20, pageNum_ = 1) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'systems/' + systemSymbol_ + '/waypoints?page=' + pageNum_.toString() + '&limit=' + resultsPerPage_.toString(), {
             method: 'GET',
@@ -109,7 +110,7 @@ const NavigationAPICalls = {
      * @param {string} systemSymbol_ The name of the system that the waypoint is in.
      */
     getWaypoint: async function (waypointSymbol_, systemSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'systems/' + systemSymbol_ + '/waypoints/' + waypointSymbol_, {
             method: 'GET',
@@ -143,7 +144,7 @@ const NavigationAPICalls = {
      * @param {string} systemSymbol_ The name of the system that the market waypoint is in.
      */
     getMarket: async function (waypointSymbol_, systemSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'systems/' + systemSymbol_ + '/waypoints/' + waypointSymbol_ + '/market', {
             method: 'GET',
@@ -177,7 +178,7 @@ const NavigationAPICalls = {
      * @param {string} systemSymbol_ The name of the system that the shipyard waypoint is in.
      */
     getShipyard: async function (waypointSymbol_, systemSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'systems/' + systemSymbol_ + '/waypoints/' + waypointSymbol_ + '/shipyard', {
             method: 'GET',
@@ -211,7 +212,7 @@ const NavigationAPICalls = {
      * @param {string} systemSymbol_ The name of the system that the jump gate waypoint is in.
      */
     getJumpGate: async function (waypointSymbol_, systemSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'systems/' + systemSymbol_ + '/waypoints/' + waypointSymbol_ + '/jump-gate', {
             method: 'GET',

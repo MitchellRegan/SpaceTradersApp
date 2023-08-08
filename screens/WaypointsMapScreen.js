@@ -7,8 +7,8 @@ import Colors from '../styles/Colors';
 import globalStyles from '../styles/global-stylesheet';
 
 //Components
-import HeaderBar from '../components/HeaderBar';
-import NavBar from '../components/NavBar';
+import HeaderBar from '../components/shared/HeaderBar';
+import NavBar from '../components/shared/NavBar';
 import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
 import SystemCoreDetailsButton from '../components/map screen/SystemCoreDetailsButton';
 import WaypointDetailsButton from '../components/map screen/WaypointDetailsButton';
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
 
     systemNameText: {
         color: Colors.primaryColor,
-        fontFamily: Fonts.monospace,
+        fontFamily: Fonts.tektur,
         fontSize: 25,
         paddingLeft: 10,
         paddingRight: 10,

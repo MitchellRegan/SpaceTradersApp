@@ -8,7 +8,7 @@ import Colors from '../styles/Colors';
 import globalStyles from '../styles/global-stylesheet';
 
 //Components
-import HeaderBar from '../components/HeaderBar';
+import HeaderBar from '../components/shared/HeaderBar';
 
 //API Calls
 import AccountAPICalls from '../api-calls/account-api-calls';
@@ -60,7 +60,7 @@ export default class NewAccountScreen extends Component {
      * @param {string} faction_ The string currently in the token text entry field.
      */
     setFaction = function (faction_) {
-        var localData = require("../user-preferences.json");
+        var localData = require("../save data/user-preferences.json");
         console.log(localData.token);
 
         this.setState((prevState) => {
@@ -150,7 +150,7 @@ export default class NewAccountScreen extends Component {
                     <View style={styles.inputRow}>
                         <Text style={styles.inputHeaderText}>Faction:</Text>
                         <Dropdown
-                            style={styles.dropdown}
+                            style={globalStyles.dropdownView}
                             data={[
                                 { label: 'Cosmic', value: 'COSMIC' },
                                 { label: 'Void', value: 'VOID' },

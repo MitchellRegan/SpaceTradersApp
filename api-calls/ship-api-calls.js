@@ -1,7 +1,8 @@
+import sa from './server-address';
+
 /**
  * Container for all of the API calls used for viewing and managing the user's fleet of ships.
  */
-import sa from './server-address';
 const ShipAPICalls = {
     /**
      * Returns a paginated list of all ships under your agent's ownership.
@@ -9,8 +10,8 @@ const ShipAPICalls = {
      * @param {number} resultsPerPage_ How many ships will be returned per page. Defaults to 20. Range is 1-20.
      * @param {number} pageNum_ The page number of the list of ships to view. Defaults to 1.
      */
-    listShips: async function (resultsPerPage_=20, pageNum_=1) {
-        const localData = require("../user-preferences.json");
+    listShips: async function (resultsPerPage_ = 20, pageNum_ = 1) {
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships?page=' + pageNum_.toString() + '&limit=' + resultsPerPage_.toString(), {
             method: 'GET',
@@ -45,7 +46,7 @@ const ShipAPICalls = {
      * @param {string} waypointSymbol_ The name of the waypoint that has the [Shipyard] trait to purchase the ship at.
      */
     purchaseShip: async function (shipType_, waypointSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships', {
             method: 'POST',
@@ -81,7 +82,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to get details about.
      */
     getShip: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_, {
             method: 'GET',
@@ -113,7 +114,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to get cargo details about.
      */
     getShipCargo: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + '/cargo', {
             method: 'GET',
@@ -146,7 +147,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to put into orbit.
      */
     orbitShip: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /orbit', {
             method: 'POST',
@@ -182,7 +183,7 @@ const ShipAPICalls = {
      * IRON, COPPER, SILVER, GOLD, ALUMINUM, PLATINUM, URANITE, MERITIUM, FUEL
      */
     shipRefine: async function (shipSymbol_, produce_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /refine', {
             method: 'POST',
@@ -219,7 +220,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to create the waypoint chart.
      */
     createChart: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /chart', {
             method: 'POST',
@@ -251,7 +252,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to view the cooldown of.
      */
     getShipCooldown: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /cooldown', {
             method: 'GET',
@@ -283,7 +284,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to dock.
      */
     dockShip: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /dock', {
             method: 'POST',
@@ -316,7 +317,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship that will create the survey.
      */
     createSurvey: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /survey', {
             method: 'POST',
@@ -355,7 +356,7 @@ const ShipAPICalls = {
      * @param {string} size_ The size of the deposit. Allowed values: SMALL, MODERATE, LARGE
      */
     extractResources: async function (shipSymbol_, surveySig_, waypointSymbol_, deposits_, expires_, size_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /extract', {
             method: 'POST',
@@ -398,7 +399,7 @@ const ShipAPICalls = {
      * @param {number} amount_ The number of resources to jettison.
      */
     jettisonCargo: async function (shipSymbol_, cargo_, amount_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /jettison', {
             method: 'POST',
@@ -439,7 +440,7 @@ const ShipAPICalls = {
      * @param {string} systemSymbol_ The name of the system to jump to.
      */
     jumpShip: async function (shipSymbol_, systemSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /jump', {
             method: 'POST',
@@ -479,7 +480,7 @@ const ShipAPICalls = {
      * @param {string} waypointSymbol_ The name of the waypoint to travel to.
      */
     navigateShip: async function (shipSymbol_, waypointSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /navigate', {
             method: 'POST',
@@ -515,7 +516,7 @@ const ShipAPICalls = {
      * @param {string} mode_ The mode to switch your ship into. Options are CRUISE, BURN, DRIFT, STEALTH
      */
     patchShipNav: async function (shipSymbol_, mode_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /nav', {
             method: 'PATCH',
@@ -550,7 +551,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to get the nav status of.
      */
     getShipNav: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /nav', {
             method: 'POST',
@@ -585,7 +586,7 @@ const ShipAPICalls = {
      * @param {string} waypointSymbol_ The name of the waypoint to warp to.
      */
     warpShip: async function (shipSymbol_, waypointSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /warp', {
             method: 'POST',
@@ -623,7 +624,7 @@ const ShipAPICalls = {
      * @param {number} amount_ The number of resources to sell.
      */
     sellCargo: async function (shipSymbol_, cargo_, amount_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /sell', {
             method: 'POST',
@@ -660,7 +661,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to perform the scan.
      */
     scanSystems: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/systems', {
             method: 'POST',
@@ -694,7 +695,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to perform the scan.
      */
     scanWaypoints: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/waypoints', {
             method: 'POST',
@@ -727,7 +728,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to perform the scan.
      */
     scanShips: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/ships', {
             method: 'POST',
@@ -762,7 +763,7 @@ const ShipAPICalls = {
      * @param {number} amount_ The amount of fuel to purchase. 
      */
     refuelShip: async function (shipSymbol_, amount_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /refuel', {
             method: 'POST',
@@ -802,7 +803,7 @@ const ShipAPICalls = {
      * @param {number} amount_ The number of resources to buy.
      */
     purchaseCargo: async function (shipSymbol_, cargo_, amount_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /purchase', {
             method: 'POST',
@@ -844,7 +845,7 @@ const ShipAPICalls = {
      * @param {string} targetShipSymbol_ The name of the ship to transfer the cargo to.
      */
     transferCargo: async function (shipSymbol_, cargo_, amount_, targetShipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /transfer', {
             method: 'POST',
@@ -884,7 +885,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to perform the negotiation.
      */
     negotiateContract: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /negotiate/contract', {
             method: 'POST',
@@ -916,7 +917,7 @@ const ShipAPICalls = {
      * @param {string} shipSymbol_ The name of the ship to get the mounts of.
      */
     getMounts: async function (shipSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts', {
             method: 'GET',
@@ -951,7 +952,7 @@ const ShipAPICalls = {
      * @param {string} mountSymbol_ The name of the mount to install on the ship.
      */
     installMount: async function (shipSymbol_, mountSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts/install', {
             method: 'POST',
@@ -988,7 +989,7 @@ const ShipAPICalls = {
      * @param {string} mountSymbol_ The name of the mount to remove from the ship.
      */
     removeMount: async function (shipSymbol_, mountSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts/remove', {
             method: 'POST',

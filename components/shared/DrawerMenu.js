@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //Styles
-import Fonts from '../styles/Fonts';
-import globalStyles from '../styles/global-stylesheet';
+import Fonts from '../../styles/Fonts';
+import globalStyles from '../../styles/global-stylesheet';
 
 
 /**

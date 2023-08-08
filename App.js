@@ -17,6 +17,7 @@ import ShipsScreen from './screens/ShipsScreen';
 import ShipDetailsScreen from './screens/ShipDetailsScreen';
 import GameInfoScreen from './screens/GameInfoScreen';
 import WaypointsMapScreen from './screens/WaypointsMapScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 
@@ -63,6 +64,7 @@ export default function App() {
                     <Stack.Screen name="ShipDetails" component={ShipDetailsScreen} />
                     <Stack.Screen name="GameInfo" component={GameInfoScreen} />
                     <Stack.Screen name="WaypointsMap" component={WaypointsMapScreen} />
+                    <Stack.Screen name="Settings" component={SettingsScreen} />
                 </Stack.Navigator>
             </NavigationContainer>}
          </View>

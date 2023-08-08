@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 //Components
-import HeaderBar from '../components/HeaderBar';
+import HeaderBar from '../components/shared/HeaderBar';
 
 //Styles
 import Fonts from '../styles/Fonts';

@@ -14,8 +14,8 @@ import ProfileIcon from '../../assets/icons/Profile_icon.svg';
 import LockIcon from '../../assets/icons/Lock_icon.svg';
 
 //Components
-import BigButton1 from '../BigButton1';
-import BigButton2 from '../BigButton2';
+import BigButton1 from '../shared/BigButton1';
+import BigButton2 from '../shared/BigButton2';
 
 //API Calls
 import AccountAPICalls from '../../api-calls/account-api-calls';
@@ -103,8 +103,8 @@ export default class UserLogin extends Component {
             <View style={styles.wrapper}>
                 <View style={styles.inputBox}>
                     <Logo
-                        height={180}
-                        width={180}
+                        height={150}
+                        width={150}
                         style={styles.logo}
                     />
 

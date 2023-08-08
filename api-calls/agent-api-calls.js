@@ -1,14 +1,15 @@
+import sa from './server-address';
+
 /**
  * Container for all of the API calls used for getting details about agents (i.e. players).
  */
-import sa from './server-address';
 const AgentAPICalls = {
     /**
      * Fetch your agent's details.
      * https://spacetraders.stoplight.io/docs/spacetraders/eb030b06e0192-get-agent
      */
     getAgent: async function () {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + 'my/agent', {
             method: 'GET',
@@ -41,7 +42,7 @@ const AgentAPICalls = {
      * @param {number} pageNum_ The page number of the list of agents to view. Defaults to 1.
      */
     listAgents: async function (resultsPerPage_ = 20, pageNum_ = 1) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + '/agents?page=' + pageNum_.toString() + '&limit=' + resultsPerPage_.toString(), {
             method: 'GET',
@@ -73,7 +74,7 @@ const AgentAPICalls = {
      * @param {string} agentSymbol_ The name of the agent to get details about.
      */
     getPublicAgent: async function (agentSymbol_) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + '/agents/' + agentSymbol_, {
             method: 'GET',

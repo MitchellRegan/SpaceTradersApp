@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
 //Styles
-import globalStyles from '../styles/global-stylesheet';
+import globalStyles from '../../styles/global-stylesheet';
 
 
 /**
@@ -11,7 +11,7 @@ import globalStyles from '../styles/global-stylesheet';
  *  text: Text to display on the button.
  *  onPress: The function to call when pressed.
  */
-export default class BigButton1 extends Component {
+export default class BigButton2 extends Component {
     constructor(props) {
         super(props);
     }
@@ -20,10 +20,10 @@ export default class BigButton1 extends Component {
     render() {
         return (
             <TouchableOpacity
-                style={globalStyles.bigButton1}
+                style={globalStyles.bigButton2}
                 onPress={() => this.props.onPress()}
             >
-                <Text style={globalStyles.bigButton1Text}>{this.props.text}</Text>
+                <Text style={globalStyles.bigButton2Text}>{this.props.text}</Text>
             </TouchableOpacity>
         );
     }

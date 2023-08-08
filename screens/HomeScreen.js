@@ -5,8 +5,8 @@ import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import globalStyles from '../styles/global-stylesheet';
 
 //Components
-import HeaderBar from '../components/HeaderBar';
-import NavBar from '../components/NavBar';
+import HeaderBar from '../components/shared/HeaderBar';
+import NavBar from '../components/shared/NavBar';
 import UserLogin from '../components/home screen/UserLogin';
 import MyAgentDetails from '../components/home screen/MyAgentDetails';
 import MyContracts from '../components/home screen/MyContracts';
@@ -26,7 +26,7 @@ export default class HomeScreen extends Component {
      * Function called when this screen loads. If there's an account login saved locally, we display user data. If not, we show the login component.
      */
     componentDidMount() {
-        var localData = require("../user-preferences.json");
+        var localData = require("../save data/user-preferences.json");
 
         if (localData.username != "" && localData.token != "") {
             this.setState(prevState => {

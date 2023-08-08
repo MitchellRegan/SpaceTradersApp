@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //SVG Icons
-import HomeIcon from '../assets/icons/Home_icon.svg';
-import MapIcon from '../assets/icons/Map_icon.svg';
-import ShipIcon from '../assets/icons/Ship_icon.svg';
-import ContractIcon from '../assets/icons/Contracts_icon.svg';
-import SettingsIcon from '../assets/icons/Settings_icon.svg';
+import HomeIcon from '../../assets/icons/Home_icon.svg';
+import MapIcon from '../../assets/icons/Map_icon.svg';
+import ShipIcon from '../../assets/icons/Ship_icon.svg';
+import ContractIcon from '../../assets/icons/Contracts_icon.svg';
+import SettingsIcon from '../../assets/icons/Settings_icon.svg';
 
 //Styles
-import Colors from '../styles/Colors';
-import Fonts from '../styles/Fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 
 
 /**
@@ -29,13 +29,14 @@ export default class HeaderBar extends Component {
             <View style={styles.wrapper}>
                 <TouchableOpacity
                     style={styles.buttonView}
-                    onPress={() => console.log("Settings")}
+                    onPress={() => this.props.navigation.navigate("Settings")}
                 >
                     <SettingsIcon
                         height={'25'}
                         width={'25'}
                         style={styles.icon}
                     />
+                    <Text style={styles.iconText}>Settings</Text>
                 </TouchableOpacity>
 
                     <TouchableOpacity
@@ -46,7 +47,8 @@ export default class HeaderBar extends Component {
                             height={'25'}
                             width={'25'}
                             style={styles.icon}
-                        />
+                    />
+                    <Text style={styles.iconText}>Map</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -58,6 +60,7 @@ export default class HeaderBar extends Component {
                         width={'25'}
                         style={styles.icon}
                     />
+                    <Text style={styles.iconText}>Home</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -69,6 +72,7 @@ export default class HeaderBar extends Component {
                         width={'25'}
                         style={styles.icon}
                     />
+                    <Text style={styles.iconText}>Contracts</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -80,6 +84,7 @@ export default class HeaderBar extends Component {
                         width={'25'}
                         style={styles.icon}
                     />
+                    <Text style={styles.iconText}>Ships</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -92,23 +97,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         flexDirection: 'row',
         width: '100%',
-        paddingBottom: 8,
-        paddingTop: 8,
-        paddingLeft: 10,
-        paddingRight: 10,
-        //position: 'absolute',
-        //bottom: 0,
+        paddingBottom: 10,
+        paddingTop: 10,
         alignSelf: 'flex-end',
     },
 
     buttonView: {
         alignItems: 'center',
-        padding: 5,
+        width: '18%',
     },
 
     icon: {
         color: '#fff',
         verticalAlign: 'center',
         padding: 5,
+    },
+
+    iconText: {
+        fontFamily: Fonts.tektur,
+        color: Colors.tertiaryColor,
+        fontSize: 12,
     }
 })

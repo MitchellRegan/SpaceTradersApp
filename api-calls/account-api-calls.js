@@ -1,7 +1,8 @@
+import sa from './server-address';
+
 /**
  * Container for all of the API calls used for managing your user account.
  */
-import sa from './server-address';
 const AccountAPICalls = {
     /** 
      * API call to create a new account for SpaceTraders.
@@ -10,7 +11,7 @@ const AccountAPICalls = {
      * @param {string} email_ Recovery email tied to the player's account.
      */
     makeNewAccount: async function (username_, userFaction_, email_) {
-        const options = {
+        let callData = await fetch(sa.address + 'register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,9 +21,7 @@ const AccountAPICalls = {
                 faction: userFaction_,
                 email: email_
             }),
-        };
-
-        let callData = await fetch(sa.address + 'register', options)
+        })
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
@@ -56,15 +55,13 @@ const AccountAPICalls = {
      * @param {string} bearerToken_
      */
     userLogin: async function (username_, bearerToken_) {
-        const options = {
+        let callData = await fetch(sa.address + 'my/agent', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
                 Authorization: 'Bearer ' + bearerToken_
             }
-        };
-
-        let callData = await fetch(sa.address + 'my/agent', options)
+        })
             .then(response => response.json())
             .then(data => {
                 //If there was some kind of server error, we make a new JSON object with the error message to be displayed on the Error screen.
@@ -78,7 +75,7 @@ const AccountAPICalls = {
                 }
                 //Saving the username and token locally in the user-preferences.json file
                 else if (data.data.symbol == username_.toUpperCase()) {
-                    var localData = require("../user-preferences.json");
+                    var localData = require("../save data/user-preferences.json");
                     localData.username = username_.toUpperCase();
                     localData.token = bearerToken_;
                     return data;

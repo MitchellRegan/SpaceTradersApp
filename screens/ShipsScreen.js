@@ -8,8 +8,8 @@ import globalStyles from '../styles/global-stylesheet';
 import ShipAPICalls from '../api-calls/ship-api-calls';
 
 //Components
-import HeaderBar from '../components/HeaderBar';
-import NavBar from '../components/NavBar';
+import HeaderBar from '../components/shared/HeaderBar';
+import NavBar from '../components/shared/NavBar';
 import ShipDetailsButton from '../components/ships screen/ShipDetailsButton';
 
 

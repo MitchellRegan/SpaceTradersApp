@@ -1,13 +1,14 @@
+import sa from './server-address';
+
 /**
  * Container for all of the API calls used for getting info about the game server and announcements.
  */
-import sa from './server-address';
 const ServerInfoAPICalls = {
     /**
      * API call to get info about the game server and announcements.
      */
     getServerInfo: async function () {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address, {
             method: 'GET',

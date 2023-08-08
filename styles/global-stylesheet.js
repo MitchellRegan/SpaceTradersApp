@@ -93,7 +93,7 @@ module.exports = StyleSheet.create({
     },
 
     bigButton1Text: {
-        color: Colors.tertiaryColor,
+        color: Colors.textOverPrimary,
         textAlign: 'center',
         fontSize: 20,
         fontFamily: Fonts.tektur,
@@ -103,8 +103,7 @@ module.exports = StyleSheet.create({
     },
 
     bigButton2: {
-        //backgroundColor: Colors.button2Color,
-        borderColor: Colors.primaryColorDark,
+        borderColor: Colors.primaryColor,
         borderWidth: 4,
         borderRadius: 50,
         paddingLeft: 5,
@@ -192,13 +191,26 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'center',
         margin: 4,
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingTop: 5,
-        paddingBottom: 5,
+        padding: 5,
         borderColor: Colors.primaryColor,
         borderWidth: 3,
         borderRadius: 10,
+    },
+
+    dropdownView: {
+        alignSelf: 'center',
+        margin: 4,
+        padding: 5,
+        borderColor: Colors.primaryColor,
+        borderWidth: 3,
+        borderRadius: 10,
+        width: '60%',
+        fontFamily: Fonts.tektur,
+    },
+
+    dropdownText: {
+        color: Colors.primaryColorDark,
+        fontFamily: Fonts.tektur,
     },
 
     /*============================== List Views ==============================*/

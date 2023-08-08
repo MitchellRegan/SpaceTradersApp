@@ -1,7 +1,8 @@
+import sa from './server-address';
+
 /**
  * Container for all of the API calls used for getting details about factions.
  */
-import sa from './server-address';
 const FactionAPICalls = {
     /**
      * View the details of a faction.
@@ -9,7 +10,7 @@ const FactionAPICalls = {
      * @param {string} factionSymbol_ The name of the faction to get details about.
      */
     getFaction: async function () {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + '/factions/' + factionSymbol_, {
             method: 'GET',
@@ -42,7 +43,7 @@ const FactionAPICalls = {
      * @param {number} pageNum_ The page number of the list of factions to view. Defaults to 1.
      */
     listFactions: async function (resultsPerPage_ = 20, pageNum_ = 1) {
-        const localData = require("../user-preferences.json");
+        const localData = require("../save data/user-preferences.json");
 
         let callData = await fetch(sa.address + '/factions?page=' + pageNum_.toString() + '&limit=' + resultsPerPage_.toString(), {
             method: 'GET',

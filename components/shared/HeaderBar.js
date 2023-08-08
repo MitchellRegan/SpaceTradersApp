@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //SVG Icons
-import BackArrowIcon from '../assets/icons/BackArrow2_icon.svg';
+import BackArrowIcon from '../../assets/icons/BackArrow2_icon.svg';
 
 //Styles
-import Colors from '../styles/Colors';
-import Fonts from '../styles/Fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 
 
 /**
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     headerText: {
         alignSelf: 'center',
         fontFamily: Fonts.tekturBold,
-        color: Colors.tertiaryColor,
+        color: Colors.textOverPrimary,
         fontSize: 20
     },
 });

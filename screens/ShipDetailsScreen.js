@@ -5,8 +5,8 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import globalStyles from '../styles/global-stylesheet';
 
 //Components
-import HeaderBar from '../components/HeaderBar';
-import NavBar from '../components/NavBar';
+import HeaderBar from '../components/shared/HeaderBar';
+import NavBar from '../components/shared/NavBar';
 
 /**
  * Screen to show all details about a specific ship in the user's fleet.
