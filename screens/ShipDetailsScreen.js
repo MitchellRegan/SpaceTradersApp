@@ -49,7 +49,7 @@ export default class ShipsScreen extends Component {
 
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.blockRow}>
-                        <View style={styles.block}>
+                        <View style={[styles.block, {paddingLeft: 10, paddingRight: 10}]}>
                             <DynamicMapIcon
                                 typeName_={""}
                                 pixelSize_={90}
@@ -64,26 +64,26 @@ export default class ShipsScreen extends Component {
 
                     <View style={styles.blockRow}>
                         <View style={styles.block}>
-                            <Text style={globalStyles.textList}>Status</Text>
+                            <Text style={[globalStyles.header3Text, {padding: 10}]}>Status</Text>
                         </View>
 
                         <View style={[styles.block, {flex: 1}]}>
-                            <View style={{flexDirection: 'row', justifyContent: 'space-around'} }>
-                                <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Frame:    ({this.props.route.params.shipData.frame.condition}%)</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between'} }>
+                                <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Frame:</Text>
                                 <StatusPercentBar percent={this.props.route.params.shipData.frame.condition} />
                             </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                                <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Reactor: ({this.props.route.params.shipData.reactor.condition}%)</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Reactor:</Text>
                                 <StatusPercentBar percent={this.props.route.params.shipData.reactor.condition} />
                             </View>
 
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                                <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Engine:   ({this.props.route.params.shipData.engine.condition}%)</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Engine:</Text>
                                 <StatusPercentBar percent={this.props.route.params.shipData.engine.condition} />
                             </View>
 
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                                <Text style={[globalStyles.textList, {textAlignVertical: 'center'}]}>Morale:   ({this.props.route.params.shipData.crew.morale}%)</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                <Text style={[globalStyles.textList, {textAlignVertical: 'center'}]}>Morale:</Text>
                                 <StatusPercentBar percent={this.props.route.params.shipData.crew.morale} />
                             </View>
                         </View>
@@ -102,7 +102,6 @@ export default class ShipsScreen extends Component {
                     <Text style={globalStyles.textList}>Crew</Text>
                     <Text style={globalStyles.textListSmall}>Current Crew: {this.props.route.params.shipData.crew.current}/{this.props.route.params.shipData.crew.capacity}</Text>
                     <Text style={globalStyles.textListSmall}>Required Crew Size: {this.props.route.params.shipData.crew.required}</Text>
-                    <Text style={globalStyles.textListSmall}>Morale: {this.props.route.params.shipData.crew.morale}%</Text>
 
                     {/* Details about the ship's hardware */}
                     <Text style={globalStyles.textList}>Specs</Text>
@@ -133,6 +132,7 @@ export default class ShipsScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
+        paddingBottom: 10,
     },
 
     blockRow: {

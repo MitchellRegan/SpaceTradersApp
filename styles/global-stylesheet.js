@@ -22,7 +22,7 @@ module.exports = StyleSheet.create({
 
     header3Text: {
         color: Colors.primaryColor,
-        fontFamily: Fonts.tektur,
+        fontFamily: Fonts.tekturBold,
         fontSize: 18,
         paddingBottom: 5,
     },

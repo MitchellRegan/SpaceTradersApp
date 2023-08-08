@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+
+//Styles
+import Fonts from '../../styles/Fonts';
+import Colors from '../../styles/Colors';
 
 
 /**
@@ -29,6 +33,7 @@ export default class StatusPercentBar extends Component {
     render() {
         return (
             <View style={styles.wrapper}>
+                <Text style={styles.percentText}>{this.props.percent}%</Text>
                 <LinearGradient
                     colors={[
                         '#f00',
@@ -54,9 +59,18 @@ export default class StatusPercentBar extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-        minWidth: 150,
+        minWidth: 160,
         height: 18,
         margin: 5,
+        flexDirection: 'row',
+    },
+
+    percentText: {
+        color: Colors.primaryColor,
+        fontFamily: Fonts.tektur,
+        fontSize: 16,
+        marginRight: 5,
+        textAlignVertical: 'center',
     },
 
     gradientView: {
