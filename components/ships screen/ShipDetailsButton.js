@@ -9,9 +9,7 @@ import globalStyles from '../../styles/global-stylesheet';
 
 //Components
 import DynamicMapIcon from '../map screen/DynamicMapIcon';
-
-//API Calls
-import ShipAPICalls from '../../api-calls/ship-api-calls';
+import ListElementView from '../shared/ListElementView';
 
 
 /**
@@ -41,16 +39,7 @@ export default class ShipDetailsButton extends Component {
 
     render() {
         return (
-            <LinearGradient
-                colors={[
-                    Colors.secondaryColorLight.toString(),
-                    Colors.secondaryColor.toString(),
-                    Colors.secondaryColorDark.toString()
-                ]}
-                start={{ x: 0, y: 0.5 }}
-                end={{ x: 1, y: 0.5 }}
-                style={globalStyles.listViewWrapper1}
-            >
+            <ListElementView>
                 <TouchableOpacity
                     style={{ flex: 1, flexDirection:'row' }}
                     onPress={() => this.props.navigation.navigate("ShipDetails", {shipData: this.props.shipData})}
@@ -70,7 +59,7 @@ export default class ShipDetailsButton extends Component {
                         {(this.props.shipData.nav.status == "IN_TRANSIT") && <Text style={globalStyles.textListSmall}>Traveling To {this.props.shipData.nav.route.destination.symbol}</Text>}
                     </View>
                 </TouchableOpacity>
-            </LinearGradient>
+            </ListElementView>
         );
     }
 }

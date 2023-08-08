@@ -19,7 +19,7 @@ if (localData.colorScheme == "orange") {
         textOverPrimary: '#fff',
         textOverSecondary: '#ca8a04',
         textHyperlinkColor: "#00f",
-        textErrorColor: "#f00",
+        textErrorColor: "#ddd",
         textValidColor: "#479030",
     }
 }

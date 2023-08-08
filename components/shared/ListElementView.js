@@ -24,8 +24,7 @@ export default class WaypointDetailsButton extends Component {
                 <LinearGradient
                     colors={[
                         Colors.secondaryColorLight.toString(),
-                        Colors.secondaryColor.toString(),
-                        Colors.secondaryColorDark.toString()
+                        Colors.secondaryColor.toString()
                     ]}
                     style={styles.gradientStyle}
                     start={{ x: 0, y: 0.5 }}

@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     },
 
     icon: {
-        color: '#fff',
         verticalAlign: 'center',
         padding: 5,
     },

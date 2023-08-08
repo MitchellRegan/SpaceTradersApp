@@ -21,17 +21,20 @@ module.exports = StyleSheet.create({
     },
 
     header3Text: {
+        color: Colors.primaryColor,
         fontFamily: Fonts.tektur,
-        fontSize: 15,
+        fontSize: 18,
         paddingBottom: 5,
     },
 
     defaultText: {
+        color: Colors.tertiaryColor,
         fontFamily: Fonts.tektur,
         fontSize: 14,
     },
 
     smallText: {
+        color: Colors.tertiaryColor,
         fontFamily: Fonts.tektur,
         fontSize: 12,
     },

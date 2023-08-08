@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 //Styles
-import globalStyles from '../../styles/global-stylesheet';
+import Fonts from '../../styles/Fonts';
+import Colors from '../../styles/Colors';
 
 
 /**
@@ -20,11 +21,42 @@ export default class BigButton2 extends Component {
     render() {
         return (
             <TouchableOpacity
-                style={globalStyles.bigButton2}
+                style={styles.gradientButton1}
                 onPress={() => this.props.onPress()}
             >
-                <Text style={globalStyles.bigButton2Text}>{this.props.text}</Text>
+                <View style={styles.innerSpacing }>
+                    <Text style={styles.gradientText}>{this.props.text}</Text>
+                </View>
             </TouchableOpacity>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    gradientButton1: {
+        borderColor: Colors.primaryColor,
+        borderWidth: 1,
+        padding: 2,
+        marginTop: 15,
+        alignSelf: 'center',
+    },
+
+    innerSpacing: {
+        borderColor: Colors.primaryColor,
+        borderWidth: 3,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 2,
+        paddingRight: 2,
+    },
+
+    gradientText: {
+        color: Colors.tertiaryColor,
+        textAlign: 'center',
+        fontSize: 20,
+        fontFamily: Fonts.tektur,
+        paddingLeft: 20,
+        paddingRight: 20,
+        minWidth: 190,
+    }
+})

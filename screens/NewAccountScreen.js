@@ -9,6 +9,8 @@ import globalStyles from '../styles/global-stylesheet';
 
 //Components
 import HeaderBar from '../components/shared/HeaderBar';
+import BigButton1 from '../components/shared/BigButton1';
+import InputField from '../components/shared/InputField';
 
 //API Calls
 import AccountAPICalls from '../api-calls/account-api-calls';
@@ -119,33 +121,29 @@ export default class NewAccountScreen extends Component {
                 />
                 
                 {(this.state.token == "") && <View style={styles.inputBox}>
-                    <View style={styles.inputRow}>
-                        <Text style={styles.inputHeaderText}>Username:</Text>
-                        <TextInput
-                            style={styles.input}
-                            multiline={false}
-                            placeholder={"Example: Han Solo"}
-                            value={this.state.username}
-                            onChangeText={(newUname) => this.setUsername(newUname)}
-                            maxLength={14}
-                        />
-                    </View>
+                    <Text style={[globalStyles.header3Text, {margin: 20, textAlign: 'center'}]}>Register your new SpaceTraders account with a unique username and recovery email.</Text>
+
+                    <InputField
+                        symbol={"Username"}
+                        multiline={false}
+                        keyboardType={"default"}
+                        placeholder={"USERNAME"}
+                        value={this.state.username}
+                        onChangeText={(newUname) => this.setUsername(newUname)}
+                    />
                     {(this.state.username.length < 3) &&
                         <Text style={globalStyles.invalidText}>
                             *Must be between 3 and 14 characters
                         </Text>}
 
-                    <View style={styles.inputRow}>
-                        <Text style={styles.inputHeaderText}>Email:</Text>
-                        <TextInput
-                            style={styles.input}
-                            multiline={false}
-                            keyboardType={"email-address"}
-                            placeholder={"Example: john@doe.com"}
-                            value={this.state.email}
-                            onChangeText={(newEmail) => this.setEmail(newEmail)}
-                        />
-                    </View>
+                    <InputField
+                        symbol={"Email" }
+                        multiline={false}
+                        keyboardType={"email-address"}
+                        placeholder={"EMAIL"}
+                        value={this.state.email}
+                        onChangeText={(newEmail) => this.setEmail(newEmail)}
+                    />
 
                     <View style={styles.inputRow}>
                         <Text style={styles.inputHeaderText}>Faction:</Text>
@@ -179,12 +177,11 @@ export default class NewAccountScreen extends Component {
                         />
                     </View>
 
-                    <TouchableOpacity
+                    <BigButton1
                         style={styles.createAccountButton}
+                        text={"Create Account!"}
                         onPress={() => this.createAccount()}
-                    >
-                        <Text style={styles.createAccountButtonText}>Create</Text>
-                    </TouchableOpacity>
+                    />
                 </View>}
 
                 {(this.state.token != "") && <View style={styles.successView}>
@@ -211,14 +208,15 @@ export default class NewAccountScreen extends Component {
 
 const styles = StyleSheet.create({
     inputBox: {
-        paddingTop: '45%'
+        paddingTop: '10%'
     },
 
     inputRow: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
-        padding: 3
+        padding: 3,
+        marginTop: 20,
     },
 
     inputHeaderText: {

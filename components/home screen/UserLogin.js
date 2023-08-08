@@ -3,19 +3,17 @@ import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-nativ
 
 //SVG Icons
 import Logo from '../../assets/icons/logo-over-black.svg';
+import ProfileIcon from '../../assets/icons/Profile_icon.svg';
+import LockIcon from '../../assets/icons/Lock_icon.svg';
 
 //Styles
 import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
 import globalStyles from '../../styles/global-stylesheet';
 
-//SVG Icons
-import ProfileIcon from '../../assets/icons/Profile_icon.svg';
-import LockIcon from '../../assets/icons/Lock_icon.svg';
-
 //Components
 import BigButton1 from '../shared/BigButton1';
-import BigButton2 from '../shared/BigButton2';
+import InputField from '../shared/InputField';
 
 //API Calls
 import AccountAPICalls from '../../api-calls/account-api-calls';
@@ -110,33 +108,24 @@ export default class UserLogin extends Component {
 
                     <Text style={[globalStyles.header1Text, {width: '100%', textAlign:'center'}]}>User Login</Text>
 
-                    <View style={globalStyles.textInputView}>
-                        <ProfileIcon height={'30'} width={'30'} />
-                        <TextInput
-                            style={styles.input}
-                            multiline={false}
-                            placeholder={"USERNAME"}
-                            placeholderTextColor={Colors.primaryColor}
-                            value={this.state.username}
-                            onChangeText={(newUname) => this.setUsername(newUname)}
-                            maxLength={14}
-                        />
-                    </View>
-                    <View style={globalStyles.textInputView}>
-                        <LockIcon height={'30'} width={'30'} />
-                        <TextInput
-                            style={styles.input}
-                            multiline={false}
-                            placeholder={"TOKEN"}
-                            placeholderTextColor={Colors.primaryColor}
-                            value={this.state.token}
-                            onChangeText={(newToken) => this.setToken(newToken)}
-                        />
-                    </View>
+                    <InputField
+                        symbol={"Username"}
+                        multiline={false}
+                        placeholder={"USERNAME"}
+                        value={this.state.username}
+                        onChangeText={(newUname) => this.setUsername(newUname)}
+                    />
+                    <InputField
+                        symbol={"Token"}
+                        multiline={false}
+                        placeholder={"TOKEN"}
+                        value={this.state.token}
+                        onChangeText={(newToken) => this.setToken(newToken)}
+                    />
                     {(this.state.invalidLogin) && <Text style={globalStyles.invalidText}>Invalid Username or Token</Text>}
 
                     <BigButton1 text={"Sign In"} onPress={() => this.login()} />
-                    <BigButton2 text={"Create Account"} onPress={() => this.props.navigation.navigate("NewAccount")} />
+                    <BigButton1 text={"Create Account"} onPress={() => this.props.navigation.navigate("NewAccount")} />
                 </View>
             </View>
         );
@@ -159,7 +148,8 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         paddingLeft: 3,
         fontFamily: Fonts.tektur,
-        color: Colors.primaryColorDark,
+        color: Colors.tertiaryColor,
+        fontSize: 18,
     },
 
     newAccountButton: {
