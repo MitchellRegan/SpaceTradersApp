@@ -47,12 +47,9 @@ export default class WaypointsMapScreen extends Component {
         let sysName = splitString[0] + "-" + splitString[1];
 
         let starmap = require('../save data/local-starmap.json');
-        console.log(starmap);
-        let sysIndex = starmap.systems.indexOf(this.props.route.params.systemName_);
 
         //If we've already saved this system's data locally, we just load that instead of doing an API call
         if (starmap[sysName]) {
-            console.log("WaypointsMapScreen.componentDidMount, system is in local starmap");
             this.setState(prevState => {
                 return ({
                     ...prevState,
@@ -69,7 +66,6 @@ export default class WaypointsMapScreen extends Component {
         }
         //Otherwise, we send an API call to get the system data and then save it locally
         else {
-            console.log("WaypointsMapScreen.componentDidMount, API call for system data");
             let data = NavigationAPICalls.getSystem(sysName)
                 .then(sData => {
                     let data2 = NavigationAPICalls.listWaypointsInSystem(sysName)
@@ -132,6 +128,60 @@ export default class WaypointsMapScreen extends Component {
     }
 
 
+    /**
+     * Method called in the render function to make a vertical layout of each waypoint and nearby orbital.
+     * @param {object} waypoint_ JSON object for the waypoint to render.
+     * @returns Screen items for each waypoint and orbital that will be rendered.
+     */
+    renderWaypoint = function (waypoint_) {
+        //If this waypoint has no orbitals, we just render the waypoint by itself
+        if (waypoint_.orbitals.length == 0 && waypoint_.type != "ASTEROID_FIELD") {
+            return (<DynamicMapIcon typeName_={waypoint_.type} />);
+        }
+        //If the waypoint is an asteroid field, we render multiple icons for the field
+        else if (waypoint_.type == "ASTEROID_FIELD") {
+            let wplist = [];
+            for (var i = 0; i < 8; i++) {
+                wplist.push({ "type": "ASTEROID_FIELD" });
+            }
+
+            return (
+                wplist.map((item, key) => (
+                    <DynamicMapIcon key={key} typeName_={item.type} style={{ transform: [{rotate: (key*53).toString()+'deg'}]}} />
+                ))
+            );
+        }
+        //If it has orbitals, we render the waypoint in the center with all of the orbitals lined-up above and below it
+        else {
+            let wplist = [];
+            for (var i = 0; i < waypoint_.orbitals.length; i++) {
+                wplist.push(waypoint_.orbitals[i]);
+            }
+
+            //If there are an odd-number of orbitals, we add an empty icon for visual padding
+            if (waypoint_.orbitals.length % 2 == 1) {
+                //If the first number in the waypoint's name is 0-4, we put the padding at the top
+                if (Number(waypoint_.symbol[0]) < 5) {
+                    wplist.splice(0, 0, { "type": "None" });
+                }
+                //If the number is 5-9, we put the padding at the bottom
+                else {
+                    wplist.push({ "type": "None" });
+                }
+            }
+
+            //Adding the waypoint object to the center of the array
+            wplist.splice(wplist.length / 2, 0, waypoint_);
+
+            return (
+                wplist.map((item, key) => (
+                    <DynamicMapIcon key={key} typeName_={item.type} />
+                ))
+            );
+        }
+    }
+
+
     render() {
         return (
             <View style={globalStyles.screenWrapperView}>
@@ -149,10 +199,11 @@ export default class WaypointsMapScreen extends Component {
 
                         {this.state.systemData.waypoints.map((item, key) => (
                             <View key={key} style={styles.verticalView }>
-                                <DynamicMapIcon typeName_={item.type} />
-                                {item.orbitals.map((orbitItem, oKey) => (
+                                {/*<DynamicMapIcon typeName_={item.type} />*/}
+                                {/*item.orbitals.map((orbitItem, oKey) => (
                                     <DynamicMapIcon key={oKey} typeName_={orbitItem.type} />
-                                ))}
+                                ))*/}
+                                {this.renderWaypoint(item)}
                             </View>
                         ))}
                     </View>
@@ -235,8 +286,8 @@ const styles = StyleSheet.create({
 
     verticalView: {
         justifyContent: 'space-around',
-        alignContent: 'center',
+        alignItems: 'center',
         verticalAlign: 'center',
-        height: '50%',
+        height: '85%',
     },
 });

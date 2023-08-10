@@ -40,64 +40,64 @@ export default class DynamicMapIcon extends Component {
             //=============== System Icons ===============
             case "NEUTRON_STAR":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
-                return (<NeutronStarIcon height={size} width={size} />);
+                return (<NeutronStarIcon height={size} width={size} style={this.props.style} />);
             case "RED_STAR":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 60);
-                return (<RedStarIcon height={size} width={size} />);
+                return (<RedStarIcon height={size} width={size} style={this.props.style} />);
             case "ORANGE_STAR":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 50);
-                return (<OrangeStarIcon height={size} width={size} />);
+                return (<OrangeStarIcon height={size} width={size} style={this.props.style} />);
             case "BLUE_STAR":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 55);
-                return (<BlueStarIcon height={size} width={size} />);
+                return (<BlueStarIcon height={size} width={size} style={this.props.style} />);
             case "YOUNG_STAR":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 40);
-                return (<YoungStarIcon height={size} width={size} />);
+                return (<YoungStarIcon height={size} width={size} style={this.props.style} />);
             case "WHITE_DWARF":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 33);
-                return (<WhiteDwarfIcon height={size} width={size} />);
+                return (<WhiteDwarfIcon height={size} width={size} style={this.props.style} />);
             case "BLACK_HOLE":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 60);
-                return (<BlackHoleIcon height={size} width={size} />);
+                return (<BlackHoleIcon height={size} width={size} style={this.props.style} />);
             case "HYPERGIANT":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 80);
-                return (<HypergiantIcon height={size} width={size} />);
+                return (<HypergiantIcon height={size} width={size} style={this.props.style} />);
             /*case "NEBULA":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
-                return (<NebulaIcon height={size} width={size} />);
+                return (<NebulaIcon height={size} width={size} style={this.props.style} />);
             case "UNSTABLE":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
-                return (<UnstableIcon height={size} width={size} />);*/
+                return (<UnstableIcon height={size} width={size} style={this.props.style} />);*/
 
 
             //=============== Waypoint Icons ===============
             /*case "PLANET":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
-                return (<PlanetIcon height={size} width={size} />);*/
+                return (<PlanetIcon height={size} width={size} style={this.props.style} />);*/
             case "GAS_GIANT":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
-                return (<GasGiantIcon height={size} width={size} />);
+                return (<GasGiantIcon height={size} width={size} style={this.props.style} />);
             case "MOON":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
-                return (<MoonIcon height={size} width={size} />);
+                return (<MoonIcon height={size} width={size} style={this.props.style} />);
             /*case "ORBITAL_STATION":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
-                return (<OrbitalStationIcon height={size} width={size} />);*/
+                return (<OrbitalStationIcon height={size} width={size} style={this.props.style} />);*/
             case "JUMP_GATE":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 20);
-                return (<JumpGateIcon height={size} width={size} />);
+                return (<JumpGateIcon height={size} width={size} style={this.props.style} />);
             case "ASTEROID_FIELD":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
-                return (<AsteroidFieldIcon height={size} width={size} />);
+                return (<AsteroidFieldIcon height={size} width={size} style={this.props.style} />);
             /*case "DEBRIS_FIELD":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 20);
-                return (<DebrisFieldIcon height={size} width={size} />);*/
+                return (<DebrisFieldIcon height={size} width={size} style={this.props.style} />);*/
             case "GRAVITY_WELL":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
-                return (<GravityWellIcon height={size} width={size} />);
+                return (<GravityWellIcon height={size} width={size} style={this.props.style} />);
             default:
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
-                return (<DiamondIcon height={size} width={size} />);
+                return (<DiamondIcon height={size} width={size} style={this.props.style} />);
         }
     }
 
