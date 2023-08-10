@@ -97,7 +97,7 @@ export default class InputField extends Component {
                         style={styles.input}
                         multiline={this.props.multiline}
                         placeholder={this.props.placeholder}
-                        placeholderTextColor={Colors.primaryColor}
+                        placeholderTextColor={Colors.tertiaryColorDark}
                         value={this.props.value}
                         maxLength={this.props.maxLength}
                         onChangeText={newText => this.props.onChangeText(newText)}
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         paddingLeft: 3,
         fontFamily: Fonts.tektur,
-        color: Colors.tertiaryColor,
+        color: Colors.primaryColor,
         fontSize: 18,
     },
 })

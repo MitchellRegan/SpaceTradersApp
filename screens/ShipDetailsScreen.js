@@ -16,7 +16,6 @@ import SmallButton from '../components/shared/SmallButton';
 /**
  * Screen to show all details about a specific ship in the user's fleet.
  * Props:
- *  navigation: React.Navigation prop used for changing screens.
  *  shipData: JSON object passed from ShipsScreen with details to be displayed in this button.
  */
 export default class ShipsScreen extends Component {
@@ -126,24 +125,30 @@ export default class ShipsScreen extends Component {
 
                     <View style={{ flexDirection: 'row' }}>
                         <SmallButton
+                            text={"Navigate"}
+                            onPress={() => this.props.navigation.navigate("ShipNavigate", {
+                                shipName: this.props.route.params.shipData.registration.name,
+                                currentWaypoint: this.props.route.params.shipData.nav.waypointSymbol
+                            })}
+                            state={(this.props.route.params.shipData.fuel.current == 0 ? "disabled" : "default")}
+                            style={{ flex: 1 }}
+                        />
+
+                        <SmallButton
                             text={"Warp"}
                             onPress={() => this.props.navigation.navigate("ShipWarp", {
                                 shipName: this.props.route.params.shipData.registration.name,
-                                currentSystem: this.props.route.params.shipData.nav.waypointSymbol.substring(0,6)
+                                currentSystem: this.props.route.params.shipData.nav.waypointSymbol.substring(0, 6)
                             })}
                             style={{ flex: 1 }}
                         />
 
                         <SmallButton
-                            text={"Navigate"}
-                            onPress={() => console.log("Navigate")}
-                            state={"disabled"}
-                            style={{ flex: 1 }}
-                        />
-
-                        <SmallButton
                             text={"Jump"}
-                            onPress={() => console.log("Jump")}
+                            onPress={() => this.props.navigation.navigate("ShipJump", {
+                                shipName: this.props.route.params.shipData.registration.name,
+                                currentSystem: this.props.route.params.shipData.nav.waypointSymbol.substring(0,6)
+                            })}
                             state={"highlighted"}
                             style={{flex: 1} }
                         />

@@ -13,13 +13,13 @@ import ListElementView from '../components/shared/ListElementView';
 
 
 /**
- * Screen to display all valid warp destinations that players can send one of their ships.
+ * Screen to display all valid jump destinations that players can send one of their ships.
  * Warping a ship uses fuel to send it to another SYSTEM.
  * Props:
  *  shipName: The name of the ship that can warp.
  *  currentSystem: The name of the system that the ship is currently in.
  */
-export default class ShipWarpScreen extends Component {
+export default class ShipJumpScreen extends Component {
     constructor(props) {
         super(props);
     }
@@ -41,7 +41,7 @@ export default class ShipWarpScreen extends Component {
                     >
                         <Text style={globalStyles.header3Text}>{item}</Text>
                         {(this.props.route.params.currentSystem == item) &&
-                            <Text style={globalStyles.defaultText }>
+                            <Text style={globalStyles.defaultText}>
                                 [Current Location]
                             </Text>}
                     </TouchableOpacity>
@@ -55,23 +55,23 @@ export default class ShipWarpScreen extends Component {
         return (
             <View style={globalStyles.screenWrapperView}>
                 <HeaderBar
-                    title={"Warp Destinations"}
+                    title={"Jump Destinations"}
                     navigation={this.props.navigation}
                     showBackButton={true}
                 />
 
-                <View style={styles.textView }>
+                <View style={styles.textView}>
                     <Text
-                        style={[globalStyles.header2Text, {textAlign: 'center'}]}
+                        style={[globalStyles.header2Text, { textAlign: 'center' }]}
                     >
-                        Select a warp destination to send {this.props.route.params.shipName}
+                        Select A System For {this.props.route.params.shipName} To Jump To.
                     </Text>
 
                     <TouchableOpacity
                         style={styles.infoButton}
                         onPress={() => Alert.alert(
-                            "Warp Info",
-                            "Warping allows ships to travel from one system to another. Performing this action uses fuel, and most ship actions will be unavailable until it arrives at its destination.",
+                            "Jump Info",
+                            "Jumping allows ships to travel from one system to another. In order to jump systems, the ship must either be orbiting a Jump Gate waypoint, or it must have a Jump Drive module installed. Any ship can jump using Jump Gates, but using a ship's Jump Drive uses 1 unit of antimatter.",
                             [{ text: 'OK' }]
                         )}
                     >
@@ -80,7 +80,7 @@ export default class ShipWarpScreen extends Component {
                 </View>
 
                 <ScrollView style={styles.scrollView}>
-                    {this.renderSystems() }
+                    {this.renderSystems()}
                 </ScrollView>
             </View>
         );

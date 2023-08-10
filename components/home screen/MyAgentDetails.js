@@ -6,6 +6,7 @@ import globalStyles from '../../styles/global-stylesheet';
 
 //API Calls
 import AgentAPICalls from '../../api-calls/agent-api-calls';
+import NavigationAPICalls from '../../api-calls/navigation-api-calls';
 
 
 /**
@@ -43,6 +44,56 @@ export default class MyAgentDetails extends Component {
                         startingFaction: data.data.startingFaction
                     })
                 })
+            })
+            .then((data) => {
+                let starmap = require('../../save data/local-starmap.json');
+
+                //If there are no systems saved in our local starmap, we need to save our agent's headquarters system
+                if (Object.keys(starmap).length == 0) {
+                    NavigationAPICalls.getSystem(this.state.headquarters.substring(0, 6))
+                        .then(sData => {
+                            NavigationAPICalls.listWaypointsInSystem(this.state.headquarters.substring(0, 6))
+                                .then(wData => {
+                                    let deleteIndexes = [];
+                                    //Iterating through each waypoint to look for orbital objects
+                                    for (var i = 0; i < wData.data.length; i++) {
+                                        //For each orbital, we need to find its associated index in the overall array
+                                        for (var o = 0; o < wData.data[i].orbitals.length; o++) {
+                                            for (var d = 0; d < wData.data.length; d++) {
+                                                if (wData.data[d].symbol == wData.data[i].orbitals[o].symbol) {
+                                                    deleteIndexes.push(d);
+                                                    wData.data[i].orbitals[o] = wData.data[d];
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    //Deleting the duplicate orbital objects
+                                    for (var di = deleteIndexes.length - 1; di > -1; di--) {
+                                        wData.data.splice(deleteIndexes[di], 1);
+                                    }
+
+                                    //Saving this system to the local starmap file
+                                    starmap[this.state.headquarters.substring(0, 6)] = {
+                                        symbol: sData.data.symbol,
+                                        type: sData.data.type,
+                                        x: sData.data.x,
+                                        y: sData.data.y,
+                                        factions: sData.data.factions,
+                                        waypoints: wData.data
+                                    };
+                                })
+                        })
+                        .catch(error => {
+                            //If there's an error, we display the Error screen with details about what went wrong
+                            if (data.error) {
+                                this.props.navigation.navigate("Error", {
+                                    title: data.error.title,
+                                    message: data.error.message
+                                });
+                            }
+                        })
+                }
             })
             .catch(error => {
                 //If there's an error, we display the Error screen with details about what went wrong
