@@ -15,6 +15,7 @@ import ErrorScreen from './screens/ErrorScreen';
 import ContractsScreen from './screens/ContractsScreen';
 import ShipsScreen from './screens/ShipsScreen';
 import ShipDetailsScreen from './screens/ShipDetailsScreen';
+import ShipWarpScreen from './screens/ShipWarpScreen';
 import GameInfoScreen from './screens/GameInfoScreen';
 import WaypointsMapScreen from './screens/WaypointsMapScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -62,6 +63,7 @@ export default function App() {
                     <Stack.Screen name="Contracts" component={ContractsScreen} />
                     <Stack.Screen name="Ships" component={ShipsScreen} />
                     <Stack.Screen name="ShipDetails" component={ShipDetailsScreen} />
+                    <Stack.Screen name="ShipWarp" component={ShipWarpScreen} />
                     <Stack.Screen name="GameInfo" component={GameInfoScreen} />
                     <Stack.Screen name="WaypointsMap" component={WaypointsMapScreen} />
                     <Stack.Screen name="Settings" component={SettingsScreen} />

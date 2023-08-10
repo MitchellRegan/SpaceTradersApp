@@ -14,7 +14,7 @@ if (localData.colorScheme == "orange") {
 
         tertiaryColor: '#ddd',
         tertiaryColorLight: '#fff',
-        tertiaryColorDark: '#bbb',
+        tertiaryColorDark: '#999',
 
         textOverPrimary: '#fff',
         textOverSecondary: '#ca8a04',

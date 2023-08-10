@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 
 //Styles
 import Colors from '../styles/Colors';
@@ -11,6 +11,7 @@ import NavBar from '../components/shared/NavBar';
 import ListElementView from '../components/shared/ListElementView';
 import StatusPercentBar from '../components/ships screen/StatusPercentBar';
 import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
+import SmallButton from '../components/shared/SmallButton';
 
 /**
  * Screen to show all details about a specific ship in the user's fleet.
@@ -53,6 +54,7 @@ export default class ShipsScreen extends Component {
                 />
 
                 <ScrollView style={styles.scrollView}>
+                    {/*=============== Top Header ===============*/}
                     <View style={styles.blockRow}>
                         <View style={[styles.block, {paddingLeft: 10, paddingRight: 10}]}>
                             <DynamicMapIcon
@@ -115,6 +117,36 @@ export default class ShipsScreen extends Component {
                                 <StatusPercentBar percent={this.props.route.params.shipData.crew.morale} />
                             </View>
                         </View>
+                    </View>
+
+                    {/*=============== Controls ===============*/}
+                    <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
+                        <Text style={[globalStyles.header3Text, { padding: 6 }]}>Navigation Controls</Text>
+                    </View>
+
+                    <View style={{ flexDirection: 'row' }}>
+                        <SmallButton
+                            text={"Warp"}
+                            onPress={() => this.props.navigation.navigate("ShipWarp", {
+                                shipName: this.props.route.params.shipData.registration.name,
+                                currentSystem: this.props.route.params.shipData.nav.waypointSymbol.substring(0,6)
+                            })}
+                            style={{ flex: 1 }}
+                        />
+
+                        <SmallButton
+                            text={"Navigate"}
+                            onPress={() => console.log("Navigate")}
+                            state={"disabled"}
+                            style={{ flex: 1 }}
+                        />
+
+                        <SmallButton
+                            text={"Jump"}
+                            onPress={() => console.log("Jump")}
+                            state={"highlighted"}
+                            style={{flex: 1} }
+                        />
                     </View>
 
                     {/* Details about the ship's location and destination */}
