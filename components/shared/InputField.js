@@ -91,7 +91,7 @@ export default class InputField extends Component {
                     ]}
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
-                    style={styles.textGradientStyle}
+                    style={styles.inputGradientStyle}
                 >
                     <TextInput
                         style={styles.input}
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },
 
     inputGradientStyle: {
-
+        marginLeft: 2
     },
 
     input: {

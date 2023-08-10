@@ -50,7 +50,8 @@ export default class StatusPercentBar extends Component {
                     <View style={[styles.tickMarkSmall, { left: '50%' }]} />
                     <View style={[styles.tickMarkBig, { left: '50%' }]} />
                     <View style={[styles.tickMarkSmall, { left: '75%' }]} />
-                    <View style={[styles.markerPos, {left: this.getLeftPos(), right: this.getRightPos()}]}/>
+                    {/*<View style={[styles.markerPos, {left: this.getLeftPos(), right: this.getRightPos()}]}/>*/}
+                    <View style={{height: '100%', backgroundColor: '#000', alignSelf: 'flex-end', width: ((100 - this.props.percent).toString() + "%")}} />
                 </LinearGradient>
             </View>
         );
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginRight: 5,
         textAlignVertical: 'center',
+        width: 40,
     },
 
     gradientView: {

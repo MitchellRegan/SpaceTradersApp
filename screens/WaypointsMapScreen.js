@@ -46,53 +46,89 @@ export default class WaypointsMapScreen extends Component {
         let splitString = this.props.route.params.systemName_.split("-");
         let sysName = splitString[0] + "-" + splitString[1];
 
-        let data = NavigationAPICalls.getSystem(sysName)
-            .then(sData => {
-                let data2 = NavigationAPICalls.listWaypointsInSystem(sysName)
-                    .then(wData => {
-                        let deleteIndexes = [];
-                        //Iterating through each waypoint to look for orbital objects
-                        for (var i = 0; i < wData.data.length; i++) {
-                            //For each orbital, we need to find its associated index in the overall array
-                            for (var o = 0; o < wData.data[i].orbitals.length; o++) {
-                                for (var d = 0; d < wData.data.length; d++) {
-                                    if (wData.data[d].symbol == wData.data[i].orbitals[o].symbol) {
-                                        deleteIndexes.push(d);
-                                        wData.data[i].orbitals[o] = wData.data[d];
-                                        break;
+        let starmap = require('../save data/local-starmap.json');
+        console.log(starmap);
+        let sysIndex = starmap.systems.indexOf(this.props.route.params.systemName_);
+
+        //If we've already saved this system's data locally, we just load that instead of doing an API call
+        if (starmap[sysName]) {
+            console.log("WaypointsMapScreen.componentDidMount, system is in local starmap");
+            this.setState(prevState => {
+                return ({
+                    ...prevState,
+                    systemData: {
+                        symbol: starmap[sysName].symbol,
+                        type: starmap[sysName].type,
+                        x: starmap[sysName].x,
+                        y: starmap[sysName].y,
+                        factions: starmap[sysName].factions,
+                        waypoints: starmap[sysName].waypoints
+                    }
+                })
+            })
+        }
+        //Otherwise, we send an API call to get the system data and then save it locally
+        else {
+            console.log("WaypointsMapScreen.componentDidMount, API call for system data");
+            let data = NavigationAPICalls.getSystem(sysName)
+                .then(sData => {
+                    let data2 = NavigationAPICalls.listWaypointsInSystem(sysName)
+                        .then(wData => {
+                            let deleteIndexes = [];
+                            //Iterating through each waypoint to look for orbital objects
+                            for (var i = 0; i < wData.data.length; i++) {
+                                //For each orbital, we need to find its associated index in the overall array
+                                for (var o = 0; o < wData.data[i].orbitals.length; o++) {
+                                    for (var d = 0; d < wData.data.length; d++) {
+                                        if (wData.data[d].symbol == wData.data[i].orbitals[o].symbol) {
+                                            deleteIndexes.push(d);
+                                            wData.data[i].orbitals[o] = wData.data[d];
+                                            break;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        //Deleting the duplicate orbital objects
-                        for (var di = deleteIndexes.length - 1; di > -1; di--) {
-                            wData.data.splice(deleteIndexes[di],1);
-                        }
+                            //Deleting the duplicate orbital objects
+                            for (var di = deleteIndexes.length - 1; di > -1; di--) {
+                                wData.data.splice(deleteIndexes[di], 1);
+                            }
 
-                        this.setState(prevState => {
-                            return ({
-                                ...prevState,
-                                systemData: {
-                                    symbol: sData.data.symbol,
-                                    type: sData.data.type,
-                                    x: sData.data.x,
-                                    y: sData.data.y,
-                                    factions: sData.data.factions,
-                                    waypoints: wData.data
-                                }
+                            //Saving this system to the local starmap file
+                            starmap[sysName] = {
+                                symbol: sData.data.symbol,
+                                type: sData.data.type,
+                                x: sData.data.x,
+                                y: sData.data.y,
+                                factions: sData.data.factions,
+                                waypoints: wData.data
+                            };
+
+
+                            this.setState(prevState => {
+                                return ({
+                                    ...prevState,
+                                    systemData: {
+                                        symbol: sData.data.symbol,
+                                        type: sData.data.type,
+                                        x: sData.data.x,
+                                        y: sData.data.y,
+                                        factions: sData.data.factions,
+                                        waypoints: wData.data
+                                    }
+                                })
                             })
                         })
-                    })
-            })
-            .catch(error => {
-                //If there's an error, we display the Error screen with details about what went wrong
-                if (data.error) {
-                    this.props.navigation.navigate("Error", {
-                        title: data.error.title,
-                        message: data.error.message
-                    });
-                }
-            })
+                })
+                .catch(error => {
+                    //If there's an error, we display the Error screen with details about what went wrong
+                    if (data.error) {
+                        this.props.navigation.navigate("Error", {
+                            title: data.error.title,
+                            message: data.error.message
+                        });
+                    }
+                })
+        }
     }
 
 

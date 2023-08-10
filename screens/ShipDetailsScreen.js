@@ -30,10 +30,15 @@ export default class ShipsScreen extends Component {
 
     getFrameName = function () {
         let fname = "";
+
+        fname = fname + this.props.route.params.shipData.registration.role[0];
+        fname = fname + this.props.route.params.shipData.registration.role.slice(1).toLowerCase();
+
         let nameParts = this.props.route.params.shipData.frame.name.split(" ");
         for (var i = 1; i < nameParts.length; i++) {
-            fname = fname + nameParts[i] + " ";
+            fname = fname + " " + nameParts[i][0] + nameParts[i].slice(1).toLowerCase();
         }
+
         return fname;
     }
 
@@ -57,14 +62,37 @@ export default class ShipsScreen extends Component {
                         </View>
                         <View style={[styles.block, {flex: 1}]}>
                             <Text style={globalStyles.header1Text}>{this.props.route.params.shipData.registration.name}</Text>
-                            <Text style={globalStyles.header2Text}>{this.props.route.params.shipData.registration.role}</Text>
                             <Text style={globalStyles.header2Text}>{this.getFrameName()}</Text>
                         </View>
                     </View>
 
+                    {/*=============== Navigation Status ===============*/}
                     <View style={styles.blockRow}>
                         <View style={styles.block}>
-                            <Text style={[globalStyles.header3Text, {padding: 10}]}>Status</Text>
+                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>Status</Text>
+                        </View>
+
+                        <View style={[styles.block, {flex: 1, alignItems: 'center'}]}>
+                            {(this.props.route.params.shipData.nav.status == "DOCKED") && <Text style={globalStyles.textList}>Docked at <Text
+                                style={globalStyles.hyperlinkText}
+                                onPress={() => this.props.navigation.navigate("WaypointsMap", { systemName_: this.props.route.params.shipData.nav.waypointSymbol})}
+                            >
+                                {this.props.route.params.shipData.nav.waypointSymbol}
+                            </Text></Text>}
+
+                            {(this.props.route.params.shipData.nav.status == "IN_ORBIT") && <Text style={globalStyles.textList}>Orbiting <Text
+                                style={globalStyles.hyperlinkText}
+                                onPress={() => this.props.navigation.navigate("WaypointsMap", { systemName_: this.props.route.params.shipData.nav.waypointSymbol})}
+                            >
+                                {this.props.route.params.shipData.nav.waypointSymbol}
+                            </Text></Text>}
+                        </View>
+                    </View>
+
+                    {/*=============== Condition ===============*/}
+                    <View style={styles.blockRow}>
+                        <View style={styles.block}>
+                            <Text style={[globalStyles.header3Text, {padding: 6}]}>Condition</Text>
                         </View>
 
                         <View style={[styles.block, {flex: 1}]}>
@@ -83,7 +111,7 @@ export default class ShipsScreen extends Component {
                             </View>
 
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <Text style={[globalStyles.textList, {textAlignVertical: 'center'}]}>Morale:</Text>
+                                <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Morale:</Text>
                                 <StatusPercentBar percent={this.props.route.params.shipData.crew.morale} />
                             </View>
                         </View>
@@ -91,8 +119,6 @@ export default class ShipsScreen extends Component {
 
                     {/* Details about the ship's location and destination */}
                     <Text style={globalStyles.textList}>Navigation</Text>
-                    <Text style={globalStyles.textListSmall}>Status: {this.props.route.params.shipData.nav.status}</Text>
-                    <Text style={globalStyles.textListSmall}>Location: {this.props.route.params.shipData.nav.waypointSymbol}</Text>
                     {(this.props.route.params.shipData.nav.status == "IN_TRANSIT") && <Text style={globalStyles.textListSmall}>Departed From {this.props.route.params.shipData.nav.route.departure.symbol}</Text>}
                     {(this.props.route.params.shipData.nav.status == "IN_TRANSIT") && <Text style={globalStyles.textListSmall}>Traveling To {this.props.route.params.shipData.nav.route.destination.symbol}</Text>}
                     <Text style={globalStyles.textListSmall}>Fuel: {this.props.route.params.shipData.fuel.current}/{this.props.route.params.shipData.fuel.capacity}</Text>
@@ -103,24 +129,42 @@ export default class ShipsScreen extends Component {
                     <Text style={globalStyles.textListSmall}>Current Crew: {this.props.route.params.shipData.crew.current}/{this.props.route.params.shipData.crew.capacity}</Text>
                     <Text style={globalStyles.textListSmall}>Required Crew Size: {this.props.route.params.shipData.crew.required}</Text>
 
-                    {/* Details about the ship's hardware */}
-                    <Text style={globalStyles.textList}>Specs</Text>
+                    {/*=============== Modules ===============*/}
+                    <View style={[styles.blockRow, {justifyContent: 'space-between'}]}>
+                        <View style={[styles.block, {top: 0, left: 0, borderRightWidth: 2}]}>
+                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Modules</Text>
+                        </View>
 
-                    {/* Details about the ship's installed modules */}
-                    <Text style={globalStyles.textList}>Installed Modules    ({this.props.route.params.shipData.modules.length}/{this.props.route.params.shipData.frame.moduleSlots})</Text>
-                    {this.props.route.params.shipData.modules.map((itemData, key) => (
-                        <ListElementView key={key}>
-                            <Text style={globalStyles.textList}>#{key + 1}: {itemData.name}</Text>
-                        </ListElementView>
-                    ))}
+                        <View style={[styles.block, {top: 0, right: 0, borderLeftWidth: 2 }]}>
+                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.props.route.params.shipData.modules.length}/{this.props.route.params.shipData.frame.moduleSlots}</Text>
+                        </View>
+                    </View>
 
-                    {/* Details about the ship's installed mounts */}
-                    <Text style={globalStyles.textList}>Installed Mounts    ({this.props.route.params.shipData.mounts.length}/{this.props.route.params.shipData.frame.mountingPoints})</Text>
-                    {this.props.route.params.shipData.mounts.map((itemData, key) => (
-                        <ListElementView key={key}>
-                            <Text style={globalStyles.textList}>#{key + 1}: {itemData.name}</Text>
-                        </ListElementView>
-                    ))}
+                    <View style={styles.block}>
+                        {this.props.route.params.shipData.modules.map((itemData, key) => (
+                            <ListElementView key={key}>
+                                <Text style={globalStyles.textList}>#{key + 1}: {itemData.name}</Text>
+                            </ListElementView>
+                        ))}
+                    </View>
+
+                    {/*=============== Mounts ===============*/}
+                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
+                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
+                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Mounts</Text>
+                        </View>
+
+                        <View style={[styles.block, { top: 0, right: 0, borderLeftWidth: 2 }]}>
+                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.props.route.params.shipData.mounts.length}/{this.props.route.params.shipData.frame.mountingPoints}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.block}>
+                        {this.props.route.params.shipData.mounts.map((itemData, key) => (
+                            <ListElementView key={key}>
+                                <Text style={globalStyles.textList}>#{key + 1}: {itemData.name}</Text>
+                            </ListElementView>
+                        ))}
+                    </View>
                 </ScrollView>
 
                 <NavBar navigation={this.props.navigation} />
@@ -132,7 +176,7 @@ export default class ShipsScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
-        paddingBottom: 10,
+        paddingBottom: 20,
     },
 
     blockRow: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, Alert } from 'react-native';
 
 //SVG Icons
 import Logo from '../../assets/icons/logo-over-black.svg';
@@ -69,6 +69,16 @@ export default class UserLogin extends Component {
      * Method to attempt logging in the user with the given user symbol and bearer token.
      */
     login = async function () {
+        //Making sure the user has actually entered a username and token
+        if (this.state.username == "" || this.state.token == "") {
+            Alert.alert("Incomplete Login", "Either the Username or Token field is empty. Please make sure both are filled-out before attempting to login.", [
+                {
+                    text: "OK"
+                }
+            ])
+            return;
+        }
+
         let data = await AccountAPICalls.userLogin(this.state.username, this.state.token)
             .then(data => {
                 //If there's an error, we display the Error screen with details about what went wrong
@@ -128,6 +138,7 @@ export default class UserLogin extends Component {
                     <BigButton1 text={"Create Account"} onPress={() => this.props.navigation.navigate("NewAccount")} />
                 </View>
 
+                <View style={{flex: 1}} />
                 <View style={styles.mitchView}>
                     <Text style={[globalStyles.textListSmall, {textAlign: 'center'}]}>An app developed by Mitchell Regan for the SpaceTraders API-based game.</Text>
                 </View>
@@ -162,9 +173,8 @@ const styles = StyleSheet.create({
     },
 
     mitchView: {
-        position: 'absolute',
-        bottom: 25,
         alignSelf: 'center',
         width: '75%',
+        marginBottom: 25,
     }
 });

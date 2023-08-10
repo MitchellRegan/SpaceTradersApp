@@ -100,7 +100,7 @@ export default class ContractsScreen extends Component {
                 />
 
                 <ScrollView style={styles.scrollView}>
-                    <Text style={globalStyles.screenInfoText}>Details regarding faction contract work available.</Text>
+                    <Text style={globalStyles.screenInfoText}>Your list of available contract work. Completing contracts improves your reputation with factions and unlocks access to new ships, upgrades, jump gate access, and trade goods.</Text>
 
                     <TouchableOpacity
                         style={styles.viewToggleButton}

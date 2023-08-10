@@ -72,7 +72,7 @@ module.exports = StyleSheet.create({
 
     screenInfoText: {
         fontFamily: Fonts.tektur,
-        fontSize: 16,
+        fontSize: 14,
         color: Colors.primaryColor,
         textAlign: 'center',
         padding: 10,
