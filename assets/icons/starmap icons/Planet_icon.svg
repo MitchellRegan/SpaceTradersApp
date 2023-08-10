@@ -1,0 +1,20 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>New Project</title>
+	<defs>
+		<image  width="64" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAAPSURBVHicY2AYBaOAfAAAAkAAAVk2oQMAAAAASUVORK5CYII="/>
+		<linearGradient id="g1" x1="46.9" y1="64" x2="17.1" y2="0" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#b3b3b3"/>
+			<stop offset=".046" stop-color="#b3b3b3"/>
+			<stop offset=".109" stop-color="#11560c"/>
+			<stop offset=".51" stop-color="#599d54"/>
+			<stop offset=".86" stop-color="#9de598"/>
+			<stop offset=".923" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#ffffff"/>
+		</linearGradient>
+	</defs>
+	<style>
+		.s0 { fill: url(#g1) } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<path id="Layer 3" class="s0" d="m32 64c-17.7 0-32-14.3-32-32 0-17.7 14.3-32 32-32 17.7 0 32 14.3 32 32 0 17.7-14.3 32-32 32z"/>
+</svg>

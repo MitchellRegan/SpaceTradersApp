@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 
 //SVG Icons
 import NeutronStarIcon from '../../assets/icons/starmap icons/NeutronStar_icon.svg';
@@ -11,8 +12,10 @@ import BlackHoleIcon from '../../assets/icons/starmap icons/BlackHole2_icon.svg'
 import HypergiantIcon from '../../assets/icons/starmap icons/Hypergiant_icon.svg';
 //import NebulaIcon from '../../assets/icons/starmap icons/Nebula_icon.svg';
 //import UnstableIcon from '../../assets/icons/starmap icons/Unstable_icon.svg';
+import PlanetIcon from '../../assets/icons/starmap icons/Planet_icon.svg';
 import GasGiantIcon from '../../assets/icons/starmap icons/GasGiant_icon.svg';
 import MoonIcon from '../../assets/icons/starmap icons/Moon_icon.svg';
+import OrbitalStationIcon from '../../assets/icons/starmap icons/OrbitalStation_icon.svg';
 import AsteroidFieldIcon from '../../assets/icons/starmap icons/AsteroidField_icon.svg';
 import JumpGateIcon from '../../assets/icons/starmap icons/JumpGate2_icon.svg';
 import GravityWellIcon from '../../assets/icons/starmap icons/GravityWell_icon.svg';
@@ -71,18 +74,18 @@ export default class DynamicMapIcon extends Component {
 
 
             //=============== Waypoint Icons ===============
-            /*case "PLANET":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
-                return (<PlanetIcon height={size} width={size} style={this.props.style} />);*/
+            case "PLANET":
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 20);
+                return (<PlanetIcon height={size} width={size} style={this.props.style} />);
             case "GAS_GIANT":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
                 return (<GasGiantIcon height={size} width={size} style={this.props.style} />);
             case "MOON":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 12);
                 return (<MoonIcon height={size} width={size} style={this.props.style} />);
-            /*case "ORBITAL_STATION":
-                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 25);
-                return (<OrbitalStationIcon height={size} width={size} style={this.props.style} />);*/
+            case "ORBITAL_STATION":
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
+                return (<OrbitalStationIcon height={size} width={size} style={this.props.style} />);
             case "JUMP_GATE":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 20);
                 return (<JumpGateIcon height={size} width={size} style={this.props.style} />);
@@ -95,6 +98,9 @@ export default class DynamicMapIcon extends Component {
             case "GRAVITY_WELL":
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 30);
                 return (<GravityWellIcon height={size} width={size} style={this.props.style} />);
+            case "None":
+                size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
+                return (<View style={[{height: size, width: size}, this.props.style]} />);
             default:
                 size = (this.props.pixelSize_ ? this.props.pixelSize_ : 15);
                 return (<DiamondIcon height={size} width={size} style={this.props.style} />);
