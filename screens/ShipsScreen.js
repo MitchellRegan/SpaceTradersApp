@@ -18,7 +18,9 @@ export default class ShipsScreen extends Component {
         super(props);
 
         this.state = {
-            ships: []
+            ships: [],
+            curPage: 1,
+            pageCount: 1,
         }
     }
 
@@ -29,12 +31,40 @@ export default class ShipsScreen extends Component {
     componentDidMount() {
         let data = ShipAPICalls.listShips()
             .then(data => {
-                var ships_ = data.data;
-
                 this.setState(prevState => {
                     return ({
                         ...prevState,
-                        ships: ships_
+                        ships: data.data,
+                        curPage: data.meta.page,
+                        pageCount: Math.ceil(data.meta.total / data.meta.limit)
+                    })
+                })
+            })
+            .catch(error => {
+                //If there's an error, we display the Error screen with details about what went wrong
+                if (data.error) {
+                    this.props.navigation.navigate("Error", {
+                        title: data.error.title,
+                        message: data.error.message
+                    });
+                }
+            })
+    }
+
+
+    /**
+     * Method called from 
+     * @param {number} newPageNum_
+     */
+    changePage = function (newPageNum_) {
+        let data = ShipAPICalls.listShips(pageNum_=newPageNum_)
+            .then(data => {
+                this.setState(prevState => {
+                    return ({
+                        ...prevState,
+                        ships: data.data,
+                        curPage: data.meta.page,
+                        pageCount: Math.ceil(data.meta.total / data.meta.limit)
                     })
                 })
             })

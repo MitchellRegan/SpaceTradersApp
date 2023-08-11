@@ -42,7 +42,7 @@ export default class ShipDetailsButton extends Component {
             <ListElementView>
                 <TouchableOpacity
                     style={{ flex: 1, flexDirection:'row' }}
-                    onPress={() => this.props.navigation.navigate("ShipDetails", {shipData: this.props.shipData})}
+                    onPress={() => this.props.navigation.navigate("ShipDetails", {shipName: this.props.shipData.symbol})}
                 >
                     <View style={styles.iconBox}>
                         <DynamicMapIcon

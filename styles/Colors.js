@@ -5,8 +5,8 @@ let colorScheme = {}
 if (localData.colorScheme == "orange") {
     colorScheme = {
         primaryColor: '#ca8a04',
-        primaryColorLight: '#e9c14b',
-        primaryColorDark: '#f2994a',
+        primaryColorLight: '#F6B01D',
+        primaryColorDark: '#A26E00',
 
         secondaryColor: '#36393d',
         secondaryColorLight: '#545659',

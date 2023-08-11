@@ -84,7 +84,7 @@ const ShipAPICalls = {
     getShip: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_, {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
