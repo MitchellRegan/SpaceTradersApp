@@ -28,7 +28,10 @@ export default class ShipsScreen extends Component {
         super(props);
 
         this.state = {
-            shipData: null
+            shipData: null,
+            viewModules: true,
+            viewMounts: true,
+            viewCargo: true,
         }
     }
 
@@ -101,6 +104,7 @@ export default class ShipsScreen extends Component {
                         </View>
                     </View>
 
+
                     {/*=============== Navigation Status ===============*/}
                     <View style={styles.blockRow}>
                         <View style={styles.block}>
@@ -123,6 +127,7 @@ export default class ShipsScreen extends Component {
                             </Text></Text>}
                         </View>
                     </View>
+
 
                     {/*=============== Condition ===============*/}
                     <View style={styles.blockRow}>
@@ -151,6 +156,7 @@ export default class ShipsScreen extends Component {
                             </View>
                         </View>
                     </View>
+
 
                     {/*=============== Controls ===============*/}
                     <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
@@ -188,6 +194,7 @@ export default class ShipsScreen extends Component {
                         />
                     </View>
 
+
                     {/* Details about the ship's location and destination */}
                     <Text style={globalStyles.textList}>Navigation</Text>
                     {(this.state.shipData.nav.status == "IN_TRANSIT") && <Text style={globalStyles.textListSmall}>Departed From {this.state.shipData.nav.route.departure.symbol}</Text>}
@@ -200,42 +207,77 @@ export default class ShipsScreen extends Component {
                     <Text style={globalStyles.textListSmall}>Current Crew: {this.state.shipData.crew.current}/{this.state.shipData.crew.capacity}</Text>
                     <Text style={globalStyles.textListSmall}>Required Crew Size: {this.state.shipData.crew.required}</Text>
 
+
                     {/*=============== Modules ===============*/}
                     <View style={[styles.blockRow, {justifyContent: 'space-between'}]}>
-                        <View style={[styles.block, {top: 0, left: 0, borderRightWidth: 2}]}>
-                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Modules</Text>
+                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
+                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewModules: !this.state.viewModules }) })}>
+                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Modules</Text>
+                            </TouchableOpacity>
                         </View>
 
                         <View style={[styles.block, {top: 0, right: 0, borderLeftWidth: 2 }]}>
                             <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.state.shipData.modules.length}/{this.state.shipData.frame.moduleSlots}</Text>
                         </View>
                     </View>
-
-                    <View style={styles.block}>
+                    {(this.state.viewModules) && <View style={styles.block}>
                         {this.state.shipData.modules.map((itemData, key) => (
                             <ListElementView key={key}>
-                                <Text style={globalStyles.textList}>#{key + 1}: {itemData.name}</Text>
+                                <Text style={globalStyles.textListLarge}>{itemData.name}</Text>
+                                {(itemData.range) && <Text style={globalStyles.textListSmall}>Range: {itemData.range}</Text>}
+                                <Text style={globalStyles.textListSmall}>Requires {itemData.requirements.crew} Crew,  {itemData.requirements.power} Power,  {itemData.requirements.slots} Slots</Text>
+                                <Text style={globalStyles.defaultText}>{itemData.description}</Text>
                             </ListElementView>
                         ))}
-                    </View>
+                    </View>}
 
                     {/*=============== Mounts ===============*/}
                     <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
                         <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Mounts</Text>
+                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewMounts: !this.state.viewMounts }) })}>
+                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Mounts</Text>
+                            </TouchableOpacity>
                         </View>
 
                         <View style={[styles.block, { top: 0, right: 0, borderLeftWidth: 2 }]}>
                             <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.state.shipData.mounts.length}/{this.state.shipData.frame.mountingPoints}</Text>
                         </View>
                     </View>
-                    <View style={styles.block}>
+                    {(this.state.viewMounts) && <View style={styles.block}>
                         {this.state.shipData.mounts.map((itemData, key) => (
                             <ListElementView key={key}>
-                                <Text style={globalStyles.textList}>#{key + 1}: {itemData.name}</Text>
+                                <Text style={globalStyles.textListLarge}>{itemData.name}</Text>
+                                <Text style={globalStyles.textListSmall}>Strength: {itemData.strength}</Text>
+                                <Text style={globalStyles.textListSmall}>Requires {itemData.requirements.crew} Crew + {itemData.requirements.power} Power</Text>
+                                <Text style={globalStyles.defaultText}>{itemData.description}</Text>
                             </ListElementView>
                         ))}
+                    </View>}
+
+
+                    {/*=============== Cargo ===============*/}
+                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
+                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
+                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewCargo: !this.state.viewCargo }) })}>
+                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Cargo</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={[styles.block, { top: 0, right: 0, borderLeftWidth: 2 }]}>
+                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.state.shipData.cargo.units}/{this.state.shipData.cargo.capacity}</Text>
+                        </View>
                     </View>
+                    {(this.state.viewCargo) && <View style={styles.block}>
+                        {this.state.shipData.cargo.inventory.map((itemData, key) => (
+                            <ListElementView key={key}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                    <Text style={globalStyles.textList}>{itemData.name}</Text>
+                                    <Text style={globalStyles.textList}>x{itemData.units}</Text>
+                                </View>
+                                <Text style={globalStyles.textListSmall}>{itemData.description}</Text>
+                            </ListElementView>
+                        ))}
+                    </View>}
                 </ScrollView>}
 
                 {(this.state.shipData == null) && <LoadingDisplay />}

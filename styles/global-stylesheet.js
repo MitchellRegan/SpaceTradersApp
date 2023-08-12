@@ -47,13 +47,13 @@ module.exports = StyleSheet.create({
 
     textList: {
         fontFamily: Fonts.tektur,
-        fontSize: 14,
+        fontSize: 15,
         color: Colors.primaryColor,
     },
 
     textListSmall: {
         fontFamily: Fonts.tektur,
-        fontSize: 10,
+        fontSize: 12,
         color: Colors.primaryColor,
     },
 

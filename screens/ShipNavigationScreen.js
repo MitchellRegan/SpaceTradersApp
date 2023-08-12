@@ -10,6 +10,8 @@ import InfoIcon from '../assets/icons/Info_icon.svg';
 //Components
 import HeaderBar from '../components/shared/HeaderBar';
 import ListElementView from '../components/shared/ListElementView';
+import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
+import TraitDetailsButton from '../components/map screen/TraitDetailsButton';
 
 
 /**
@@ -43,14 +45,28 @@ export default class ShipNavigationScreen extends Component {
             waypoints.map((item, key) => (
                 <ListElementView key={key}>
                     <TouchableOpacity
+                        style={{flexDirection: 'row'} }
                         disabled={(this.props.route.params.currentWaypoint == item.symbol)}
                         onPress={() => this.confirmDestination(item.symbol)}
                     >
-                        <Text style={globalStyles.header3Text}>{item.symbol}</Text>
-                        {(this.props.route.params.currentWaypoint == item.symbol) &&
-                            <Text style={globalStyles.defaultText}>
-                                [Current Location]
-                            </Text>}
+                        <DynamicMapIcon typeName_={item.type} pixelSize_={45} />
+                        <View style={styles.buttonTextView}>
+                            <Text style={globalStyles.header3Text}>{item.symbol}</Text>
+                            <Text style={globalStyles.defaultText}>{item.type}</Text>
+                            <View style={globalStyles.traitListView}>
+                                {item.traits.map((item, key) => (
+                                    <TraitDetailsButton
+                                        key={key}
+                                        traitName={item.name}
+                                        traitDetails={item.description}
+                                    />
+                                ))}
+                            </View>
+                            {(this.props.route.params.currentWaypoint == item.symbol) &&
+                                <Text style={globalStyles.defaultText}>
+                                    [Current Location]
+                                </Text>}
+                        </View>
                     </TouchableOpacity>
                 </ListElementView>
             ))
@@ -129,6 +145,10 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingLeft: 15,
         paddingRight: 15,
-        paddingBottom: 20,
+        marginBottom: 20,
+    },
+
+    buttonTextView: {
+        paddingLeft: 10,
     }
 })

@@ -50,11 +50,13 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 4,
         paddingRight: 4,
+        paddingBottom: 2,
+        paddingTop: 2,
     },
 
     sideBar: {
         height: '100%',
-        backgroundColor: Colors.primaryColorDark,
+        backgroundColor: Colors.primaryColorLight,
         width: 3,
         marginRight: 3,
     },
