@@ -122,11 +122,11 @@ const ContractAPICalls = {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 "shipSymbol": shipSymbol_,
                 "tradeSymbol": cargo_,
                 "units": amount_
-            }
+            })
         })
             .then(response => response.json())
             .then(data => {

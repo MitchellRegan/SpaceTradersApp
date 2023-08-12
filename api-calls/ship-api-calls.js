@@ -54,10 +54,10 @@ const ShipAPICalls = {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 'shipType': shipType_,
                 'waypointSymbol': waypointSymbol_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -116,7 +116,7 @@ const ShipAPICalls = {
     getShipCargo: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + '/cargo', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/cargo', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -149,10 +149,11 @@ const ShipAPICalls = {
     orbitShip: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /orbit', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/orbit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             }
         })
@@ -185,15 +186,15 @@ const ShipAPICalls = {
     shipRefine: async function (shipSymbol_, produce_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /refine', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/refine', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 'produce': produce_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -222,7 +223,7 @@ const ShipAPICalls = {
     createChart: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /chart', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/chart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -254,7 +255,7 @@ const ShipAPICalls = {
     getShipCooldown: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /cooldown', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/cooldown', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -286,7 +287,7 @@ const ShipAPICalls = {
     dockShip: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /dock', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/dock', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -319,7 +320,7 @@ const ShipAPICalls = {
     createSurvey: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /survey', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/survey', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -358,13 +359,13 @@ const ShipAPICalls = {
     extractResources: async function (shipSymbol_, surveySig_, waypointSymbol_, deposits_, expires_, size_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /extract', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/extract', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 "survey": {
                     "signature": surveySig_,
                     "symbol": waypointSymbol_,
@@ -372,7 +373,7 @@ const ShipAPICalls = {
                     "expiration": expires_,
                     "size": size_
                 }
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -401,16 +402,16 @@ const ShipAPICalls = {
     jettisonCargo: async function (shipSymbol_, cargo_, amount_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /jettison', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/jettison', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 "symbol": cargo_,
                 "units": amount_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -442,15 +443,15 @@ const ShipAPICalls = {
     jumpShip: async function (shipSymbol_, systemSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /jump', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/jump', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 systemSymbol: systemSymbol_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -481,16 +482,19 @@ const ShipAPICalls = {
      */
     navigateShip: async function (shipSymbol_, waypointSymbol_) {
         const localData = require("../save data/user-preferences.json");
+        console.log(waypointSymbol_);
+        console.log(sa.address + 'my/ships/' + shipSymbol_ + '/navigate');
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /navigate', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/navigate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localData.token
+                Accept: 'application/json',
+                Authorization: 'Bearer ' + localData.token
             },
-            body: {
-                waypointSymbol: waypointSymbol_
-            }
+            body: JSON.stringify({
+                'waypointSymbol': waypointSymbol_
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -518,7 +522,7 @@ const ShipAPICalls = {
     patchShipNav: async function (shipSymbol_, mode_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /nav', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/nav', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -553,7 +557,7 @@ const ShipAPICalls = {
     getShipNav: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /nav', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/nav', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -588,15 +592,15 @@ const ShipAPICalls = {
     warpShip: async function (shipSymbol_, waypointSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /warp', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/warp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 'waypointSymbol': waypointSymbol_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -626,16 +630,16 @@ const ShipAPICalls = {
     sellCargo: async function (shipSymbol_, cargo_, amount_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /sell', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/sell', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 "symbol": cargo_,
                 "units": amount_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -663,7 +667,7 @@ const ShipAPICalls = {
     scanSystems: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/systems', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/scan/systems', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -697,7 +701,7 @@ const ShipAPICalls = {
     scanWaypoints: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/waypoints', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/scan/waypoints', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -730,7 +734,7 @@ const ShipAPICalls = {
     scanShips: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /scan/ships', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/scan/ships', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -765,15 +769,15 @@ const ShipAPICalls = {
     refuelShip: async function (shipSymbol_, amount_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /refuel', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/refuel', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 "units": amount_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -805,16 +809,16 @@ const ShipAPICalls = {
     purchaseCargo: async function (shipSymbol_, cargo_, amount_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /purchase', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/purchase', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 "symbol": cargo_,
                 "units": amount_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -847,17 +851,17 @@ const ShipAPICalls = {
     transferCargo: async function (shipSymbol_, cargo_, amount_, targetShipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /transfer', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/transfer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 "tradeSymbol": cargo_,
                 "units": amount_,
                 "shipSymbol": targetShipSymbol_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -887,7 +891,7 @@ const ShipAPICalls = {
     negotiateContract: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /negotiate/contract', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/negotiate/contract', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -919,7 +923,7 @@ const ShipAPICalls = {
     getMounts: async function (shipSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/mounts', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -954,15 +958,15 @@ const ShipAPICalls = {
     installMount: async function (shipSymbol_, mountSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts/install', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/mounts/install', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 'symbol': mountSymbol_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {
@@ -991,15 +995,15 @@ const ShipAPICalls = {
     removeMount: async function (shipSymbol_, mountSymbol_) {
         const localData = require("../save data/user-preferences.json");
 
-        let callData = await fetch(sa.address + 'my/ships/ :' + shipSymbol_ + ' /mounts/remove', {
+        let callData = await fetch(sa.address + 'my/ships/' + shipSymbol_ + '/mounts/remove', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localData.token
             },
-            body: {
+            body: JSON.stringify({
                 'symbol': mountSymbol_
-            }
+            })
         })
             .then((response) => response.json())
             .then((data) => {

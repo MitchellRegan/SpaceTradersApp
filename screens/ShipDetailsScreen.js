@@ -84,6 +84,17 @@ export default class ShipsScreen extends Component {
     }
 
 
+    /**
+     * Method to format the given UNIX time format for contract dates to a readable format.
+     * @param {string} date_ String for the UNIX time to format.
+     * @returns String for the formatted date string (DotW, DD MMM YYYY HH:MM:SS Timezone)
+     */
+    formatDateString = function (date_) {
+        const unixTime = new Date(Date.parse(date_));
+        return unixTime.toUTCString();
+    }
+
+
     render() {
         return (
             <View style={globalStyles.screenWrapperView}>
@@ -109,7 +120,7 @@ export default class ShipsScreen extends Component {
                     </View>
 
 
-                    {/*=============== Navigation Status ===============*/}
+                    {/*=============== Status ===============*/}
                     <View style={styles.blockRow}>
                         <View style={styles.block}>
                             <Text style={[globalStyles.header3Text, { padding: 6 }]}>Status</Text>
@@ -129,6 +140,21 @@ export default class ShipsScreen extends Component {
                             >
                                 {this.state.shipData.nav.waypointSymbol}
                             </Text></Text>}
+
+                            {(this.state.shipData.nav.status == "In_TRANSIT") && <Text
+                                style={globalStyles.textList}>Destination: <Text
+                                    style={globalStyles.hyperlinkText}
+                                >
+                                    {this.state.shipData.nav.route.destination.symbol}
+                                </Text></Text>}
+
+                            {/*(this.state.shipData != null && this.state.shipData.nav.waypointSymbol != this.state.shipData.nav.destination.symbol) && <Text
+                                style={globalStyles.textList}>Departure Time: {this.formatDateString(this.state.shipData.nav.destination.departureTime)}
+                            </Text>*/}
+
+                            {/*(this.state.shipData != null && this.state.shipData.nav.waypointSymbol != this.state.shipData.nav.destination.symbol) && <Text
+                                style={globalStyles.textList}>Arrival Time: {this.formatDateString(this.state.shipData.nav.destination.arrival)}
+                            </Text>*/}
                         </View>
                     </View>
 
@@ -142,6 +168,7 @@ export default class ShipsScreen extends Component {
                             text={"Navigate"}
                             onPress={() => this.props.navigation.navigate("ShipNavigate", {
                                 shipName: this.state.shipData.registration.name,
+                                shipStatus: this.state.shipData.nav.status,
                                 currentWaypoint: this.state.shipData.nav.waypointSymbol
                             })}
                             style={{ flex: 1 }}

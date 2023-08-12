@@ -27,6 +27,7 @@ import DiamondIcon from '../../assets/icons/starmap icons/Diamond_icon.svg';
  * Props:
  *  typeName_: String for the type of celestial body to render.
  *  pixelSize_: Optional number for the size of the icon.
+ *  style: Optional additional styles
  */
 export default class DynamicMapIcon extends Component {
     constructor(props) {

@@ -13,12 +13,16 @@ import ListElementView from '../components/shared/ListElementView';
 import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
 import TraitDetailsButton from '../components/map screen/TraitDetailsButton';
 
+//API Calls
+import ShipAPICalls from '../api-calls/ship-api-calls';
+
 
 /**
  * Screen to display all valid waypoints that players can send one of their ships.
  * Warping a ship uses fuel to send it to another WAYPOINT.
  * Props:
  *  shipName: The name of the ship that can warp.
+ *  shipStatus: The status of the ship. Can be "IN_ORBIT", "DOCKED", or "IN_TRANSIT"
  *  currentWaypoint: The name of the waypoint that the ship is currently in.
  */
 export default class ShipNavigationScreen extends Component {
@@ -27,8 +31,19 @@ export default class ShipNavigationScreen extends Component {
     }
 
 
+    getFuelCost = function (x1_, y1_, x2_, y2_) {
+        let fuel = ((y2_ - y1_)**2) + ((x2_ - x1_)**2);
+        return Math.round(Math.sqrt(fuel));
+    }
+
+
+    /**
+     * Method called from render() to correctly display all of the system's waypoint buttons
+     */
     renderWaypoints = function () {
         const starmap = require('../save data/local-starmap.json');
+        let curX = 0;
+        let curY = 0;
 
         //Getting all waypoints in the ship's current system
         const wpts = starmap[this.props.route.params.currentWaypoint.substring(0, 6)].waypoints;
@@ -36,8 +51,18 @@ export default class ShipNavigationScreen extends Component {
         for (var i = 0; i < wpts.length; i++) {
             waypoints.push(wpts[i]);
 
+            if (wpts[i].symbol == this.props.route.params.currentWaypoint) {
+                curX = wpts[i].x;
+                curY = wpts[i].y;
+            }
+
             for (var j = 0; j < wpts[i].orbitals.length; j++) {
                 waypoints.push(wpts[i].orbitals[j]);
+
+                if (wpts[i].orbitals[j].symbol == this.props.route.params.currentWaypoint) {
+                    curX = wpts[i].orbitals[j].x;
+                    curY = wpts[i].orbitals[j].y;
+                }
             }
         }
 
@@ -49,7 +74,7 @@ export default class ShipNavigationScreen extends Component {
                         disabled={(this.props.route.params.currentWaypoint == item.symbol)}
                         onPress={() => this.confirmDestination(item.symbol)}
                     >
-                        <DynamicMapIcon typeName_={item.type} pixelSize_={45} />
+                        <DynamicMapIcon typeName_={item.type} pixelSize_={45} style={{alignSelf: 'center'}} />
                         <View style={styles.buttonTextView}>
                             <Text style={globalStyles.header3Text}>{item.symbol}</Text>
                             <Text style={globalStyles.defaultText}>{item.type}</Text>
@@ -63,9 +88,15 @@ export default class ShipNavigationScreen extends Component {
                                 ))}
                             </View>
                             {(this.props.route.params.currentWaypoint == item.symbol) &&
-                                <Text style={globalStyles.defaultText}>
+                                <Text style={[globalStyles.defaultText, {alignSelf: 'center'}]}>
                                     [Current Location]
-                                </Text>}
+                                </Text>
+                            }
+                            {(this.props.route.params.currentWaypoint != item.symbol) &&
+                                <Text style={globalStyles.defaultText}>
+                                    Fuel Cost: {this.getFuelCost(curX, curY, item.x, item.y)}
+                                </Text>
+                            }
                         </View>
                     </TouchableOpacity>
                 </ListElementView>
@@ -87,9 +118,75 @@ export default class ShipNavigationScreen extends Component {
                 },
                 {
                     text: 'Confirm',
-                    onPress: () => console.log("Confirm travel")
+                    onPress: () => this.startNavigation(dest_)
                 }
             ])
+    }
+
+
+    /**
+     * Method called from confirmDestination to make sure the ship is in orbit and begins travelling
+     */
+    startNavigation = function (dest_) {
+        //If the ship is currently in-orbit, we can do the navigation API call immediately
+        if (this.props.route.params.shipStatus == "IN_ORBIT") {
+            ShipAPICalls.navigateShip(this.props.route.params.shipName, dest_)
+                .then(data => {
+                    //If there's an error, we display the Error screen with details about what went wrong
+                    if (data.error) {
+                        this.props.navigation.navigate("Error", {
+                            title: data.error.title,
+                            message: data.error.message
+                        });
+                    }
+                    else {
+                        this.props.navigation.navigate("ShipDetails", { shipName: this.props.route.params.shipName });
+                    }
+                })
+                .catch(error => {
+                    
+                })
+        }
+        //If the ship is currently docked, we have to go into orbit first
+        else if (this.props.route.params.shipStatus == "DOCKED") {
+            ShipAPICalls.orbitShip(this.props.route.params.shipName)
+                .then(data => {
+                    //If there's an error, we display the Error screen with details about what went wrong
+                    if (data.error) {
+                        this.props.navigation.navigate("Error", {
+                            title: data.error.title,
+                            message: data.error.message
+                        });
+                    }
+                    else {
+                        ShipAPICalls.navigateShip(this.props.route.params.shipName, dest_)
+                            .then(data => {
+                                //If there's an error, we display the Error screen with details about what went wrong
+                                if (data.error) {
+                                    this.props.navigation.navigate("Error", {
+                                        title: data.error.title,
+                                        message: data.error.message
+                                    });
+                                }
+                                else {
+                                    this.props.navigation.navigate("ShipDetails", { shipName: this.props.route.params.shipName });
+                                }
+                            })
+                            .catch(error => {
+
+                            })
+                    }
+                })
+                .catch(error => {
+                    //If there's an error, we display the Error screen with details about what went wrong
+                    if (data.error) {
+                        this.props.navigation.navigate("Error", {
+                            title: data.error.title,
+                            message: data.error.message
+                        });
+                    }
+                })
+        }
     }
 
 
@@ -145,7 +242,6 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingLeft: 15,
         paddingRight: 15,
-        marginBottom: 20,
     },
 
     buttonTextView: {

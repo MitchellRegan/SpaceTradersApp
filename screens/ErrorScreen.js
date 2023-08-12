@@ -33,15 +33,15 @@ export default class ErrorScreen extends Component {
 
                 <View style={{ justifyContent: 'center', marginTop: 30 }}>
                     <View style={styles.centerView}>
-                        <Text style={styles.header}>
+                        <Text style={globalStyles.header2Text}>
                             Oops! Something went wrong...
                         </Text>
 
-                        <Text style={styles.title}>
+                        <Text style={globalStyles.header3Text}>
                             {this.props.route.params.title}
                         </Text>
 
-                        <Text style={styles.errorMessage}>
+                        <Text style={[globalStyles.defaultText, {textAlign: 'center'}]}>
                             {this.props.route.params.message}
                         </Text>
                     </View>
