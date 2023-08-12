@@ -29,32 +29,74 @@ export default class ShipsScreen extends Component {
      * Function called when this screen loads. Calls the getMyShipList API to get the list of all ships owned by this player
      */
     componentDidMount() {
-        let data = ShipAPICalls.listShips()
-            .then(data => {
-                this.setState(prevState => {
-                    return ({
-                        ...prevState,
-                        ships: data.data,
-                        curPage: data.meta.page,
-                        pageCount: Math.ceil(data.meta.total / data.meta.limit)
+        let localShipData = require("../save data/local-ship-data.json");
+
+        //If there are no ships saved locally, we do an API call to get the player's ship list
+        if (Object.keys(localShipData).length == 0) {
+            let data = ShipAPICalls.listShips()
+                .then(data => {
+                    let ships_ = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        ships_.push({
+                            symbol: data.data[i].symbol,
+                            role: data.data[i].registration.role,
+                            frame: data.data[i].frame.name,
+                            status: data.data[i].nav.status,
+                            waypointSymbol: data.data[i].nav.waypointSymbol,
+                            destination: data.data[i].nav.route.destination.symbol,
+                        });
+                    }
+
+                    //Saving the list of ship names under the name of the logged-in user
+                    localShipData[ships_[0].symbol.split('-')[0]] = ships_;
+
+                    this.setState(prevState => {
+                        return ({
+                            ...prevState,
+                            ships: ships_,
+                            curPage: data.meta.page,
+                            pageCount: Math.ceil(data.meta.total / data.meta.limit)
+                        })
                     })
                 })
-            })
-            .catch(error => {
-                //If there's an error, we display the Error screen with details about what went wrong
-                if (data.error) {
-                    this.props.navigation.navigate("Error", {
-                        title: data.error.title,
-                        message: data.error.message
-                    });
+                .catch(error => {
+                    //If there's an error, we display the Error screen with details about what went wrong
+                    if (data.error) {
+                        this.props.navigation.navigate("Error", {
+                            title: data.error.title,
+                            message: data.error.message
+                        });
+                    }
+                })
+        }
+        //If there are ships saved locally, we get the ship data for the logged-in user
+        else {
+            const userData = require("../save data/user-preferences.json");
+            //Only getting the first 20 ship results
+            let ships_ = [];
+            for (var i = 0; i < localShipData[userData.username].length; i++) {
+                ships_.push(localShipData[userData.username][i]);
+
+                if (i > 19) {
+                    break;
                 }
+            }
+
+            this.setState(prevState => {
+                return ({
+                    ...prevState,
+                    ships: ships_,
+                    curPage: 1,
+                    pageCount: Math.ceil(Object.keys(localShipData).length / 20)
+                })
             })
+        }
     }
 
 
     /**
-     * Method called from 
-     * @param {number} newPageNum_
+     * Method called from buttons on the page if there are more than 1 page (20) of ships in the player's fleet.
+     * @param {number} newPageNum_ Number of the page of results to fetch in the API
      */
     changePage = function (newPageNum_) {
         let data = ShipAPICalls.listShips(pageNum_=newPageNum_)

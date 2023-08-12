@@ -26,9 +26,9 @@ export default class ShipDetailsButton extends Component {
 
 
     getShipName = function () {
-        let shipName = this.props.shipData.registration.role[0];
-        shipName = shipName + this.props.shipData.registration.role.slice(1).toLowerCase();
-        let frameWords = this.props.shipData.frame.name.split(" ");
+        let shipName = this.props.shipData.role[0];
+        shipName = shipName + this.props.shipData.role.slice(1).toLowerCase();
+        let frameWords = this.props.shipData.frame.split(" ");
         for (var i = 1; i < frameWords.length; i++) {
             shipName = shipName + " " + frameWords[i];
         }
@@ -51,12 +51,12 @@ export default class ShipDetailsButton extends Component {
                         />
                     </View>
                     <View style={styles.textBox}>
-                        <Text style={globalStyles.textListLarge}>{this.props.shipData.registration.name}</Text>
+                        <Text style={globalStyles.textListLarge}>{this.props.shipData.symbol}</Text>
                         <Text style={globalStyles.textList}>{this.getShipName()}</Text>
 
-                        <Text style={globalStyles.textListSmall}>Location: {this.props.shipData.nav.waypointSymbol}</Text>
-                        <Text style={globalStyles.textListSmall}>Status: {this.props.shipData.nav.status}</Text>
-                        {(this.props.shipData.nav.status == "IN_TRANSIT") && <Text style={globalStyles.textListSmall}>Traveling To {this.props.shipData.nav.route.destination.symbol}</Text>}
+                        <Text style={globalStyles.textListSmall}>Location: {this.props.shipData.waypointSymbol}</Text>
+                        <Text style={globalStyles.textListSmall}>Status: {this.props.shipData.status}</Text>
+                        {(this.props.shipData.status == "IN_TRANSIT") && <Text style={globalStyles.textListSmall}>Traveling To {this.props.shipData.destination}</Text>}
                     </View>
                 </TouchableOpacity>
             </ListElementView>
