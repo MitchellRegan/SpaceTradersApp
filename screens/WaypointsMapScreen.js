@@ -12,6 +12,7 @@ import NavBar from '../components/shared/NavBar';
 import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
 import SystemCoreDetailsButton from '../components/map screen/SystemCoreDetailsButton';
 import WaypointDetailsButton from '../components/map screen/WaypointDetailsButton';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 //API Calls
 import NavigationAPICalls from '../api-calls/navigation-api-calls';
@@ -184,7 +185,7 @@ export default class WaypointsMapScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Waypoint Map"}
                     navigation={this.props.navigation}
@@ -238,7 +239,7 @@ export default class WaypointsMapScreen extends Component {
                 </ScrollView>
 
                 <NavBar navigation={this.props.navigation} />
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

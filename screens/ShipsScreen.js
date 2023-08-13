@@ -11,6 +11,7 @@ import ShipAPICalls from '../api-calls/ship-api-calls';
 import HeaderBar from '../components/shared/HeaderBar';
 import NavBar from '../components/shared/NavBar';
 import ShipDetailsButton from '../components/ships screen/ShipDetailsButton';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 
 export default class ShipsScreen extends Component {
@@ -137,7 +138,7 @@ export default class ShipsScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Fleet List"}
                     navigation={this.props.navigation}
@@ -163,7 +164,7 @@ export default class ShipsScreen extends Component {
                 </ScrollView>
 
                 <NavBar navigation={this.props.navigation} />
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

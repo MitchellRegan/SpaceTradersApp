@@ -14,6 +14,7 @@ import ShipAPICalls from '../api-calls/ship-api-calls';
 import HeaderBar from '../components/shared/HeaderBar';
 import NavBar from '../components/shared/NavBar';
 import BigButton1 from '../components/shared/BigButton1';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 
 export default class SettingsScreen extends Component {
@@ -64,7 +65,7 @@ export default class SettingsScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"User Settings"}
                     navigation={this.props.navigation}
@@ -94,7 +95,7 @@ export default class SettingsScreen extends Component {
                 </ScrollView>
 
                 <NavBar navigation={this.props.navigation} />
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

@@ -1,0 +1,90 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+	<title>New Project</title>
+	<defs>
+		<linearGradient id="g1" x1="79.8" y1="485" x2="371.2" y2="112" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#261686"/>
+			<stop offset=".24" stop-color="#2d6bba"/>
+			<stop offset=".639" stop-color="#4addf9"/>
+			<stop offset="1" stop-color="#d9f9ff"/>
+		</linearGradient>
+		<linearGradient id="g2" x1="33" y1="98.5" x2="283" y2="189.5" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#611686"/>
+			<stop offset="1" stop-color="#be4af9"/>
+		</linearGradient>
+		<linearGradient id="g3" x1="470.6" y1="150" x2="417.4" y2="232" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#611686"/>
+			<stop offset="1" stop-color="#be4af9"/>
+		</linearGradient>
+		<linearGradient id="g4" x1="423.8" y1="46" x2="274.2" y2="218" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#611686"/>
+			<stop offset=".244" stop-color="#9733dc"/>
+			<stop offset="1" stop-color="#4addf9"/>
+		</linearGradient>
+		<linearGradient id="g5" x1="404" y1="512" x2="296" y2="404" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#611686"/>
+			<stop offset=".244" stop-color="#9733dc"/>
+			<stop offset="1" stop-color="#4addf9"/>
+		</linearGradient>
+		<linearGradient id="g6" x1="488" y1="324.7" x2="276" y2="287.3" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#261686"/>
+			<stop offset=".241" stop-color="#4833dc"/>
+			<stop offset="1" stop-color="#4addf9"/>
+		</linearGradient>
+		<linearGradient id="g7" x1="0" y1="495.8" x2="248" y2="280.2" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#1b5be0"/>
+			<stop offset="1" stop-color="#1be0b1"/>
+		</linearGradient>
+		<radialGradient id="g8" cx="134.5" cy="137.5" r="56.2" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#83eafd"/>
+		</radialGradient>
+		<radialGradient id="g9" cx="377" cy="319" r="26" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#83eafd"/>
+		</radialGradient>
+		<radialGradient id="g10" cx="201" cy="272" r="26" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#83eafd"/>
+		</radialGradient>
+		<radialGradient id="g11" cx="319.5" cy="404.5" r="37.7" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#83eafd"/>
+		</radialGradient>
+		<radialGradient id="g12" cx="312" cy="178.5" r="137" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#83eafd"/>
+		</radialGradient>
+		<radialGradient id="g13" cx="131.7" cy="420.4" r="101.6" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffffff"/>
+			<stop offset="1" stop-color="#83eafd"/>
+		</radialGradient>
+	</defs>
+	<style>
+		.s0 { fill-opacity: .7;fill: url(#g1) } 
+		.s1 { fill-opacity: .7;fill: url(#g2) } 
+		.s2 { fill-opacity: .7;fill: url(#g3) } 
+		.s3 { fill-opacity: .6;fill: url(#g4) } 
+		.s4 { fill-opacity: .6;fill: url(#g5) } 
+		.s5 { fill-opacity: .7;fill: url(#g6) } 
+		.s6 { fill-opacity: .7;fill: url(#g7) } 
+		.s7 { fill: url(#g8) } 
+		.s8 { fill: url(#g9) } 
+		.s9 { fill: url(#g10) } 
+		.s10 { fill: url(#g11) } 
+		.s11 { fill: url(#g12) } 
+		.s12 { fill: url(#g13) } 
+	</style>
+	<path id="Layer 3" class="s0" d="m225.5 485c-103.1 0-186.5-83.4-186.5-186.5 0-103.1 83.4-186.5 186.5-186.5 103.1 0 186.5 83.4 186.5 186.5 0 103.1-83.4 186.5-186.5 186.5z"/>
+	<path id="Shape 1" class="s1" d="m158 269c-69.1 0-125-55.9-125-125 0-69.1 55.9-125 125-125 69.1 0 125 55.9 125 125 0 69.1-55.9 125-125 125z"/>
+	<path id="Shape 1 copy" class="s2" d="m444 232c-22.7 0-41-18.3-41-41 0-22.7 18.3-41 41-41 22.7 0 41 18.3 41 41 0 22.7-18.3 41-41 41z"/>
+	<path id="Layer 1" class="s3" d="m349 218c-47.6 0-86-38.4-86-86 0-47.6 38.4-86 86-86 47.6 0 86 38.4 86 86 0 47.6-38.4 86-86 86z"/>
+	<path id="Layer 1 copy" class="s4" d="m350 512c-29.9 0-54-24.1-54-54 0-29.9 24.1-54 54-54 29.9 0 54 24.1 54 54 0 29.9-24.1 54-54 54z"/>
+	<path id="Layer 2" class="s5" d="m382 412c-58.6 0-106-47.4-106-106 0-58.6 47.4-106 106-106 58.6 0 106 47.4 106 106 0 58.6-47.4 106-106 106z"/>
+	<path id="Layer 4" class="s6" d="m124 512c-68.6 0-124-55.4-124-124 0-68.6 55.4-124 124-124 68.6 0 124 55.4 124 124 0 68.6-55.4 124-124 124z"/>
+	<path id="Layer 4 copy 2" class="s7" d="m134.5 183c-13.9-31.6-13.9-31.6-45.5-45.5 31.3-14.2 31.6-14.2 45.5-45.5 13.9 31.6 13.9 32 45.5 45.5-31.3 14.2-31.3 13.9-45.5 45.5z"/>
+	<path id="Layer 4 copy 3" class="s8" d="m377 340c-6.4-14.6-6.4-14.6-21-21 14.4-6.6 14.6-6.6 21-21 6.4 14.6 6.4 14.8 21 21-14.4 6.6-14.4 6.4-21 21z"/>
+	<path id="Layer 4 copy 7" class="s9" d="m201 293c-6.4-14.6-6.4-14.6-21-21 14.4-6.6 14.6-6.6 21-21 6.4 14.6 6.4 14.8 21 21-14.4 6.6-14.4 6.4-21 21z"/>
+	<path id="Layer 4 copy 6" class="s10" d="m319.5 435c-9.3-21.2-9.3-21.2-30.5-30.5 21-9.5 21.2-9.5 30.5-30.5 9.3 21.2 9.3 21.4 30.5 30.5-21 9.5-21 9.3-30.5 30.5z"/>
+	<path id="Layer 4 copy 4" class="s11" d="m312.5 302c-16.5-108-16.5-108-81-123.5 66.5-20.5 66.5-20.5 81-123.5 18.5 103 18.5 103 80 123.5-59.5 15.5-59.5 15.5-80 123.5z"/>
+	<path id="Layer 4 copy 5" class="s12" d="m132.1 512c-12.2-80.1-12.2-80.1-60.1-91.6 49.4-15.2 49.4-15.2 60.1-91.7 13.8 76.5 13.8 76.5 59.4 91.7-44.2 11.5-44.2 11.5-59.4 91.6z"/>
+</svg>

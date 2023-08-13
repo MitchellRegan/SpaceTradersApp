@@ -13,6 +13,7 @@ import StatusPercentBar from '../components/ships screen/StatusPercentBar';
 import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
 import SmallButton from '../components/shared/SmallButton';
 import LoadingDisplay from '../components/shared/LoadingDisplay';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 //API Calls
 import ShipAPICalls from '../api-calls/ship-api-calls';
@@ -97,7 +98,7 @@ export default class ShipsScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Ship Details"}
                     navigation={this.props.navigation}
@@ -169,6 +170,7 @@ export default class ShipsScreen extends Component {
                             onPress={() => this.props.navigation.navigate("ShipNavigate", {
                                 shipName: this.state.shipData.registration.name,
                                 shipStatus: this.state.shipData.nav.status,
+                                currentFuel: this.state.shipData.fuel.current,
                                 currentWaypoint: this.state.shipData.nav.waypointSymbol
                             })}
                             style={{ flex: 1 }}
@@ -361,7 +363,7 @@ export default class ShipsScreen extends Component {
                 {(this.state.shipData == null) && <LoadingDisplay />}
 
                 <NavBar navigation={this.props.navigation} />
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

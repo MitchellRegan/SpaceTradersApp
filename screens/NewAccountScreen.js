@@ -12,6 +12,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 import BigButton1 from '../components/shared/BigButton1';
 import InputField from '../components/shared/InputField';
 import Checkbox from '../components/shared/Checkbox';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 //API Calls
 import AccountAPICalls from '../api-calls/account-api-calls';
@@ -157,7 +158,7 @@ export default class NewAccountScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"New Account"}
                     navigation={this.props.navigation}
@@ -257,7 +258,7 @@ export default class NewAccountScreen extends Component {
                         <Text style={styles.createAccountButtonText }>Login</Text>
                     </TouchableOpacity>
                 </View>}
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

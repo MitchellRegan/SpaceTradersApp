@@ -10,6 +10,7 @@ import InfoIcon from '../assets/icons/Info_icon.svg';
 //Components
 import HeaderBar from '../components/shared/HeaderBar';
 import ListElementView from '../components/shared/ListElementView';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 
 /**
@@ -53,7 +54,7 @@ export default class ShipWarpScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Warp Destinations"}
                     navigation={this.props.navigation}
@@ -82,7 +83,7 @@ export default class ShipWarpScreen extends Component {
                 <ScrollView style={styles.scrollView}>
                     {this.renderSystems() }
                 </ScrollView>
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

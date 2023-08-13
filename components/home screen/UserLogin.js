@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 
 //SVG Icons
-import Logo from '../../assets/icons/logo-over-black.svg';
+import Logo from '../../assets/icons/NebulaLogo.svg';
+//import Logo from '../../assets/icons/logo-over-black.svg';
 import ProfileIcon from '../../assets/icons/Profile_icon.svg';
 import LockIcon from '../../assets/icons/Lock_icon.svg';
 

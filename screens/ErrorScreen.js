@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 //Components
 import HeaderBar from '../components/shared/HeaderBar';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 //Styles
 import Fonts from '../styles/Fonts';
@@ -24,7 +25,7 @@ export default class ErrorScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     navigation={this.props.navigation}
                     title={"ERROR!"}
@@ -46,7 +47,7 @@ export default class ErrorScreen extends Component {
                         </Text>
                     </View>
                 </View>
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

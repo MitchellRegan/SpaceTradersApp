@@ -11,6 +11,7 @@ import ContractAPICalls from '../api-calls/contract-api-calls';
 import HeaderBar from '../components/shared/HeaderBar';
 import NavBar from '../components/shared/NavBar';
 import ContractDetailsButton from '../components/contracts screen/ContractDetailsButton';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 
 export default class ContractsScreen extends Component {
@@ -92,7 +93,7 @@ export default class ContractsScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Contract List"}
                     navigation={this.props.navigation}
@@ -196,7 +197,7 @@ export default class ContractsScreen extends Component {
                 </ScrollView>
 
                 <NavBar navigation={this.props.navigation }/>
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

@@ -10,6 +10,8 @@ import globalStyles from '../styles/global-stylesheet';
 import HeaderBar from '../components/shared/HeaderBar';
 import NavBar from '../components/shared/NavBar';
 import InteractiveMap from '../components/map screen/InteractiveMap';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
+
 
 export default class MapScreen extends Component {
     constructor(props) {
@@ -19,7 +21,7 @@ export default class MapScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Map"}
                     navigation={this.props.navigation}
@@ -33,7 +35,7 @@ export default class MapScreen extends Component {
                 </ScrollView>
 
                 <NavBar navigation={this.props.navigation} />
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

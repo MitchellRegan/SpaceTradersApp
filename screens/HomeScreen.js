@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Image } from 'react-native';
 
 //Styles
+import Colors from '../styles/Colors';
 import globalStyles from '../styles/global-stylesheet';
 
 //Components
@@ -11,6 +12,7 @@ import UserLogin from '../components/home screen/UserLogin';
 import MyAgentDetails from '../components/home screen/MyAgentDetails';
 import MyContracts from '../components/home screen/MyContracts';
 import MyShips from '../components/home screen/MyShips';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 export default class HomeScreen extends Component {
     constructor(props) {
@@ -54,9 +56,9 @@ export default class HomeScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
-                    title={"SpaceTraders"}
+                    title={"N E B U L A"}
                     navigation={this.props.navigation}
                     showBackButton={false}
                 />
@@ -81,7 +83,7 @@ export default class HomeScreen extends Component {
                 </ScrollView>}
 
                 {(this.state.loggedIn) && <NavBar navigation={this.props.navigation} />}
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

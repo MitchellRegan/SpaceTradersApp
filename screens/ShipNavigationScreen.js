@@ -12,6 +12,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 import ListElementView from '../components/shared/ListElementView';
 import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
 import TraitDetailsButton from '../components/map screen/TraitDetailsButton';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 //API Calls
 import ShipAPICalls from '../api-calls/ship-api-calls';
@@ -23,6 +24,7 @@ import ShipAPICalls from '../api-calls/ship-api-calls';
  * Props:
  *  shipName: The name of the ship that can warp.
  *  shipStatus: The status of the ship. Can be "IN_ORBIT", "DOCKED", or "IN_TRANSIT"
+ *  currentFuel: The amount of fuel that the ship currently has in the tank.
  *  currentWaypoint: The name of the waypoint that the ship is currently in.
  */
 export default class ShipNavigationScreen extends Component {
@@ -93,7 +95,7 @@ export default class ShipNavigationScreen extends Component {
                                 </Text>
                             }
                             {(this.props.route.params.currentWaypoint != item.symbol) &&
-                                <Text style={globalStyles.defaultText}>
+                                <Text style={(this.props.route.params.currentFuel >= this.getFuelCost(curX, curY, item.x, item.y) ? globalStyles.defaultText : globalStyles.invalidText)}>
                                     Fuel Cost: {this.getFuelCost(curX, curY, item.x, item.y)}
                                 </Text>
                             }
@@ -192,7 +194,7 @@ export default class ShipNavigationScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Navigation Destinations"}
                     navigation={this.props.navigation}
@@ -221,7 +223,7 @@ export default class ShipNavigationScreen extends Component {
                 <ScrollView style={styles.scrollView}>
                     {this.renderWaypoints()}
                 </ScrollView>
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

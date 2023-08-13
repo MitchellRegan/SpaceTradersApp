@@ -11,6 +11,7 @@ import ServerInfoAPICalls from '../api-calls/server-info-api-calls';
 //Components
 import HeaderBar from '../components/shared/HeaderBar';
 import NavBar from '../components/shared/NavBar';
+import GradientScreenBackground from '../components/shared/GradientScreenBackground';
 
 
 export default class GameInfoScreen extends Component {
@@ -67,7 +68,7 @@ export default class GameInfoScreen extends Component {
 
     render() {
         return (
-            <View style={globalStyles.screenWrapperView}>
+            <GradientScreenBackground>
                 <HeaderBar
                     title={"Game Info"}
                     navigation={this.props.navigation}
@@ -125,7 +126,7 @@ export default class GameInfoScreen extends Component {
                 </ScrollView>
 
                 <NavBar navigation={this.props.navigation} />
-            </View>
+            </GradientScreenBackground>
         );
     }
 }

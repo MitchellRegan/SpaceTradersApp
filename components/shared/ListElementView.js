@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 //Styles
@@ -23,8 +23,8 @@ export default class WaypointDetailsButton extends Component {
                 <View style={styles.sideBar} />
                 <LinearGradient
                     colors={[
-                        Colors.secondaryColorLight.toString(),
-                        Colors.secondaryColor.toString()
+                        Colors.backgroundColorLight.toString(),
+                        Colors.backgroundColorDark.toString()
                     ]}
                     style={styles.gradientStyle}
                     start={{ x: 0, y: 0.5 }}

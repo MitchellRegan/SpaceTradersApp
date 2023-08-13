@@ -86,7 +86,7 @@ export default class InputField extends Component {
 
                 <LinearGradient
                     colors={[
-                        Colors.secondaryColorLight.toString(),
+                        Colors.backgroundColorLight.toString(),
                         'rgba(0,0,0,0)'
                     ]}
                     start={{ x: 0, y: 0.5 }}
