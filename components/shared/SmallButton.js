@@ -34,7 +34,8 @@ export default class SmallButton extends Component {
                         end={{ x: 0.5, y: 1.3 }}
                         style={styles.gradientStyle}
                     >
-                        <Text style={styles.disabledText}>{this.props.text}</Text>
+                        {(this.props.text) && <Text style={styles.disabledText}>{this.props.text}</Text>}
+                        {(!this.props.text) && this.props.children}
                     </LinearGradient>
                 );
             case "highlighted":
@@ -49,7 +50,8 @@ export default class SmallButton extends Component {
                         end={{ x: 0.5, y: 1.1 }}
                         style={styles.gradientStyle}
                     >
-                        <Text style={styles.highlightedText}>{this.props.text}</Text>
+                        {(this.props.text) && <Text style={styles.highlightedText}>{this.props.text}</Text>}
+                        {(!this.props.text) && this.props.children}
                     </LinearGradient>
                 );
             default:
@@ -64,7 +66,8 @@ export default class SmallButton extends Component {
                         end={{ x: 0.5, y: 1.5 }}
                         style={styles.gradientStyle}
                     >
-                        <Text style={styles.defaultText}>{this.props.text}</Text>
+                        {(this.props.text) && <Text style={styles.defaultText}>{this.props.text}</Text>}
+                        {(!this.props.text) && this.props.children}
                     </LinearGradient>
                 );
         }

@@ -1,0 +1,13 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>New Project</title>
+	<defs>
+		<image  width="64" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAAPSURBVHicY2AYBaOAfAAAAkAAAVk2oQMAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		.s0 { fill: none;stroke: #ffffff;stroke-miterlimit:100;stroke-width: 4 } 
+		.s1 { fill: #ffffff } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<path id="Layer 2" class="s0" d="m11 11h42v42h-42z"/>
+	<path id="Shape 5" class="s1" d="m20 20h24v24h-24z"/>
+</svg>

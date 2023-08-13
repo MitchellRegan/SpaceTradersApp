@@ -8,12 +8,11 @@ import globalStyles from '../styles/global-stylesheet';
 //Components
 import HeaderBar from '../components/shared/HeaderBar';
 import NavBar from '../components/shared/NavBar';
-import ListElementView from '../components/shared/ListElementView';
-import StatusPercentBar from '../components/ships screen/StatusPercentBar';
 import DynamicMapIcon from '../components/map screen/DynamicMapIcon';
 import SmallButton from '../components/shared/SmallButton';
 import LoadingDisplay from '../components/shared/LoadingDisplay';
 import GradientScreenBackground from '../components/shared/GradientScreenBackground';
+import MenuSelector from '../components/ships screen/MenuSelector';
 
 //API Calls
 import ShipAPICalls from '../api-calls/ship-api-calls';
@@ -196,168 +195,15 @@ export default class ShipsScreen extends Component {
                     </View>
 
 
-                    {/*=============== Frame ===============*/}
-                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewFrame: !this.state.viewFrame }) })}>
-                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Frame Details</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.block, { top: 0, right: 0, borderBottomWidth: 0, borderLeftWidth: 0 }]} />
-                    </View>
-                    {(this.state.viewFrame) && <View style={styles.block}>
-                        <Text style={globalStyles.textListLarge}>{this.state.shipData.frame.name}</Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Condition:</Text>
-                            <StatusPercentBar percent={this.state.shipData.frame.condition} />
-                        </View>
-                        <Text style={globalStyles.defaultText}>{this.state.shipData.frame.description}</Text>
-                        <Text style={globalStyles.textListSmall}>Module Slots: {this.state.shipData.frame.moduleSlots}</Text>
-                        <Text style={globalStyles.textListSmall}>Mounting Points: {this.state.shipData.frame.mountingPoints}</Text>
-                        <Text style={globalStyles.textListSmall}>Max Fuel Capacity: {this.state.shipData.frame.fuelCapacity}</Text>
-                        <Text style={globalStyles.textListSmall}>Requirements:  {this.state.shipData.frame.requirements.crew} Crew,  {this.state.shipData.frame.requirements.power} Power</Text>
-                    </View>}
-
-
-                    {/*=============== Reactor ===============*/}
-                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewReactor: !this.state.viewReactor }) })}>
-                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Reactor Details</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.block, { top: 0, right: 0, borderBottomWidth: 0, borderLeftWidth: 0 }]} />
-                    </View>
-                    {(this.state.viewReactor) && <View style={styles.block}>
-                        <Text style={globalStyles.textListLarge}>{this.state.shipData.reactor.name}</Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Condition:</Text>
-                            <StatusPercentBar percent={this.state.shipData.reactor.condition} />
-                        </View>
-                        <Text style={globalStyles.defaultText}>{this.state.shipData.reactor.description}</Text>
-                        <Text style={globalStyles.textListSmall}>Power Output: {this.state.shipData.reactor.powerOutput}</Text>
-                        <Text style={globalStyles.textListSmall}>Requirements:  {this.state.shipData.reactor.requirements.crew} Crew</Text>
-                    </View>}
-
-
-                    {/*=============== Engine ===============*/}
-                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewEngine: !this.state.viewEngine }) })}>
-                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Engine Details</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.block, { top: 0, right: 0, borderBottomWidth: 0, borderLeftWidth: 0}]}/>
-                    </View>
-                    {(this.state.viewEngine) && <View style={styles.block}>
-                        <Text style={globalStyles.textListLarge}>{this.state.shipData.engine.name}</Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Condition:</Text>
-                            <StatusPercentBar percent={this.state.shipData.engine.condition} />
-                        </View>
-                        <Text style={globalStyles.defaultText}>{this.state.shipData.engine.description}</Text>
-                        <Text style={globalStyles.textListSmall}>Speed: {this.state.shipData.engine.speed}</Text>
-                        <Text style={globalStyles.textListSmall}>Requirements:  {this.state.shipData.engine.requirements.crew} Crew,  {this.state.shipData.engine.requirements.power} Power</Text>
-                    </View>}
-
-
-                    {/*=============== Crew ===============*/}
-                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewCrew: !this.state.viewCrew }) })}>
-                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Crew Details</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.block, { top: 0, right: 0, borderLeftWidth: 2 }]}>
-                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.state.shipData.crew.current}/{this.state.shipData.crew.capacity}</Text>
-                        </View>
-                    </View>
-                    {(this.state.viewCrew) && <View style={styles.block}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={[globalStyles.textList, { textAlignVertical: 'center' }]}>Morale:</Text>
-                            <StatusPercentBar percent={this.state.shipData.crew.morale} />
-                        </View>
-                        <Text style={globalStyles.textListSmall}>Required Crew Size: {this.state.shipData.crew.required}</Text>
-                        <Text style={globalStyles.textListSmall}>Shift Rotation: {this.state.shipData.crew.rotation}</Text>
-                        <Text style={globalStyles.textListSmall}>Wages: ${this.state.shipData.crew.wages} per hour per crew member</Text>
-                    </View>}
-
-
-                    {/*=============== Modules ===============*/}
-                    <View style={[styles.blockRow, {justifyContent: 'space-between'}]}>
-                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewModules: !this.state.viewModules }) })}>
-                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Modules</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.block, {top: 0, right: 0, borderLeftWidth: 2 }]}>
-                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.state.shipData.modules.length}/{this.state.shipData.frame.moduleSlots}</Text>
-                        </View>
-                    </View>
-                    {(this.state.viewModules) && <View style={styles.block}>
-                        {this.state.shipData.modules.map((itemData, key) => (
-                            <ListElementView key={key}>
-                                <Text style={globalStyles.textListLarge}>{itemData.name}</Text>
-                                {(itemData.range) && <Text style={globalStyles.textListSmall}>Range: {itemData.range}</Text>}
-                                <Text style={globalStyles.defaultText}>{itemData.description}</Text>
-                                <Text style={globalStyles.textListSmall}>Requirements:  {itemData.requirements.crew} Crew,  {itemData.requirements.power} Power,  {itemData.requirements.slots} Slots</Text>
-                            </ListElementView>
-                        ))}
-                    </View>}
-
-
-                    {/*=============== Mounts ===============*/}
-                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewMounts: !this.state.viewMounts }) })}>
-                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Installed Mounts</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.block, { top: 0, right: 0, borderLeftWidth: 2 }]}>
-                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.state.shipData.mounts.length}/{this.state.shipData.frame.mountingPoints}</Text>
-                        </View>
-                    </View>
-                    {(this.state.viewMounts) && <View style={styles.block}>
-                        {this.state.shipData.mounts.map((itemData, key) => (
-                            <ListElementView key={key}>
-                                <Text style={globalStyles.textListLarge}>{itemData.name}</Text>
-                                <Text style={globalStyles.textListSmall}>Strength: {itemData.strength}</Text>
-                                <Text style={globalStyles.defaultText}>{itemData.description}</Text>
-                                <Text style={globalStyles.textListSmall}>Requirements:  {itemData.requirements.crew} Crew + {itemData.requirements.power} Power</Text>
-                            </ListElementView>
-                        ))}
-                    </View>}
-
-
-                    {/*=============== Cargo ===============*/}
-                    <View style={[styles.blockRow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.block, { top: 0, left: 0, borderRightWidth: 2 }]}>
-                            <TouchableOpacity onPress={() => this.setState(prevState => { return ({ ...prevState, viewCargo: !this.state.viewCargo }) })}>
-                                <Text style={[globalStyles.header3Text, { padding: 6 }]}>Cargo</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.block, { top: 0, right: 0, borderLeftWidth: 2 }]}>
-                            <Text style={[globalStyles.header3Text, { padding: 6 }]}>{this.state.shipData.cargo.units}/{this.state.shipData.cargo.capacity}</Text>
-                        </View>
-                    </View>
-                    {(this.state.viewCargo) && <View style={styles.block}>
-                        {this.state.shipData.cargo.inventory.map((itemData, key) => (
-                            <ListElementView key={key}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <Text style={globalStyles.textList}>{itemData.name}</Text>
-                                    <Text style={globalStyles.textList}>x{itemData.units}</Text>
-                                </View>
-                                <Text style={globalStyles.textListSmall}>{itemData.description}</Text>
-                            </ListElementView>
-                        ))}
-                    </View>}
+                    <MenuSelector
+                        frameData={this.state.shipData.frame}
+                        reactorData={this.state.shipData.reactor}
+                        engineData={this.state.shipData.engine}
+                        crewData={this.state.shipData.crew}
+                        moduleData={this.state.shipData.modules}
+                        mountData={this.state.shipData.mounts}
+                        cargoData={this.state.shipData.cargo}
+                    />
                 </ScrollView>}
 
                 {(this.state.shipData == null) && <LoadingDisplay />}

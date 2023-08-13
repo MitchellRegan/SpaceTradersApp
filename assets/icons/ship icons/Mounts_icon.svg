@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>New Project</title>
+	<defs>
+		<image  width="64" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAAPSURBVHicY2AYBaOAfAAAAkAAAVk2oQMAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		.s0 { fill: #ffffff } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<path id="Layer 3" fill-rule="evenodd" class="s0" d="m45.2 45.2q-3.4 3.3-7.9 4.7v-4.6q0-1-0.8-1.8-0.8-0.8-1.8-0.8h-5.4q-1.1 0-1.8 0.8-0.8 0.8-0.8 1.8v4.6q-4.5-1.4-7.9-4.7-3.3-3.4-4.7-7.9h4.6q1 0 1.8-0.8 0.8-0.7 0.8-1.8v-5.4q0-1-0.8-1.8-0.8-0.8-1.8-0.8h-4.6q1.4-4.5 4.7-7.9 3.4-3.3 7.9-4.7v4.6q0 1.1 0.8 1.8 0.7 0.8 1.8 0.8h5.4q1 0 1.8-0.8 0.8-0.7 0.8-1.8v-4.6q4.5 1.4 7.9 4.7 3.3 3.4 4.7 7.9h-4.6q-1.1 0-1.8 0.8-0.8 0.8-0.8 1.8v5.4q0 1.1 0.8 1.8 0.7 0.8 1.8 0.8h4.6q-1.4 4.5-4.7 7.9zm18-17.7q-0.8-0.8-1.9-0.8h-5.9q-1.6-6.7-6.5-11.6-4.9-4.9-11.6-6.5v-5.9q0-1.1-0.8-1.9-0.8-0.8-1.8-0.8h-5.4q-1.1 0-1.8 0.8-0.8 0.8-0.8 1.9v5.9q-6.7 1.6-11.6 6.5-4.9 4.9-6.5 11.6h-5.9q-1.1 0-1.9 0.8-0.8 0.8-0.8 1.8v5.4q0 1.1 0.8 1.8 0.8 0.8 1.9 0.8h5.9q1.6 6.7 6.5 11.6 4.9 4.9 11.6 6.5v5.9q0 1.1 0.8 1.9 0.7 0.8 1.8 0.8h5.4q1 0 1.8-0.8 0.8-0.8 0.8-1.9v-5.9q6.7-1.6 11.6-6.5 4.9-4.9 6.5-11.6h5.9q1.1 0 1.9-0.8 0.8-0.7 0.8-1.8v-5.4q0-1-0.8-1.8z"/>
+</svg>
